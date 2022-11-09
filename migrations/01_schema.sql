@@ -18,8 +18,8 @@ CREATE TABLE users (
   email VARCHAR(50) NOT NULL,
   password VARCHAR(255) DEFAULT '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u',
   phone_number VARCHAR(50) NOT NULL,
-  street VARCHAR(50),
-  city VARCHAR(50),
+  street VARCHAR(50) NOT NULL,
+  city VARCHAR(50) NOT NULL,
   provine VARCHAR(50) NOT NULL,
   country VARCHAR(50) NOT NULL,
   postal_code VARCHAR(6) NOT NULL,
@@ -33,13 +33,25 @@ CREATE TABLE items (
   description TEXT,
   photo_url VARCHAR(255) NOT NULL,
   sold BOOLEAN NOT NULL DEFAULT FALSE,
-  condition SMALLINT NOT NULL DEFAULT 0
+  condition VARCHAR(50) NOT NULL,
+  category TEXT NOT NULL,
 );
 
 CREATE TABLE transactions (
   id SERIAL PRIMARY KEY NOT NULL,
   seller_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   item_id INTEGER REFERENCES items(id) ON DELETE CASCADE,
-  rating SMALLINT NOT NULL DEFAULT 0
   purchase_date DATE NOT NULL
+);
+
+CREATE TABLE saved_items (
+  id SERIAL PRIMARY KEY NOT NULL,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  item_id INTEGER REFERENCES items(id) ON DELETE CASCADE,
+);
+
+CREATE TABLE ratings (
+  id SERIAL PRIMARY KEY NOT NULL,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  transaction_id INTEGER REFERENCES transactions(id) ON DELETE CASCADE,
 );
