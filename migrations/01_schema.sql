@@ -57,3 +57,10 @@ CREATE TABLE ratings (
   transaction_id INTEGER REFERENCES transactions(id) ON DELETE CASCADE,
   rating SMALLINT
 );
+
+CREATE TABLE messages (
+  id SERIAL PRIMARY KEY NOT NULL,
+  seller_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  buyer_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  message TEXT NOT NULL
+);
