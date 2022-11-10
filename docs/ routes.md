@@ -30,6 +30,9 @@
 - Add - POST /favourites/:id (add to favourites)
 - Delete - POST /:id/favourites/delete (remove from favourites)
 
+# Messages
+- 
+
 # Transactions
 - Browse - GET /transactions (browse all transactions)
 - Read - GET /transactions/:id (view individual transaction)
