@@ -31,7 +31,9 @@
 - Delete - POST /:id/favourites/delete (remove from favourites)
 
 # Messages
-- 
+- Browse - GET /messages (browse all messages)
+- Read - GET /messages/:id (individual message page)
+- Add - POST /messages (create new message)
 
 # Transactions
 - Browse - GET /transactions (browse all transactions)
