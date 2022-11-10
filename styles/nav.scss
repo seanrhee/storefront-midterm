@@ -27,17 +27,17 @@ nav {
   color: white;
 }
 
-.nav-button {
+.nav-text {
   color: white;
   text-decoration: none;
   transition: color 0.3s ease-in-out;
 }
 
-.nav-button:hover {
+.nav-text:hover {
   color: 	#c0c0c0;
 }
 
- .post-button {
+.nav-button {
   background-color: white;
   border: none;
   padding: 10px 25px;
@@ -48,9 +48,9 @@ nav {
   color: black;
   transition: color 0.3s ease-in-out;
   transition: background-color 0.3s ease-in-out;
- }
+}
 
- .post-button:hover {
+.nav-button:hover {
   background-color: #808080;
   color: #FFF;
- }
+}
