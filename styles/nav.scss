@@ -7,8 +7,8 @@ nav {
   justify-content: space-between;
   align-items: center;
   margin-left: 0px;
-  padding-left: 3em;
-  padding-right: 3em;
+  padding-left: 18vw;
+  padding-right: 18vw;
   z-index: 9999;
 }
 
@@ -17,21 +17,40 @@ nav {
   font-size: 2em;
  }
 
- .right-side-nav {
-  width: 50vw;
+.right-side-nav {
+  width: 35vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-family: 'Poppins', sans-serif;
- }
+  text-decoration: none;
+  color: white;
+}
+
+.nav-button {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.nav-button:hover {
+  color: 	#c0c0c0;
+}
 
  .post-button {
   background-color: white;
   border: none;
-  padding: 15px 32px;
+  padding: 10px 25px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
   color: black;
+  transition: color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out;
+ }
+
+ .post-button:hover {
+  background-color: #808080;
+  color: #FFF;
  }
