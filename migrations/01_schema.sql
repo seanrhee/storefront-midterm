@@ -1,6 +1,3 @@
-CREATE DATABASE test-db;
-\c test-db
-
 -- DROP TABLE IF EXISTS users CASCADE;
 -- DROP TABLE IF EXISTS items CASCADE;
 -- DROP TABLE IF EXISTS transactions CASCADE;
