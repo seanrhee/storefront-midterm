@@ -74,13 +74,13 @@ nav {
 
 #category-dropdown {
   display: none;
-  display: flex;
   background-color: #404040;
   color: white;
   justify-content: space-between;
   height: 40px;
   padding-left: 30vw;
   padding-right: 30vw;
+  transition: display 0.3s ease-in-out;
 }
 
 .dropdown-button {
@@ -93,4 +93,8 @@ nav {
 
 .dropdown-button:hover {
   color: #808080;
+}
+
+#categories {
+  height: 100px;
 }
