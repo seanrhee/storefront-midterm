@@ -18,7 +18,7 @@ nav {
  }
 
 .right-side-nav {
-  width: 35vw;
+  width: 45vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -53,4 +53,15 @@ nav {
 .nav-button:hover {
   background-color: #808080;
   color: #FFF;
+}
+
+.login {
+  background-color: #000000;
+  border: none;
+  color: white;
+  transition: color 0.3s ease-in-out;
+}
+
+.login:hover {
+  color: 	#c0c0c0;
 }
