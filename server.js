@@ -59,22 +59,36 @@ app.use('/users', usersRoutes);
 // Separate them into separate routes files (see above).
 
 app.get('/', (req, res) => {
-  res.render('index');
+  const templateVars = {
+    user: req.session.user_id
+  }
+  res.render('index', templateVars);
 });
 
 app.post('/login', (req, res) => {
   // set user_id cookie to user.id
-  pool.query(`
+  req.session.user_id = 5;
+
+  return pool.query(`
   SELECT *
   FROM users
   WHERE id = $1`, [5])
   .then(result => {
-    console.log(result.rows);
+    console.log(result.rows[0]);
 
-    req.session.user_id = 5;
-    res.redirect('/');
-    return;
+    if (result.rows[0].id === req.session.user_id) {
+      res.redirect('/');
+      return;
+    }
+    
+    return console.log('this aint right');
   });
+})
+
+app.post('/logout', (req, res) => {
+  req.session = null;
+  res.redirect('/');
+  return;
 })
 
 app.listen(PORT, () => {
