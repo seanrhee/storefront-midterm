@@ -60,11 +60,28 @@ app.use('/users', usersRoutes);
 // Separate them into separate routes files (see above).
 
 app.get('/', (req, res) => {
-  const templateVars = {
-    user: req.session.user_id
-  }
-  console.log(templateVars);
-  res.render('index', templateVars);
+  pool.query(`
+  SELECT category
+  FROM items
+  GROUP BY category
+  ORDER BY category`)
+  .then(result => {
+    const categories = [];
+
+    for (const category of result.rows) {
+      console.log(category)
+      categories.push(category.category)
+    }
+
+    console.log(categories);
+
+    const templateVars = {
+      categories: categories,
+      user: req.session.user_id
+    }
+    console.log(templateVars);
+    res.render('index', templateVars);
+  })
 });
 
 app.post('/login', (req, res) => {
