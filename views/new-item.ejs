@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="/styles/main.css" />
   <link rel="stylesheet" href="/styles/layout.css" />
   <link rel="stylesheet" href="/styles/new-item.css" />
+  <link rel="stylesheet" href="/styles/nav.css" />
 
   <!-- External Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,7 +27,7 @@
 </head>
 
 <body>
-
+  <%- include('partials/_header') %>
   <form action="/items" method="post" id="new-item-form">
     <div class="new-item-form__field-wrapper">
       <label for="new-item-form__title">Title</label>
