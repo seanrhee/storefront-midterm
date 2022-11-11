@@ -9,6 +9,7 @@ nav {
   margin-left: 0px;
   padding-left: 18vw;
   padding-right: 18vw;
+  position: fixed;
   z-index: 9999;
 }
 
@@ -77,9 +78,12 @@ nav {
   background-color: #404040;
   color: white;
   justify-content: space-between;
+  width: 100vw;
   height: 40px;
   padding-left: 30vw;
   padding-right: 30vw;
+  margin-top: 100px;
+  position: fixed;
   transition: display 0.3s ease-in-out;
 }
 
