@@ -20,7 +20,7 @@ nav {
 .right-side-nav {
   width: 50vw;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   font-family: 'Poppins', sans-serif;
   text-decoration: none;
@@ -65,4 +65,9 @@ nav {
 
 .login:hover {
   color: 	#c0c0c0;
+}
+
+.nav-item {
+  margin-left: 1em;
+  margin-right: 1em;
 }

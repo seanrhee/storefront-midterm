@@ -30,13 +30,17 @@
     <nav>
       <span class="logo"><a class="nav-text" href="/">Store</a></span>
       <div class="right-side-nav">
-        <button class="login" type="submit">Categories</button>
-        <a class="nav-text" href='/favourites'>Favourites</a>
-        <a class="nav-text" href='/items'>My Items</a>
-        <a class="nav-text" href="/messages">Messages</a>
-        <a class="nav-text" href="/transactions">Order History</a>
-        <form method="POST" action="/login/5"><button class="login">Login</button></form>
-        <button class="nav-button">Post Ad</button>
+        <button class="login nav-item" type="submit">Categories</button>
+        <% if (user) { %>
+        <a class="nav-text nav-item" href='/favourites'>Favourites</a>
+        <a class="nav-text nav-item" href='/items'>My Items</a>
+        <a class="nav-text nav-item" href="/messages">Messages</a>
+        <a class="nav-text nav-item" href="/transactions">Order History</a>
+        <form method="POST" action="/logout"><button class="login nav-item">Logout</button></form>
+        <% } else { %>
+        <form method="POST" action="/login"><button class="login nav-item">Login</button></form>
+        <% } %>
+        <button class="nav-button nav-item">Post Ad</button>
       </div>
     </nav> 
   </header>
