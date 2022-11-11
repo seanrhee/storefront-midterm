@@ -45,6 +45,7 @@ app.use(cookieSession({
 const userApiRoutes = require('./routes/users-api');
 const widgetApiRoutes = require('./routes/widgets-api');
 const usersRoutes = require('./routes/users');
+const { user } = require('pg/lib/defaults');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -62,6 +63,7 @@ app.get('/', (req, res) => {
   const templateVars = {
     user: req.session.user_id
   }
+  console.log(templateVars);
   res.render('index', templateVars);
 });
 
