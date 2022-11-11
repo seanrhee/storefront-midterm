@@ -6,9 +6,18 @@ const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
 const cookieSession = require('cookie-session');
+const { Pool } = require('pg');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
+
+const pool = new Pool({
+  user: 'labber',
+  password: 'labber',
+  host: 'localhost',
+  database: 'midterm',
+  port: '5432'
+});
 
 app.set('view engine', 'ejs');
 
@@ -52,6 +61,21 @@ app.use('/users', usersRoutes);
 app.get('/', (req, res) => {
   res.render('index');
 });
+
+app.post('/login', (req, res) => {
+  // set user_id cookie to user.id
+  pool.query(`
+  SELECT *
+  FROM users
+  WHERE id = $1`, [5])
+  .then(result => {
+    console.log(result.rows);
+
+    req.session.user_id = 5;
+    res.redirect('/');
+    return;
+  });
+})
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
