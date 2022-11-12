@@ -38,6 +38,7 @@ app.use(cookieSession({
 const userApiRoutes = require('./routes/users-api');
 const widgetApiRoutes = require('./routes/widgets-api');
 const usersRoutes = require('./routes/users');
+const itemApiRoutes = require('./routes/items-api');
 const { user } = require('pg/lib/defaults');
 
 // Mount all resource routes
@@ -45,30 +46,21 @@ const { user } = require('pg/lib/defaults');
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 app.use('/api/users', userApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
+app.use('/api/items', itemApiRoutes);
 app.use('/users', usersRoutes);
 // Note: mount other resources here, using the same pattern above
 
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
-const itemQueries = require('./db/queries/items');
-
 
 app.get('/', (req, res) => {
+  const templateVars = {
+    user: req.session.user_id
+  }
 
-  itemQueries.getItems()
-  .then(items => {
+  res.render('index', templateVars);
 
-    console.log(items)
-
-    const templateVars = {
-      user: req.session.user_id,
-      items: items
-    }
-  
-    res.render('index', templateVars);
-  })
-  .catch(err => console.err(err));
 });
 
 app.post('/login', (req, res) => {

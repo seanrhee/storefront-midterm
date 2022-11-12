@@ -31,17 +31,7 @@
   <%- include('partials/_header') %>
 
   <div class="item-container">
-    <% for (const item of items) { %>
-      <a class="item-link" href="/items/<%= item.id %>">
-        <div class="item-div">
-          <img class="image-thumb" src=<%= item.photo_url %> alt="item thumbnail">
-          <div class="item-info">
-            <h3>$<%= item.price_per_item %></h3>
-            <h4 class="item-title"><%= item.title %></h4>
-          </div>
-        </div>
-      </a>
-    <% } %>
+    
   </div>
 
   <%- include('partials/_footer') %>
