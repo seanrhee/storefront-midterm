@@ -84,6 +84,10 @@ app.get('/', (req, res) => {
   })
 });
 
+app.get('/messages', (req, res) => {
+  res.render('messages');
+});
+
 app.post('/login', (req, res) => {
   // set user_id cookie to user.id
   req.session.user_id = 5;
@@ -99,7 +103,7 @@ app.post('/login', (req, res) => {
       res.redirect('/');
       return;
     }
-    
+
     return console.log('this aint right');
   });
 })
