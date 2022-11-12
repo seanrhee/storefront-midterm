@@ -60,7 +60,6 @@ app.use('/users', usersRoutes);
 // Separate them into separate routes files (see above).
 
 app.get('/', (req, res) => {
-
   const templateVars = {
     user: req.session.user_id
   }
