@@ -14,8 +14,8 @@ $(document).ready(() => {
     // over
     $('#category-dropdown').css('display', 'flex');
   }, function () {
-    // out
-    $('#category-dropdown').css('display', 'none');
-  }
-);
+      // out
+      $('#category-dropdown').css('display', 'none');
+    }
+  );
 });
