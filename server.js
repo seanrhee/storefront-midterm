@@ -51,25 +51,24 @@ app.use('/users', usersRoutes);
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
+const itemQueries = require('./db/queries/items');
+
 
 app.get('/', (req, res) => {
 
-  db.query(`
-  SELECT *
-  FROM items
-  ORDER BY id DESC
-  LIMIT 16`)
-  .then(result => {
+  itemQueries.getItems()
+  .then(items => {
 
-    console.log(result.rows)
+    console.log(items)
 
     const templateVars = {
       user: req.session.user_id,
-      items: result.rows
+      items: items
     }
   
     res.render('index', templateVars);
   })
+  .catch(err => console.err(err));
 });
 
 app.post('/login', (req, res) => {
