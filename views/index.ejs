@@ -30,7 +30,15 @@
   <%- include('partials/_header') %>
 
   <main>
-    
+    <% for (const item of items) { %>
+      <div class="item-div">
+        <img src=<%= item.photo_url %> alt="item thumbnail">
+        <div class="item-info">
+          <h3>$<%= item.price_per_item %></h3>
+          <h3><%= item.title %></h3>
+        </div>
+      </div>
+    <% } %>
   </main>
 
   <%- include('partials/_footer') %>

@@ -6,20 +6,13 @@ const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
 const cookieSession = require('cookie-session');
-const { Pool } = require('pg');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
 
-const pool = new Pool({
-  user: 'labber',
-  password: 'labber',
-  host: 'localhost',
-  database: 'midterm',
-  port: '5432'
-});
-
 app.set('view engine', 'ejs');
+
+const pool = require('./public/scripts/db')
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -60,11 +53,23 @@ app.use('/users', usersRoutes);
 // Separate them into separate routes files (see above).
 
 app.get('/', (req, res) => {
-  const templateVars = {
-    user: req.session.user_id
-  }
 
-  res.render('index', templateVars);
+  pool.query(`
+  SELECT *
+  FROM items
+  ORDER BY id DESC
+  LIMIT 9`)
+  .then(result => {
+
+    console.log(result.rows)
+
+    const templateVars = {
+      user: req.session.user_id,
+      items: result.rows
+    }
+  
+    res.render('index', templateVars);
+  })
 });
 
 app.post('/login', (req, res) => {
