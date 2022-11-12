@@ -2,13 +2,14 @@
 $(document).ready(() => {
   const createItemElement = function(item) {
     const $item = $(`
-      <div class="item-div">
-          <img class="image-thumb" src=${item.photo_url} alt="item thumbnail">
-          <div class="item-info">
-            <h3>$${item.price_per_item}</h3>
-            <h4 class="item-title">${item.title}</h4>
+      <a class="item-link" href="/items/${item.id}">
+        <div class="item-div">
+            <img class="image-thumb" src=${item.photo_url} alt="item thumbnail">
+            <div class="item-info">
+              <h3>$${item.price_per_item}</h3>
+              <h4 class="item-title">${item.title}</h4>
+            </div>
           </div>
-        </div>
       </a>
     `);
 
@@ -23,7 +24,6 @@ $(document).ready(() => {
       console.log(`${item} has been prepended`);
     }
   }
-
 
   const loadItems = function() {
     $.get('/api/items', (data) => {
