@@ -1,17 +1,9 @@
 const express = require('express');
 const router  = express.Router();
-const { Pool } = require('pg');
+const db = require('../db/connection');
 
-const pool = new Pool({
-  user: 'labber',
-  password: 'labber',
-  host: 'localhost',
-  database: 'midterm',
-  port: '5432'
-});
-
-router.get('/items', (req, res) => {
-  pool.query(`
+router.get('/', (req, res) => {
+  db.query(`
   SELECT category
   FROM items
   GROUP BY category
@@ -34,5 +26,13 @@ router.get('/items', (req, res) => {
     res.render('new-item', templateVars);
   })
 });
+
+router.post('/', (req, res) => {
+  if (!req.body.text) {
+    res.status(400).json({ error: 'invalid request: no data in POST body' });
+    return;
+  }
+})
+
 
 module.exports = router;
