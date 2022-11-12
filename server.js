@@ -58,7 +58,7 @@ app.get('/', (req, res) => {
   SELECT *
   FROM items
   ORDER BY id DESC
-  LIMIT 9`)
+  LIMIT 16`)
   .then(result => {
 
     console.log(result.rows)

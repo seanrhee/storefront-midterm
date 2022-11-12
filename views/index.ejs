@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="/vendor/border-box.css" />
   <link rel="stylesheet" href="/styles/nav.css" />
   <link rel="stylesheet" href="/styles/footer.css" />
+  <link rel="stylesheet" href="/styles/index.css" />
   <link rel="stylesheet" href="/styles/main.css" />
   <link rel="stylesheet" href="/styles/layout.css" />
 
@@ -29,17 +30,19 @@
 <body>
   <%- include('partials/_header') %>
 
-  <main>
+  <div class="item-container">
     <% for (const item of items) { %>
-      <div class="item-div">
-        <img src=<%= item.photo_url %> alt="item thumbnail">
-        <div class="item-info">
-          <h3>$<%= item.price_per_item %></h3>
-          <h3><%= item.title %></h3>
+      <a class="item-link" href="/items/<%= item.id %>">
+        <div class="item-div">
+          <img class="image-thumb" src=<%= item.photo_url %> alt="item thumbnail">
+          <div class="item-info">
+            <h3>$<%= item.price_per_item %></h3>
+            <h4 class="item-title"><%= item.title %></h4>
+          </div>
         </div>
-      </div>
+      </a>
     <% } %>
-  </main>
+  </div>
 
   <%- include('partials/_footer') %>
 </body>

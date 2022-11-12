@@ -84,6 +84,7 @@ nav {
   padding-right: 30vw;
   margin-top: 100px;
   position: fixed;
+  z-index: 9999;
   transition: display 0.3s ease-in-out;
 }
 
