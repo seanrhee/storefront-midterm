@@ -12,7 +12,7 @@ const app = express();
 
 app.set('view engine', 'ejs');
 
-const pool = require('./public/scripts/db')
+const db = require('./db/connection')
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -54,7 +54,7 @@ app.use('/users', usersRoutes);
 
 app.get('/', (req, res) => {
 
-  pool.query(`
+  db.query(`
   SELECT *
   FROM items
   ORDER BY id DESC
