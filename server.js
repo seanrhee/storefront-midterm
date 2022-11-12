@@ -60,49 +60,21 @@ app.use('/users', usersRoutes);
 // Separate them into separate routes files (see above).
 
 app.get('/', (req, res) => {
-  pool.query(`
-  SELECT category
-  FROM items
-  GROUP BY category
-  ORDER BY category`)
-  .then(result => {
-    const categories = [];
 
-    for (const category of result.rows) {
-      console.log(category)
-      categories.push(category.category)
-    }
+  const templateVars = {
+    user: req.session.user_id
+  }
 
-    console.log(categories);
-
-    const templateVars = {
-      categories: categories,
-      user: req.session.user_id
-    }
-    console.log(templateVars);
-    res.render('index', templateVars);
-  })
+  res.render('index', templateVars);
 });
 
 app.post('/login', (req, res) => {
   // set user_id cookie to user.id
   req.session.user_id = 5;
 
-  return pool.query(`
-  SELECT *
-  FROM users
-  WHERE id = $1`, [5])
-  .then(result => {
-    console.log(result.rows[0]);
-
-    if (result.rows[0].id === req.session.user_id) {
-      res.redirect('/');
-      return;
-    }
-    
-    return console.log('this aint right');
-  });
-})
+  res.redirect('/');
+  return;
+});
 
 app.post('/logout', (req, res) => {
   req.session = null;
