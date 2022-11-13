@@ -71,3 +71,28 @@
   background-color: #404040;
   color: #fff;
 }
+
+.to-top {
+  display: flex;
+  justify-content: flex-end;
+  position: fixed;
+  bottom: 125px;
+  right: 17vw;
+}
+.top {
+  height: 75px;
+  width: 75px;
+  background-color: #000;
+  border-radius: 50%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 99;
+  cursor: pointer;
+}
+
+.top p {
+  color: white;
+  font-weight: bolder;
+
+}
