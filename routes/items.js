@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../db/connection');
+const itemQueries = require('../db/queries/items');
 
 router.get('/', (req, res) => {
   db.query(`
@@ -28,8 +29,8 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   const userId = req.session.userId;
-  db.addItem({ ...req.body, owner_id: userId })
   console.log(req.body)
+  itemQueries.addItem({ ...req.body, owner_id: userId })
     .then(item => {
       res.send(item);
     })

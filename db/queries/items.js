@@ -1,7 +1,8 @@
 const db = require('../connection');
 
 const addItem = function (item) {
-  return pool.query(
+  console.log('add item');
+  return db.query(
     `INSERT INTO items (owner_id,
       title,
       price_per_item,
@@ -9,12 +10,12 @@ const addItem = function (item) {
       photo_url,
       sold,
       condition,
-      category,
+      category)
     VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
     RETURNING *`,
-    [item.owner_id, item.title, item.price_per_item, item.description, item.photo_url, item.sold, item.condition, property.category])
+    [item.owner_id, item.title, item.price_per_item, item.description, item.photo_url, false, item.condition, item.category])
     .then((result) => {
-      return result.rows[0];
+      return result.rows;
     })
     .catch((err) => {
       console.log(err.message);
