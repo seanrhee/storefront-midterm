@@ -12,16 +12,13 @@ $(document).ready(() => {
           </div>
       </a>
     `);
-
-    console.log(`${item} has been created`);
-
+    
     return $item;
   }
 
   const renderItems = function(items) {
     for (const item of items) {
       $('.item-container').append(createItemElement(item));
-      console.log(`${item} has been prepended`);
     }
   }
 
@@ -41,7 +38,16 @@ $(document).ready(() => {
   loadItems();
 
 
+  // category dropdown selector
+  $('.dropdown-button').click(function (e) { 
+    e.preventDefault();
 
+    let categorySelector = $(this).attr('id');
+
+    $('.item-container').empty();
+    
+    loadCategory(categorySelector);
+  });
 
   // start category drop down on hover
   $('#categories').hover(function () {
