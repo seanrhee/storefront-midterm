@@ -1,7 +1,6 @@
-const db = require('../connection');
 
 const addItem = function (item) {
-  return db.query(
+  return pool.query(
     `INSERT INTO items (owner_id,
       title,
       price_per_item,
@@ -21,4 +20,4 @@ const addItem = function (item) {
     });
 }
 
-module.exports = addItem;
+exports.addItem = addItem;
