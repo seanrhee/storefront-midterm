@@ -1,5 +1,4 @@
 // Client facing scripts here
-
 $(document).ready(() => {
   const createItemElement = function(item) {
     const $item = $(`
@@ -35,18 +34,32 @@ $(document).ready(() => {
       renderItems(data.items[page]);
     });
   }
-  
+
+  // keep track of current page
+  let currentPage = 0
   // load items on page load
-  loadItems(0).then(res => {
-    let currentPage = 0
-    if (currentPage < res.length) {
-      
+  loadItems(currentPage).then(res => {
+    if (currentPage < res.items.length) {
+      $('.load-more').css('display', 'flex');
     }
   })
+
+  // click load more to load more pages
+  $('.load-more').click(function (e) { 
+    e.preventDefault();
+    currentPage++;
+    loadItems(currentPage).then(res => {
+      if (currentPage === res.items.length-1) {
+        $('.load-more').css('display', 'none');
+      }
+    })
+  });
 
   // category dropdown selector
   $('.dropdown-button').click(function (e) { 
     e.preventDefault();
+    //reset currentPage
+    currentPage = 0
 
     let categorySelector = $(this).attr('id');
 

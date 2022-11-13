@@ -48,7 +48,7 @@
 }
 
 .load-more {
-  display: flex;
+  display: none;
   justify-content: center;
   margin-bottom: 2em;
 }
@@ -65,4 +65,9 @@
   color: white;
   transition: color 0.3s ease-in-out;
   transition: background-color 0.3s ease-in-out;
+}
+
+.load-button:hover {
+  background-color: #404040;
+  color: #fff;
 }
