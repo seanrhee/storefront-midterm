@@ -1,0 +1,48 @@
+.item-container {
+  width: 100vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 100px;
+  padding: 2em 23vw;
+}
+
+.item-div {
+  width: 13vw;
+  margin-top: 1em;
+  background-color: #000000;
+  transition: transform 0.3s ease-in-out;
+}
+
+.item-div:hover {
+  transform: scale(1.02);
+}
+
+.image-thumb {  
+  width: 13vw;
+  height: 11vw;
+  object-fit: cover;
+}
+
+.item-info {
+  display: flex;
+  justify-content: space-between;
+  text-align: right;
+  padding: 0em 1em;
+  color: white;
+}
+
+.item-info h3 {
+  color: #c0c0c0;
+}
+
+.item-title {
+  width: 9em;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.item-link {
+  text-decoration: none;
+}
