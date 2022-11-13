@@ -34,9 +34,10 @@ $(document).ready(() => {
     });
   }
 
-  // keep track of current page
+  // keep track of current page + category
   let currentPage = 0
   let categorySelector;
+
   // load items on page load
   loadItems(currentPage, categorySelector).then(res => {
     if (currentPage < res.items.length - 1) {
@@ -44,7 +45,7 @@ $(document).ready(() => {
     }
   })
 
-  // click load more to load more pages
+  // click to load more pages
   $('.load-more').click(function (e) { 
     e.preventDefault();
     currentPage++;
@@ -55,7 +56,8 @@ $(document).ready(() => {
     })
   });
 
-  // category dropdown selector
+
+  // START category dropdown selector
   $('.dropdown-button').click(function (e) { 
     e.preventDefault();
     //reset currentPage
@@ -74,8 +76,10 @@ $(document).ready(() => {
       }
     });
   });
+  // END category dropdown selector
 
-  // start category drop down on hover
+
+  // START category drop down on hover
   $('#categories').hover(function () {
       // over
       $('#category-dropdown').css('display', 'flex');
@@ -93,11 +97,26 @@ $(document).ready(() => {
       $('#category-dropdown').css('display', 'none');
     }
   );
-  // end category drop down on hover
+  // END category drop down on hover
 
-  // start category buttons
-  $('.dropdown-button').click(function (e) { 
+
+  // START top button
+  // When the user scrolls down 20px from the top of the document, show the button
+  window.onscroll = function() {scrollFunction()};
+
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      $('.top').css('display', 'flex');
+    } else {
+      $('.top').css('display', 'none');
+    }
+  }
+
+  // on click event
+  $('.top').click(function (e) { 
     e.preventDefault();
-    
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+    return false;
   });
+  // END top button
 });
