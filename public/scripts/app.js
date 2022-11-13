@@ -22,24 +22,24 @@ $(document).ready(() => {
     }
   }
   
-  async function loadItems(page) {
+  async function loadItems(page = 0, category = null) {
     console.log('loadItems')
+    if (category) {
+      return $.get(`/api/items/${category}`, (data) => {
+        renderItems(data.items[page]);
+      });
+    }
     return $.get('/api/items', (data) => {
-      renderItems(data.items[page]);
-    });
-  }
-  
-  async function loadCategory(category, page) {
-    $.get(`/api/items/${category}`, (data) => {
       renderItems(data.items[page]);
     });
   }
 
   // keep track of current page
   let currentPage = 0
+  let categorySelector;
   // load items on page load
-  loadItems(currentPage).then(res => {
-    if (currentPage < res.items.length) {
+  loadItems(currentPage, categorySelector).then(res => {
+    if (currentPage < res.items.length - 1) {
       $('.load-more').css('display', 'flex');
     }
   })
@@ -48,7 +48,7 @@ $(document).ready(() => {
   $('.load-more').click(function (e) { 
     e.preventDefault();
     currentPage++;
-    loadItems(currentPage).then(res => {
+    loadItems(currentPage, categorySelector).then(res => {
       if (currentPage === res.items.length-1) {
         $('.load-more').css('display', 'none');
       }
@@ -61,11 +61,18 @@ $(document).ready(() => {
     //reset currentPage
     currentPage = 0
 
-    let categorySelector = $(this).attr('id');
+    categorySelector = $(this).attr('id');
 
     $('.item-container').empty();
     
-    loadCategory(categorySelector, 0);
+    loadItems(currentPage, categorySelector).then(res => {
+      console.log(res);
+      if (currentPage < res.items.length - 1) {
+        $('.load-more').css('display', 'flex');
+      } else if (currentPage === res.items.length - 1) {
+        $('.load-more').css('display', 'none');
+      }
+    });
   });
 
   // start category drop down on hover
