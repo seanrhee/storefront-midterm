@@ -27,13 +27,23 @@ $(document).ready(() => {
 
   const loadItems = function() {
     $.get('/api/items', (data) => {
-      renderItems(data.items)
-    })
+      renderItems(data.items.slice(0,16));
+    });
   }
 
+  const loadCategory = function(category) {
+    $.get(`/api/items/${category}`, (data) => {
+      renderItems(data.items.slice(0,16));
+    });
+  }
+
+  // load items on page load
   loadItems();
 
 
+
+
+  // start category drop down on hover
   $('#categories').hover(function () {
       // over
       $('#category-dropdown').css('display', 'flex');
@@ -51,4 +61,11 @@ $(document).ready(() => {
       $('#category-dropdown').css('display', 'none');
     }
   );
+  // end category drop down on hover
+
+  // start category buttons
+  $('.dropdown-button').click(function (e) { 
+    e.preventDefault();
+    
+  });
 });
