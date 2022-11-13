@@ -1,4 +1,5 @@
 // Client facing scripts here
+
 $(document).ready(() => {
   const createItemElement = function(item) {
     const $item = $(`
@@ -15,28 +16,33 @@ $(document).ready(() => {
     
     return $item;
   }
-
+  
   const renderItems = function(items) {
     for (const item of items) {
       $('.item-container').append(createItemElement(item));
     }
   }
-
-  const loadItems = function() {
-    $.get('/api/items', (data) => {
-      renderItems(data.items.slice(0,16));
+  
+  async function loadItems(page) {
+    console.log('loadItems')
+    return $.get('/api/items', (data) => {
+      renderItems(data.items[page]);
     });
   }
-
-  const loadCategory = function(category) {
+  
+  async function loadCategory(category, page) {
     $.get(`/api/items/${category}`, (data) => {
-      renderItems(data.items.slice(0,16));
+      renderItems(data.items[page]);
     });
   }
-
+  
   // load items on page load
-  loadItems();
-
+  loadItems(0).then(res => {
+    let currentPage = 0
+    if (currentPage < res.length) {
+      
+    }
+  })
 
   // category dropdown selector
   $('.dropdown-button').click(function (e) { 
@@ -46,7 +52,7 @@ $(document).ready(() => {
 
     $('.item-container').empty();
     
-    loadCategory(categorySelector);
+    loadCategory(categorySelector, 0);
   });
 
   // start category drop down on hover
