@@ -1,5 +1,25 @@
 const db = require('../connection');
 
+const itemPages = function(database) {
+  const perPage = 16;
+
+  const inputDatabase = database;
+
+  const result = inputDatabase.reduce((resultArray, item, index) => {
+    const pageIndex = Math.floor(index/perPage);
+
+    if (!resultArray[pageIndex]) {
+      resultArray[pageIndex] = [];
+    }
+
+    resultArray[pageIndex].push(item);
+
+    return resultArray
+  }, [])
+
+  return result;
+}
+
 const getItems = () => {
   return db.query(`
   SELECT *
@@ -7,7 +27,11 @@ const getItems = () => {
   ORDER BY id DESC
   `)
   .then(data => {
-    return data.rows;
+    const result = itemPages(data.rows);
+
+    console.log(result);
+
+    return result;
   });
 };
 
@@ -18,8 +42,17 @@ const getCategory = (category) => {
   WHERE category = $1
   ORDER BY id DESC`, [category])
   .then(data => {
-    return data.rows;
+    const result = itemPages(data.rows)
+
+    return result;
   })
 }
 
 module.exports = { getItems, getCategory };
+
+// have parent empty array
+// have child empty array
+// loop through and push 16 elements to child array
+// when it hits 16, push the child array to parent array
+// clear child array
+// repeat 
