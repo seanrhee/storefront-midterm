@@ -38,9 +38,8 @@ app.use(cookieSession({
 const userApiRoutes = require('./routes/users-api');
 const widgetApiRoutes = require('./routes/widgets-api');
 const usersRoutes = require('./routes/users');
-const itemRoutes = require('./routes/items');
 const itemApiRoutes = require('./routes/items-api');
-const itemsRoutes = require('/routes/items')
+const itemsRoutes = require('./routes/items')
 const { user } = require('pg/lib/defaults');
 
 // Mount all resource routes
