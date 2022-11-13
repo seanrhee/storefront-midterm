@@ -46,3 +46,23 @@
 .item-link {
   text-decoration: none;
 }
+
+.load-more {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2em;
+}
+
+.load-button {
+  font-family: 'Poppins', sans-serif;
+  background-color: black;
+  border: none;
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  color: white;
+  transition: color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out;
+}
