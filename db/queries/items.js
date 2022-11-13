@@ -49,10 +49,3 @@ const getCategory = (category) => {
 }
 
 module.exports = { getItems, getCategory };
-
-// have parent empty array
-// have child empty array
-// loop through and push 16 elements to child array
-// when it hits 16, push the child array to parent array
-// clear child array
-// repeat 
