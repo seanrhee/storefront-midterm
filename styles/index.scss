@@ -1,3 +1,8 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .item-container {
   width: 100vw;
   display: flex;
@@ -96,8 +101,4 @@
 .top p {
   color: white;
   font-weight: bolder;
-}
-
-.category-label {
-  
 }

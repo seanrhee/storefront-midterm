@@ -36,14 +36,14 @@ $(document).ready(() => {
 
   // keep track of current page + category
   let currentPage = 0
-  let categorySelector;
+  let categorySelector = null;
 
   // load items on page load
   loadItems(currentPage, categorySelector).then(res => {
     if (currentPage < res.items.length - 1) {
       $('.load-more').css('display', 'flex');
     }
-  })
+  });
 
   // click to load more pages
   $('.load-more').click(function (e) { 
@@ -56,18 +56,16 @@ $(document).ready(() => {
     })
   });
 
-
+  
   // START category dropdown selector
   $('.dropdown-button').click(function (e) { 
     e.preventDefault();
     //reset currentPage
     currentPage = 0
-
+    
     categorySelector = $(this).attr('id');
-
+        
     $('.item-container').empty();
-
-    $('.category-label').append(`<p>${categorySelector}</p>`);
     
     loadItems(currentPage, categorySelector).then(res => {
       console.log(res);
@@ -79,17 +77,15 @@ $(document).ready(() => {
     });
   });
   // END category dropdown selector
-
-
+  
   // START category drop down on hover
   $('#categories').hover(function () {
-      // over
-      $('#category-dropdown').css('display', 'flex');
-    }, function () {
-      // out
-      $('#category-dropdown').css('display', 'none');
-    }
-  );
+    // over
+    $('#category-dropdown').css('display', 'flex');
+  }, function () {
+    // out
+    $('#category-dropdown').css('display', 'none');
+  });
 
   $('#category-dropdown').hover(function () {
     // over
@@ -97,15 +93,13 @@ $(document).ready(() => {
   }, function () {
       // out
       $('#category-dropdown').css('display', 'none');
-    }
-  );
+  });
   // END category drop down on hover
-
 
   // START top button
   // When the user scrolls down 20px from the top of the document, show the button
   window.onscroll = function() {scrollFunction()};
-
+  
   function scrollFunction() {
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
       $('.top').css('display', 'flex');
@@ -113,7 +107,7 @@ $(document).ready(() => {
       $('.top').css('display', 'none');
     }
   }
-
+  
   // on click event
   $('.top').click(function (e) { 
     e.preventDefault();
