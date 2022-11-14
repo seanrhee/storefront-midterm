@@ -27,14 +27,4 @@ router.get('/:category', (req, res) => {
   })
 })
 
-router.get('/:id', (req, res) => {
-  itemQueries.getIndividualItem(req.params.id)
-  .then(item => {
-    res.json({ item })
-  })
-  .catch(err => {
-    res
-  })
-})
-
 module.exports = router;
