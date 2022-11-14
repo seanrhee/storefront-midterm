@@ -39,10 +39,7 @@ const userApiRoutes = require('./routes/users-api');
 const widgetApiRoutes = require('./routes/widgets-api');
 const usersRoutes = require('./routes/users');
 const itemApiRoutes = require('./routes/items-api');
-<<<<<<< HEAD
-=======
 const itemsRoutes = require('./routes/items')
->>>>>>> new_item_form
 const { user } = require('pg/lib/defaults');
 
 // Mount all resource routes
