@@ -17,5 +17,4 @@ router.get('/', (req, res) => {
   res.render('compose-message', templateVars);
 })
 
-
 module.exports = router;
