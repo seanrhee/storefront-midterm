@@ -1,13 +1,19 @@
 <header>
   <nav>
     <span class="logo"><a class="nav-text" href="/">Store</a></span>
+    <div class="search">
+      <input type="text" class="searchTerm">
+      <button type="submit" class="searchButton">
+        <i class="fa fa-search"></i>
+     </button>
+   </div>
     <div class="right-side-nav">
       <button id="categories" class="login nav-item">Categories</button>
       <% if (user) { %>
         <a class="nav-text nav-item" href='/favourites'>Favourites</a>
-        <a class="nav-text nav-item" href='/items'>My Items</a>
+        <a class="nav-text nav-item" href='/items'>My Ads</a>
         <a class="nav-text nav-item" href="/messages">Messages</a>
-        <a class="nav-text nav-item" href="/transactions">Order History</a>
+        <a class="nav-text nav-item" href="/transactions">Transactions</a>
         <form method="POST" action="/logout"><button class="login nav-item">Logout</button></form>
       <% } else { %>
         <form method="POST" action="/login"><button class="login nav-item">Login</button></form>
@@ -16,8 +22,12 @@
     </div>
   </nav>
   <div id="category-dropdown">
-    <% for (const category of categories) { %>
-      <button class="dropdown-button"><%= category %></button>
-    <% } %>
+    <button class="dropdown-button" id="bed">Bed</button>
+    <button class="dropdown-button" id="bath">Bath</button>
+    <button class="dropdown-button" id="kitchen">Kitchen</button>
+    <button class="dropdown-button" id="living">Living</button>
+    <button class="dropdown-button" id="office">Office</button>
+    <button class="dropdown-button" id="patio">Patio</button>
+    <button class="dropdown-button" id="misc">Misc</button>
   </div>
 </header>
