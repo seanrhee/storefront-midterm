@@ -48,13 +48,13 @@
         <!-- Product Description -->
         <div class="product-description">
           <span class="category">
-            <%=category%>
+            <%=categories.category%>
           </span>
           <h1>
-            <%=title%>
+            <%=item.title%>
           </h1>
           <p>
-            <%=description>
+            <%=item.description%>
           </p>
         </div>
 
@@ -84,11 +84,11 @@
 
           <!-- Product Pricing -->
           <div class="product-price">
-            <span>$<%=price%></span>
+            <span>$<%=item.price%></span>
           </div>
 
           <div class="message-box">
-            <label for="message">Description</label>
+            <label for="message">Message</label>
             <textarea placeholder="Hi, I'm interested! Please contact me if this is still available." name="message" id="message" cols="30"
               rows="10"></textarea>
           </div>

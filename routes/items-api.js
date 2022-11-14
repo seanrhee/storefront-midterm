@@ -27,4 +27,16 @@ router.get('/:category', (req, res) => {
   })
 })
 
+router.get("/:id", (req, res) => {
+  itemQueries.getIndividualItem(req.params.item)
+  .then(item => {
+    res.json({ item });
+  })
+  .catch(err => {
+    res
+      .status(500)
+      .json({ error: err.message });
+  });
+});
+
 module.exports = router;

@@ -44,4 +44,15 @@ const getCategory = (category) => {
   })
 }
 
-module.exports = { getItems, getCategory, addItem };
+const getIndividualItem = (item) => {
+  return db.query(`
+  SELECT *
+  FROM items
+  WHERE category = $1`, [item])
+  .then(data => {
+    return data.rows;
+  });
+}
+
+
+module.exports = { getItems, getCategory, addItem, getIndividualItem };

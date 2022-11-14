@@ -33,6 +33,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   const userId = req.session.userId;
   console.log(req.body)
+
   itemQueries.addItem({ ...req.body, owner_id: userId })
     .then(item => {
       res.send(item);
@@ -41,38 +42,51 @@ router.post('/', (req, res) => {
       console.error(e);
       res.send(e)
     });
+
+  if (!userId) {
+    res.status(401).send("Please log in to post new item.");
+  } else {
+    res.redirect(`/${id}`); //redirect the user to show item page
+  };
 })
 
 //GET route to show users individual item page
-app.get("/items/:id", (req, res) => {
-  const id = req.params.id;
-  const longURL = req.body.longURL;
-  urlDatabase[id].longURL = longURL;
-  const userid = req.session.user_id;
+router.get("/:id", (req, res) => {
+  const item = itemQueries.getIndividualItem(req.params.id)
 
-  if (!userid) {
-    return res.status(401).send("Please log in to see your tinyURLs.");
-  } else if (!urlDatabase[id]) {
-    return res.status(404).send("This tiny URL does not exist.");
-  } else if (userid !== urlDatabase[req.params.id].userID) {
-    return res.status(403).send("You are not authorized to access this tinyURL.");
-  } else {
-    res.redirect("/urls");
-  };
+  db.query(`
+  SELECT category
+  FROM items
+  GROUP BY category
+  ORDER BY category`)
+    .then(result => {
+      const categories = [];
 
+      for (const category of result.rows) {
+        console.log(category)
+        categories.push(category.category)
+      }
+
+      const templateVars = {
+        categories: categories,
+        item: item
+      };
+
+      res.render("item", templateVars);
+    })
 });
 
-//POST route to let users update individual item info
-app.post("/items/:id", (req, res) => {
+// //POST route to let users update individual item info
+// app.post("/items/:id", (req, res) => {
 
 
-});
+// });
 
-//POST route to let users update individual item info
-app.post("/items/:id/delete", (req, res) => {
+// //POST route to let users update individual item info
+// app.post("/items/:id/delete", (req, res) => {
 
 
-});
+// });
 
 
 module.exports = router;
