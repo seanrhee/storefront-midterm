@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="/styles/layout.css" />
   <link rel="stylesheet" href="/styles/new-item.css" />
   <link rel="stylesheet" href="/styles/nav.css" />
+  <link rel="stylesheet" href="/styles/item-page.css" />
 
   <!-- External Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,7 +33,7 @@
 <body>
   <%- include('partials/_header') %>
 
-    <main class="container">
+    <main class="individualItemContainer">
 
       <!-- Left Column / Item Image -->
       <div class="left-column">
@@ -53,20 +54,21 @@
           <p>
             <%=item.description%>
           </p>
+          <p>
+            Condition: <%=item.condition%>
+          </p>
         </div>
 
-        <!-- Product Configuration -->
-        <div class="product-configuration">
-
+        <div>
           <!-- Product Pricing -->
           <div class="product-price">
             <span>$<%=item.price_per_item%></span>
           </div>
 
           <div class="message-box">
-            <label for="message">Message</label>
+            <label for="message">Contact Seller</label>
             <textarea placeholder="Hi, I'm interested! Please contact me if this is still available." name="message" id="message" cols="30"
-              rows="10"></textarea>
+              rows="3"></textarea>
           </div>
 
           <a href="#" class="send-message">Send Message</a>
