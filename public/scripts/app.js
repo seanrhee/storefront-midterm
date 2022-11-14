@@ -62,10 +62,17 @@ $(document).ready(() => {
     e.preventDefault();
     //reset currentPage
     currentPage = 0
+    $('.dropdown-button').css('color', '');
+
     
     categorySelector = $(this).attr('id');
+
+    $('#categories').unbind('mouseenter mouseleave');
+    $('#category-dropdown').unbind('mouseenter mouseleave');
         
     $('.item-container').empty();
+
+    $(this).css('color', '#808080');
     
     loadItems(currentPage, categorySelector).then(res => {
       console.log(res);
