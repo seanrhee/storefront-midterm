@@ -33,47 +33,44 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   const userId = req.session.userId;
   console.log(req.body)
-
   itemQueries.addItem({ ...req.body, owner_id: userId })
     .then(item => {
-      res.send(item);
+      res.redirect(`/items/${item.id}`); //redirect the user to show item page
     })
     .catch(e => {
       console.error(e);
       res.send(e)
     });
 
-  if (!userId) {
-    res.status(401).send("Please log in to post new item.");
-  } else {
-    res.redirect(`/${id}`); //redirect the user to show item page
-  };
+
 })
 
 //GET route to show users individual item page
 router.get("/:id", (req, res) => {
-  const item = itemQueries.getIndividualItem(req.params.id)
+  itemQueries.getIndividualItem(req.params.id)
+    .then((item) => {
+      db.query(`
+      SELECT category
+      FROM items
+      GROUP BY category
+      ORDER BY category`)
+        .then(result => {
+          const categories = [];
 
-  db.query(`
-  SELECT category
-  FROM items
-  GROUP BY category
-  ORDER BY category`)
-    .then(result => {
-      const categories = [];
+          for (const category of result.rows) {
+            categories.push(category.category)
+          }
 
-      for (const category of result.rows) {
-        console.log(category)
-        categories.push(category.category)
-      }
+          const templateVars = {
+            user: req.session.user_id,
+            categories: categories,
+            item
+          };
 
-      const templateVars = {
-        categories: categories,
-        item: item
-      };
-
-      res.render("item", templateVars);
+          res.render("item", templateVars);
+        })
     })
+
 });
 
 // //POST route to let users update individual item info

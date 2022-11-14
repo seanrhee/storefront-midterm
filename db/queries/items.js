@@ -15,7 +15,7 @@ const addItem = function (item) {
     RETURNING *`,
     [item.owner_id, item.title, item.price_per_item, item.description, item.photo_url, false, item.condition, item.category])
     .then((result) => {
-      return result.rows;
+      return result.rows[0];
     })
     .catch((err) => {
       console.log(err.message);
@@ -48,9 +48,9 @@ const getIndividualItem = (item) => {
   return db.query(`
   SELECT *
   FROM items
-  WHERE category = $1`, [item])
-  .then(data => {
-    return data.rows;
+  WHERE id = $1`, [item])
+  .then(data => { //async promise, always use a promise after
+    return data.rows[0]; //an obj
   });
 }
 
