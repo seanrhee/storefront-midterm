@@ -10,33 +10,33 @@ const pool = new Pool({
   port: '5432'
 });
 
-router.get('messages', (req, res) => {
-  res.render('inbox');
+router.get('/', (req, res) => {
+  res.render('messages');
 })
 
-router.get('/', (req, res) => {
-  pool.query(`
-  SELECT category
-  FROM items
-  GROUP BY category
-  ORDER BY category`)
-  .then(result => {
-    const categories = [];
+// router.get('/', (req, res) => {
+//   pool.query(`
+//   SELECT category
+//   FROM items
+//   GROUP BY category
+//   ORDER BY category`)
+//   .then(result => {
+//     const categories = [];
 
-    for (const category of result.rows) {
-      console.log(category)
-      categories.push(category.category)
-    }
+//     for (const category of result.rows) {
+//       console.log(category)
+//       categories.push(category.category)
+//     }
 
-    console.log(categories);
+//     console.log(categories);
 
-    const templateVars = {
-      categories: categories,
-      user: req.session.user_id
-    }
-    console.log(templateVars);
-    res.render('index', templateVars);
-  })
-});
+//     const templateVars = {
+//       categories: categories,
+//       user: req.session.user_id
+//     }
+//     console.log(templateVars);
+//     res.render('index', templateVars);
+//   })
+// });
 
 module.exports = router;
