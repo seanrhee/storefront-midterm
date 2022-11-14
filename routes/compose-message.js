@@ -17,4 +17,13 @@ router.get('/', (req, res) => {
   res.render('compose-message', templateVars);
 })
 
+router.post("/messages", (req, res) => {
+  // console.log(req.body);
+  // const templateVars = { newMessage: req.body.new-message };
+  console.log(req.body);
+  res.send("Ok");
+  // console.log("something");
+  // res.redirect('compose-message');
+});
+
 module.exports = router;
