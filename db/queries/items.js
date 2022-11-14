@@ -48,4 +48,8 @@ const getCategory = (category) => {
   })
 }
 
+const getIndividualItem = () => {
+  
+}
+
 module.exports = { getItems, getCategory };

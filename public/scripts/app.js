@@ -66,6 +66,8 @@ $(document).ready(() => {
     categorySelector = $(this).attr('id');
 
     $('.item-container').empty();
+
+    $('.category-label').append(`<p>${categorySelector}</p>`);
     
     loadItems(currentPage, categorySelector).then(res => {
       console.log(res);
