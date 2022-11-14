@@ -7,8 +7,8 @@ nav {
   justify-content: space-between;
   align-items: center;
   margin-left: 0px;
-  padding-left: 18vw;
-  padding-right: 18vw;
+  padding-left: 15vw;
+  padding-right: 15vw;
   position: fixed;
   z-index: 9999;
 }
@@ -19,7 +19,7 @@ nav {
  }
 
 .right-side-nav {
-  width: 50vw;
+  width: 43vw;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -71,6 +71,7 @@ nav {
 .nav-item {
   margin-left: 1em;
   margin-right: 1em;
+  cursor: pointer;
 }
 
 #category-dropdown {
@@ -84,7 +85,7 @@ nav {
   padding-right: 30vw;
   margin-top: 100px;
   position: fixed;
-  transition: display 0.3s ease-in-out;
+  z-index: 9999;
 }
 
 .dropdown-button {
@@ -93,6 +94,7 @@ nav {
   color: white;
   transition: color 0.3s ease-in-out;
   font-family: 'Poppins', sans-serif;
+  cursor: pointer;
 }
 
 .dropdown-button:hover {
@@ -101,4 +103,40 @@ nav {
 
 #categories {
   height: 100px;
+  cursor: pointer;
+}
+
+.search {
+  width: 13vw;
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.searchTerm {
+  width: 100%;
+  border: 3px solid #808080;
+  border-right: none;
+  padding: 5px;
+  height: 36px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9DBFAF;
+  font-family: 'Poppins', sans-serif;
+}
+
+.searchTerm:focus{
+  color: #000;
+}
+
+.searchButton {
+  width: 40px;
+  height: 36px;
+  border: 1px solid #808080;
+  background: #808080;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
 }
