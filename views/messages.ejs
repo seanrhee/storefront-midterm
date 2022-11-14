@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="/styles/main.css" />
   <link rel="stylesheet" href="/styles/layout.css" />
   <link rel="stylesheet" href="/styles/messages.css" />
+  <link rel="stylesheet" href="/styles/compose-message.css" />
 
   <!-- External Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,7 +44,7 @@
         <div class="transaction-comms">
           <div class="contact-container">
             <div class="user-name">Seller Name</div>
-            <button class="reply-button">reply</button>
+            <button id="reply-button" onclick="composeMessage()">reply</button>
           </div>
           <dialogue>message preview</dialogue>
         </div>
