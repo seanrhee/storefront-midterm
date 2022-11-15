@@ -33,63 +33,65 @@
 
 <body>
   <%- include('partials/_header') %>
-  <main>
+    <main>
 
-    <h2>Message History</h2>
+      <h2>Message History</h2>
 
-    <a href="http://localhost:8080/compose-message">
-      <button type="button" id="compose-new">Compose New Message</button>
-    </a>
+      <a href="http://localhost:8080/compose-message">
+        <button type="button" id="compose-new">Compose New Message</button>
+      </a>
 
-    <div id="container">
+      <div id="container">
 
-      <figure class="message-container">
-        <div class="item-picture">ad picture</div>
-        <div class="transaction-comms">
-          <div class="contact-container">
-            <div class="user-name">Seller Name</div>
-            <button id="reply-button"">reply</button>
+        <figure class="message-container">
+          <div class="item-picture">ad picture</div>
+          <div class="transaction-comms">
+            <div class="contact-container">
+              <div class="user-name">Seller Name</div>
+              <form class="reply" action="/compose-message" method="POST">
+                <button type="submit" id="reply-button">Reply</button>
+              </form>
+            </div>
+            <dialogue>message preview</dialogue>
           </div>
-          <dialogue>message preview</dialogue>
-        </div>
-      </figure>
+        </figure>
 
-      <figure class="message-container">
-        <div class="item-picture">ad picture</div>
-        <div class="transaction-comms">
-          <div class="contact-container">
-            <div class="user-name">Seller Name</div>
-            <button class="reply-button">reply</button>
+        <figure class="message-container">
+          <div class="item-picture">ad picture</div>
+          <div class="transaction-comms">
+            <div class="contact-container">
+              <div class="user-name">Seller Name</div>
+              <button class="reply-button">reply</button>
+            </div>
+            <dialogue>message preview</dialogue>
           </div>
-          <dialogue>message preview</dialogue>
-        </div>
-      </figure>
+        </figure>
 
-      <figure class="message-container">
-        <div class="item-picture">ad picture</div>
-        <div class="transaction-comms">
-          <div class="contact-container">
-            <div class="user-name">Seller Name</div>
-            <button class="reply-button">reply</button>
+        <figure class="message-container">
+          <div class="item-picture">ad picture</div>
+          <div class="transaction-comms">
+            <div class="contact-container">
+              <div class="user-name">Seller Name</div>
+              <button class="reply-button">reply</button>
+            </div>
+            <dialogue>message preview</dialogue>
           </div>
-          <dialogue>message preview</dialogue>
-        </div>
-      </figure>
+        </figure>
 
-      <figure class="message-container">
-        <div class="item-picture">ad picture</div>
-        <div class="transaction-comms">
-          <div class="contact-container">
-            <div class="user-name">Seller Name</div>
-            <button class="reply-button">reply</button>
+        <figure class="message-container">
+          <div class="item-picture">ad picture</div>
+          <div class="transaction-comms">
+            <div class="contact-container">
+              <div class="user-name">Seller Name</div>
+              <button class="reply-button">reply</button>
+            </div>
+            <dialogue>message preview</dialogue>
           </div>
-          <dialogue>message preview</dialogue>
-        </div>
-      </figure>
+        </figure>
 
-    </div>
+      </div>
 
-  </main>
+    </main>
 </body>
 
 </html>
