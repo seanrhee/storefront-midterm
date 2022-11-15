@@ -74,13 +74,13 @@ router.get("/:id", (req, res) => {
 });
 
 // //POST route to let users update individual item info
-// app.post("/items/:id", (req, res) => {
-
+// router.post("/:id", (req, res) => {
+//   itemQueries.getIndividualItem(req.params.id)
 
 // });
 
-// //POST route to let users update individual item info
-// app.post("/items/:id/delete", (req, res) => {
+// //POST route to let users delete individual item info
+// router.post("/:id/delete", (req, res) => {
 
 
 // });

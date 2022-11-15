@@ -12,16 +12,16 @@ $(document).ready(() => {
           </div>
       </a>
     `);
-    
+
     return $item;
   }
-  
+
   const renderItems = function(items) {
     for (const item of items) {
       $('.item-container').append(createItemElement(item));
     }
   }
-  
+
   async function loadItems(page = 0, category = null) {
     console.log('loadItems')
     if (category) {
@@ -46,7 +46,7 @@ $(document).ready(() => {
   });
 
   // click to load more pages
-  $('.load-more').click(function (e) { 
+  $('.load-more').click(function (e) {
     e.preventDefault();
     currentPage++;
     loadItems(currentPage, categorySelector).then(res => {
@@ -56,17 +56,17 @@ $(document).ready(() => {
     })
   });
 
-  
+
   // START category dropdown selector
-  $('.dropdown-button').click(function (e) { 
+  $('.dropdown-button').click(function (e) {
     e.preventDefault();
     //reset currentPage
     currentPage = 0
-    
+
     categorySelector = $(this).attr('id');
-        
+
     $('.item-container').empty();
-    
+
     loadItems(currentPage, categorySelector).then(res => {
       console.log(res);
       if (currentPage < res.items.length - 1) {
@@ -77,7 +77,7 @@ $(document).ready(() => {
     });
   });
   // END category dropdown selector
-  
+
   // START category drop down on hover
   $('#categories').hover(function () {
     // over
@@ -99,7 +99,7 @@ $(document).ready(() => {
   // START top button
   // When the user scrolls down 20px from the top of the document, show the button
   window.onscroll = function() {scrollFunction()};
-  
+
   function scrollFunction() {
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
       $('.top').css('display', 'flex');
@@ -107,9 +107,9 @@ $(document).ready(() => {
       $('.top').css('display', 'none');
     }
   }
-  
+
   // on click event
-  $('.top').click(function (e) { 
+  $('.top').click(function (e) {
     e.preventDefault();
     $("html, body").animate({ scrollTop: 0 }, "slow");
     return false;

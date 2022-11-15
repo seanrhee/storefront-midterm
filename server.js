@@ -49,6 +49,7 @@ app.use('/api/users', userApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
 app.use('/api/items', itemApiRoutes);
 app.use('/users', usersRoutes);
+app.use('/items', itemsRoutes);
 // Note: mount other resources here, using the same pattern above
 // Home page
 // Warning: avoid creating more routes in this file!
