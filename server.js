@@ -41,6 +41,7 @@ const usersRoutes = require('./routes/users');
 const itemApiRoutes = require('./routes/items-api');
 const itemsRoutes = require('./routes/items')
 const { user } = require('pg/lib/defaults');
+const messageApiRoutes = require('./routes/messages-api');
 const userMessages = require('./routes/messages');
 const composeMessage = require('./routes/compose-message');
 
@@ -51,11 +52,13 @@ const composeMessage = require('./routes/compose-message');
 app.use('/api/users', userApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
 app.use('/api/items', itemApiRoutes);
+app.use('/api/messages', messageApiRoutes);
 app.use('/users', usersRoutes);
-// Note: mount other resources here, using the same pattern above
-// Home page
 app.use('/messages', userMessages);
 app.use('/compose-message', composeMessage);
+// Note: mount other resources here, using the same pattern above
+
+// Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
