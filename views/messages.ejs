@@ -35,18 +35,20 @@
   <%- include('partials/_header') %>
     <main>
 
-      <h2>Message History</h2>
-
       <a href="http://localhost:8080/compose-message">
         <button type="button" id="compose-new">Compose New Message</button>
       </a>
 
+      <h2>Message History</h2>
+
       <div class="message-container">
-        <div class="item-picture">ad picture</div>
+        <img src="<%=photos[16]%>" class="item-picture">
         <div class="contact-container">
-          <div class="user-name">Seller Name</div>
+          <div class="user-name">
+            <%=firstNames[16] + " " + lastNames[16] %>
+          </div>
           <dialogue>
-            <%=messages%>
+            <%=messages[16] %>
           </dialogue>
         </div>
         <form class="reply" action="/compose-message" method="POST">
@@ -55,10 +57,14 @@
       </div>
 
       <div class="message-container">
-        <div class="item-picture">ad picture</div>
+        <img src="<%=photos[14]%>" class="item-picture">
         <div class="contact-container">
-          <div class="user-name">Seller Name</div>
-          <dialogue>message preview</dialogue>
+          <div class="user-name">
+            <%=firstNames[14] + " " + lastNames[14] %>
+          </div>
+          <dialogue>
+            <%=messages[14] %>
+          </dialogue>
         </div>
         <form class="reply" action="/compose-message" method="POST">
           <button type="submit" id="reply-button">Reply</button>
@@ -66,10 +72,14 @@
       </div>
 
       <div class="message-container">
-        <div class="item-picture">ad picture</div>
+        <img src="<%=photos[20]%>" class="item-picture">
         <div class="contact-container">
-          <div class="user-name">Seller Name</div>
-          <dialogue>message preview</dialogue>
+          <div class="user-name">
+            <%=firstNames[20] + " " + lastNames[20] %>
+          </div>
+          <dialogue>
+            <%=messages[20] %>
+          </dialogue>
         </div>
         <form class="reply" action="/compose-message" method="POST">
           <button type="submit" id="reply-button">Reply</button>
@@ -77,9 +87,11 @@
       </div>
 
       <div class="message-container">
-        <div class="item-picture">ad picture</div>
+        <img src="<%=photos[6]%>" class="item-picture">
         <div class="contact-container">
-          <div class="user-name">Seller Name</div>
+          <div class="user-name">
+            <%=firstNames[6] + " " + lastNames[6] %>
+          </div>
           <dialogue> message preview when it's an obnoxiously long no one needs to send this long of a message for an
             item trade but just in case let's test this mf out. Getting there. Little bit longer. Just a smidge. This is
             very avoidable. Definitely a waste of time on my end. Might as well check while I'm at it. ase let's test

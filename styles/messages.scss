@@ -25,10 +25,13 @@ main {
 
       .user-name {
         font-size: larger;
+        font-weight: bold;
         padding: 10px 15px;
       }
 
       dialogue {
+        display: flex;
+        align-items: center;
         font-size: larger;
         font-weight: 300;
         width: 90%;
