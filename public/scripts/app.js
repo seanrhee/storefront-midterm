@@ -24,14 +24,27 @@ $(document).ready(() => {
   
   async function loadItems(page = 0, category = null) {
     console.log('loadItems')
+    // if category selector
     if (category) {
       return $.get(`/api/items/${category}`, (data) => {
         renderItems(data.items[page]);
       });
     }
+
+    // if homepage
     return $.get('/api/items', (data) => {
       renderItems(data.items[page]);
     });
+  }
+
+  async function searchItems(search) {
+    // if search param
+    console.log('searchItems called')
+    return $.get(`/api/search/${search}`, (data) => {
+      console.log('search get')
+      renderItems(data.items[0])
+    });
+  
   }
 
   // keep track of current page + category
@@ -57,7 +70,7 @@ $(document).ready(() => {
   });
 
   
-  // START category dropdown selector
+// START category dropdown selector
   $('.dropdown-button').click(function (e) { 
     e.preventDefault();
     //reset currentPage
@@ -83,9 +96,9 @@ $(document).ready(() => {
       }
     });
   });
-  // END category dropdown selector
+// END category dropdown selector
   
-  // START category drop down on hover
+// START category drop down on hover
   $('#categories').hover(function () {
     // over
     $('#category-dropdown').css('display', 'flex');
@@ -101,9 +114,9 @@ $(document).ready(() => {
       // out
       $('#category-dropdown').css('display', 'none');
   });
-  // END category drop down on hover
+// END category drop down on hover
 
-  // START top button
+// START top button
   // When the user scrolls down 20px from the top of the document, show the button
   window.onscroll = function() {scrollFunction()};
   
@@ -121,5 +134,30 @@ $(document).ready(() => {
     $("html, body").animate({ scrollTop: 0 }, "slow");
     return false;
   });
-  // END top button
+// END top button
+
+// START search
+  $('.searchButton').click(function (e) {
+    const searchQuery = $('.searchTerm').val();
+
+    if (!searchQuery){
+      loadItems(currentPage, categorySelector).then(res => {
+        if (currentPage < res.items.length - 1) {
+          $('.load-more').css('display', 'flex');
+        }
+      });
+    }
+    $('.item-container').empty();
+
+    console.log(searchQuery)
+    e.preventDefault();
+    searchItems(searchQuery).then(res => {
+      console.log(res);
+      if (currentPage < res.items.length - 1) {
+        $('.load-more').css('display', 'flex');
+      } else if (currentPage === res.items.length - 1) {
+        $('.load-more').css('display', 'none');
+      }
+    });
+  });
 });
