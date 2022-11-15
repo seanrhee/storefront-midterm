@@ -32,17 +32,19 @@ router.get('/', (req, res) => {
 //POST route to update the items database and store the values in req.body
 router.post('/', (req, res) => {
   const userId = req.session.userId;
-  console.log(req.body)
-  itemQueries.addItem({ ...req.body, owner_id: userId })
-    .then(item => {
-      res.redirect(`/items/${item.id}`); //redirect the user to show item page
-    })
-    .catch(e => {
-      console.error(e);
-      res.send(e)
-    });
 
-
+  if (!userId) {
+    res.status(401).send("Please log in to post your ad.");
+  } else {
+    itemQueries.addItem({ ...req.body, owner_id: userId })
+      .then(item => {
+        res.redirect(`/items/${item.id}`); //redirect the user to show item page
+      })
+      .catch(e => {
+        console.error(e);
+        res.send(e)
+      });
+  };
 })
 
 //GET route to show users individual item page
@@ -64,7 +66,7 @@ router.get("/:id", (req, res) => {
           const templateVars = {
             user: req.session.user_id,
             categories: categories,
-            item
+            item,
           };
 
           res.render("item", templateVars);

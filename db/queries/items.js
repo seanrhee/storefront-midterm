@@ -74,11 +74,11 @@ const getIndividualItem = (item) => {
   return db.query(`
   SELECT *
   FROM items
-  WHERE id = $1`, [item])
+  JOIN users ON users.id = items.owner_id
+  WHERE items.id = $1`, [item])
   .then(data => { //async promise, always use a promise after
     return data.rows[0]; //an obj
   });
 }
-
 
 module.exports = { getItems, getCategory, addItem, getIndividualItem };
