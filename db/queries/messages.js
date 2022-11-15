@@ -1,15 +1,18 @@
 const db = require('../connection');
 
-const getMessages = () => {
+
+const getIndividualMessage = (user) => {
   return db.query(`
-  SELECT message FROM messages;
-  `)
-  .then((result) => {
-    console.log(result.rows);
-  })
-  .catch((err) => {
-    console.log(err.message);
+  SELECT *
+  FROM items
+  WHERE id = $1`, [user])
+  .then(result => { //async promise, always use a promise after
+    return result.rows[0]; //an obj
   });
 }
 
-module.exports = { getMessages };
+const createNewMessage = (message) => {
+  
+}
+
+module.exports = { getIndividualMessage };

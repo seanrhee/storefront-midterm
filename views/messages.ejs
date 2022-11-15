@@ -45,7 +45,9 @@
         <div class="item-picture">ad picture</div>
         <div class="contact-container">
           <div class="user-name">Seller Name</div>
-          <dialogue>message preview</dialogue>
+          <dialogue>
+            <%=messages%>
+          </dialogue>
         </div>
         <form class="reply" action="/compose-message" method="POST">
           <button type="submit" id="reply-button">Reply</button>

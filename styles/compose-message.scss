@@ -14,117 +14,109 @@
   color: white;
 }
 
-  #ad-info {
-    display: flex;
+#ad-info {
+  display: flex;
+  margin-bottom: 2em;
 
-    .ad-display {
-      .item-picture {
-        color: white;
-        height: 100px;
-        width: 125px;
-        background-color: dimgrey;
-      }
-
-      .item-price {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 1em;
-        font-size: larger;
-        height: 50px;
-        color: #c0c0c0;
-        background-color: black;
-      }
+  .ad-display {
+    .item-picture {
+      color: white;
+      height: 100px;
+      width: 125px;
+      background-color: dimgrey;
     }
 
-    .sellers-info {
+    .item-price {
+      padding: 1em;
+      color: #c0c0c0;
+      background-color: black;
+    }
+
+  }
+    .ad-title {
       display: flex;
-      justify-content: space-between;
-      flex-direction: column;
-      width: 85%;
+      align-self:baseline;
       margin-left: 2em;
-      .seller-name {
-        display: flex;
-        align-self: flex-end;
-        font-size: large;
-        font-weight:300;
-      }
-
-      .ad-title {
-        padding-top: 1em;
-        font-size: x-large;
-      }
+      display: flex;
+      padding-top: 4em;
+      font-size: x-large;
     }
-  }
+}
 
-  #message-history {
-    flex-direction: column;
-    height: 600px;
-    overflow-y: auto;
-    transform: rotate(180deg);
-    font-weight: 100;
-    font-size: large;
-    margin: 1em 0em 1em 0em;
-    padding-top: 1em;
-    background-color: white;
-    border-top: 2em;
-    border-bottom: 2em;
+.seller-name {
+  font-size: large;
+  font-weight: 300;
+  margin-left: 2em;
+}
+
+#message-history {
+  flex-direction: column;
+  height: 600px;
+  overflow-y: auto;
+  transform: rotate(180deg);
+  font-weight: 100;
+  font-size: large;
+  margin: 1em 0em 1em 0em;
+  padding-top: 1em;
+  background-color: white;
+  border-top: 2em;
+  border-bottom: 2em;
+  border-color: black;
+  border-style: inset;
+}
+
+.received {
+  transform: rotate(180deg);
+  padding: 1.5em;
+  margin: 1em 1em 1em 15em;
+  border-radius: 2em;
+  background-color: black;
+  color: white;
+}
+
+.sent {
+  transform: rotate(180deg);
+  padding: 1.5em;
+  margin: 0em 15em 1em 1em;
+  border-radius: 2em;
+  background-color: #808080;
+  color: white;
+}
+
+.reply {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+
+  input {
+    width: 90%;
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: none;
+    overflow: auto;
+    border-style: solid;
     border-color: black;
-    border-style: inset;
-  }
-
-  .received {
-    transform: rotate(180deg);
-    padding: 1.5em;
-    margin: 1em 1em 1em 15em;
-    border-radius: 2em;
     background-color: black;
     color: white;
+    border-radius: 5px;
   }
 
-  .sent {
-    transform: rotate(180deg);
-    padding: 1.5em;
-    margin: 0em 15em 1em 1em;
-    border-radius: 2em;
-    background-color: #808080;
-    color: white;
+  #send-button {
+    align-self: end;
+    box-sizing: border-box;
+    margin: 0em 0em 0em 2em;
+    height: 3em;
+    width: 10%;
+    border: 1px;
+    border-style: solid;
+    border-radius: 25px;
+    cursor: pointer;
   }
-
-  .reply {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-
-    input {
-      width: 90%;
-      height: 150px;
-      padding: 12px 20px;
-      box-sizing: border-box;
-      border: 2px solid #ccc;
-      border-radius: 4px;
-      background-color: #f8f8f8;
-      resize: none;
-      overflow: auto;
-      border-style: solid;
-      border-color: black;
-      background-color: black;
-      color: white;
-      border-radius: 10px;
-    }
-
-    #send-button {
-      align-self: end;
-      box-sizing: border-box;
-      margin: 0em 0em 0em 2em;
-      height: 3em;
-      width: 10%;
-      border: 1px;
-      border-style: solid;
-      border-radius: 25px;
-      cursor: pointer;
-    }
-  }
+}
 
 #return-to-inbox:hover {
   background-color: #808080;

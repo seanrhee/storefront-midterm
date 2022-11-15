@@ -12,6 +12,33 @@ const messageQueries = require('../db/queries/messages');
 //   port: '5432'
 // });
 
+
+// router.get("/:id", (req, res) => {
+//   itemQueries.getIndividualMessage(req.params.id)
+//     .then((message) => {
+//       db.query(`
+//       SELECT message
+//       FROM messages
+//       WHERE buyer_id = ${req.params.id};
+//      `)
+//         .then(result => {
+//           const messages = [];
+
+//           for (const message of result.rows) {
+//            messages.push(message.message)
+//           }
+
+//           const templateVars = {
+//             user: req.session.user_id,
+//             messages
+//           };
+
+//           res.render("messages", templateVars);
+//         })
+//     })
+
+// });
+
 router.get('/', (req, res) => {
   db.query(`
 
@@ -19,7 +46,10 @@ router.get('/', (req, res) => {
   .then(result => {
     const messages = [];
 
+    console.log(result.rows);
+
     for (const message of result.rows) {
+    console.log(result.rows);
       console.log(message);
       messages.push(message.message);
     }
