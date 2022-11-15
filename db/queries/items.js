@@ -51,7 +51,7 @@ const getItems = () => {
   .then(data => {
     const result = itemPages(data.rows);
 
-    console.log(result);
+    // console.log(result);
 
     return result;
   });

@@ -14,11 +14,11 @@ router.get('/', (req, res) => {
       const categories = [];
 
       for (const category of result.rows) {
-        console.log(category)
+        // console.log(category)
         categories.push(category.category)
       }
 
-      console.log(categories);
+      // console.log(categories);
 
       const templateVars = {
         categories: categories,
@@ -32,7 +32,7 @@ router.get('/', (req, res) => {
 //POST route to update the items database and store the values in req.body
 router.post('/', (req, res) => {
   const userId = req.session.userId;
-  console.log(req.body)
+  // console.log(req.body)
   itemQueries.addItem({ ...req.body, owner_id: userId })
     .then(item => {
       res.redirect(`/items/${item.id}`); //redirect the user to show item page

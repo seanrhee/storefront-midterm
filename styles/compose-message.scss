@@ -16,38 +16,42 @@
 
 #ad-info {
   display: flex;
-  margin-bottom: 2em;
 
   .ad-display {
+    display: flex;
+    flex-direction: column;
+
     .item-picture {
-      color: white;
-      height: 100px;
+      height: 125px;
       width: 125px;
-      background-color: dimgrey;
     }
 
     .item-price {
-      padding: 1em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 50px;
       color: #c0c0c0;
+      font-size: x-large;
       background-color: black;
     }
-
   }
-    .ad-title {
-      display: flex;
-      align-self:baseline;
-      margin-left: 2em;
-      display: flex;
-      padding-top: 4em;
-      font-size: x-large;
-    }
+
+  .ad-title {
+    display: flex;
+    font-size: xx-large;
+    margin: .5em 0em 0em 1em;
+  }
 }
 
 .seller-name {
-  font-size: large;
+  display: flex;
+  justify-content: end;
+  font-size: x-large;
   font-weight: 300;
   margin-left: 2em;
 }
+
 
 #message-history {
   flex-direction: column;
