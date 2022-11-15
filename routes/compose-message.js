@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router()
 const db = require('../db/connection');
 const messageQueries = require('../db/queries/messages');
-const itemQueries = require('../db/queries/items');
 
 
 
@@ -23,7 +22,7 @@ router.get('/', (req, res) => {
       const lastNames = [];
       const titles = [];
 
-      console.log(result.rows);
+      // console.log(result.rows);
 
       for (const info of result.rows) {
         photos.push(info.photo_url);

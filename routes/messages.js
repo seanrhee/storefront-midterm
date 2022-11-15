@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
       const lastNames = [];
       const messages = [];
 
-      console.log(result.rows);
+      // console.log(result.rows);
 
       for (const info of result.rows) {
         photos.push(info.photo_url);
