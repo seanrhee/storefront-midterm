@@ -37,7 +37,9 @@
 
     <main>
 
-      <button type="button" id="return-to-inbox" action="/messages" method="GET">Back To Inbox</button>
+      <a href="http://localhost:8080/messages">
+        <button type="button" id="return-to-inbox" action="/messages" method="GET">Back To Inbox</button>
+      </a>
 
       <div class="compose-message">
 
@@ -63,8 +65,8 @@
           <div class="received">received testing a really long message for editing purposes actually needs to be a bit longer still and let's test out what happens when we make it even longer!</div>
         </figure>
 
-        <form class="reply" action="/messages" method="POST">
-            <input type="text-box" name="new-message" id="new-message" label="text-box-for-messaging" maxlength="500" autofocus
+        <form class="reply" action="/compose-message" method="POST">
+            <input type="text" name="new-message" id="new-message" label="text-box-for-messaging" maxlength="500" autofocus
               required placeholder="Write a new message..."></input>
             <button type="submit" id="send-button">Send</button>
         </form>

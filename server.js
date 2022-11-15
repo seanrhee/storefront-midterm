@@ -53,13 +53,9 @@ app.use('/api/widgets', widgetApiRoutes);
 app.use('/api/items', itemApiRoutes);
 app.use('/users', usersRoutes);
 // Note: mount other resources here, using the same pattern above
-<<<<<<< HEAD
+// Home page
 app.use('/messages', userMessages);
 app.use('/compose-message', composeMessage);
-
-=======
->>>>>>> master
-// Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 

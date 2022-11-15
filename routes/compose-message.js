@@ -11,19 +11,15 @@ const pool = new Pool({
 });
 
 router.get('/', (req, res) => {
-  const templateVars = {
-    user: req.session.user_id
-  }
+  const templateVars = { user: req.session.user_id }
   res.render('compose-message', templateVars);
 })
 
-router.post("/messages", (req, res) => {
-  // console.log(req.body);
-  // const templateVars = { newMessage: req.body.new-message };
+router.post("/", (req, res) => {
+  const templateVars = { user: req.session.user_id }
   console.log(req.body);
-  res.send("Ok");
-  // console.log("something");
-  // res.redirect('compose-message');
+  res.render('compose-message', templateVars);
+  // res.send('ok');
 });
 
 module.exports = router;

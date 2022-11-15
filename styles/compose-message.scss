@@ -12,9 +12,6 @@
   flex-direction: column;
   margin: 2em 13em 2em 13em;
   padding: 1em;
-  // border: 3px;
-  // border-style: solid;
-  // border-color: black;
 
   #ad-info {
     display: flex;
@@ -51,7 +48,7 @@
 
   #message-history {
     flex-direction: column;
-    height: 500px;
+    height: 600px;
     overflow-x: hidden;
     overflow-y: auto;
     transform: rotate(180deg);
@@ -61,7 +58,7 @@
     font-size: large;
     margin: 1em 0em 1em 0em;
     padding-top: 1em;
-    background-color: black;
+    background-color:white;
     border-top: 2em;
     border-bottom: 2em;
     border-color: black;
@@ -72,22 +69,18 @@
     transform: rotate(180deg);
     padding: 1.5em;
     margin: 1em 1em 1em 25em;
-    border: 7px;
-    border-style: solid;
-    border-color: black;
     border-radius: 2em;
-    background-color: white;
+    background-color: black;
+    color: white;
   }
 
   .sent {
     transform: rotate(180deg);
     padding: 1.5em;
     margin: 0em 25em 1em 1em;
-    border: 7px;
-    border-style: solid;
-    border-color: black;
     border-radius: 2em;
-    background-color: #c0c0c0;
+    background-color: 	#808080;
+    color: white;
   }
 
   .reply {
