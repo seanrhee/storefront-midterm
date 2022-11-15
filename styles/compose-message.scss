@@ -14,19 +14,13 @@
   color: white;
 }
 
-.compose-message {
-  display: flex;
-  flex-direction: column;
-
   #ad-info {
     display: flex;
-    flex-direction: row;
-    align-items: center;
 
     .ad-display {
       .item-picture {
         color: white;
-        height: 125px;
+        height: 100px;
         width: 125px;
         background-color: dimgrey;
       }
@@ -43,27 +37,36 @@
       }
     }
 
-    .ad-title {
-      width: 85%;
+    .sellers-info {
       display: flex;
-      font-size: xx-large;
-      margin-left: 1em;
+      justify-content: space-between;
+      flex-direction: column;
+      width: 85%;
+      margin-left: 2em;
+      .seller-name {
+        display: flex;
+        align-self: flex-end;
+        font-size: large;
+        font-weight:300;
+      }
+
+      .ad-title {
+        padding-top: 1em;
+        font-size: x-large;
+      }
     }
   }
 
   #message-history {
     flex-direction: column;
     height: 600px;
-    overflow-x: hidden;
     overflow-y: auto;
     transform: rotate(180deg);
-    direction: rtl;
-    text-align: left;
     font-weight: 100;
     font-size: large;
     margin: 1em 0em 1em 0em;
     padding-top: 1em;
-    background-color:white;
+    background-color: white;
     border-top: 2em;
     border-bottom: 2em;
     border-color: black;
@@ -84,7 +87,7 @@
     padding: 1.5em;
     margin: 0em 15em 1em 1em;
     border-radius: 2em;
-    background-color: 	#808080;
+    background-color: #808080;
     color: white;
   }
 
@@ -107,21 +110,21 @@
       border-color: black;
       background-color: black;
       color: white;
+      border-radius: 10px;
     }
 
     #send-button {
       align-self: end;
-      box-sizing:border-box;
+      box-sizing: border-box;
       margin: 0em 0em 0em 2em;
       height: 3em;
       width: 10%;
-      border: 7px;
+      border: 1px;
       border-style: solid;
-      border-color: black;
-  cursor: pointer;
+      border-radius: 25px;
+      cursor: pointer;
     }
   }
-}
 
 #return-to-inbox:hover {
   background-color: #808080;
@@ -132,5 +135,3 @@
   background-color: #808080;
   color: #FFF;
 }
-
-
