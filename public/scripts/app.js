@@ -1,6 +1,6 @@
 // Client facing scripts here
 $(document).ready(() => {
-  const createItemElement = function(item) {
+  const createItemElement = function (item) {
     const $item = $(`
       <a class="item-link" href="/items/${item.id}">
         <div class="item-div">
@@ -16,7 +16,7 @@ $(document).ready(() => {
     return $item;
   }
 
-  const renderItems = function(items) {
+  const renderItems = function (items) {
     for (const item of items) {
       $('.item-container').append(createItemElement(item));
     }
@@ -50,7 +50,7 @@ $(document).ready(() => {
     e.preventDefault();
     currentPage++;
     loadItems(currentPage, categorySelector).then(res => {
-      if (currentPage === res.items.length-1) {
+      if (currentPage === res.items.length - 1) {
         $('.load-more').css('display', 'none');
       }
     })
@@ -91,14 +91,14 @@ $(document).ready(() => {
     // over
     $('#category-dropdown').css('display', 'flex');
   }, function () {
-      // out
-      $('#category-dropdown').css('display', 'none');
+    // out
+    $('#category-dropdown').css('display', 'none');
   });
   // END category drop down on hover
 
   // START top button
   // When the user scrolls down 20px from the top of the document, show the button
-  window.onscroll = function() {scrollFunction()};
+  window.onscroll = function () { scrollFunction() };
 
   function scrollFunction() {
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
@@ -115,4 +115,14 @@ $(document).ready(() => {
     return false;
   });
   // END top button
+
+  //change heart icon to red on click
+  const changeHeartColor = () => {
+    const heart = document.getElementById('heart');
+    heart.addEventListener('click', function () {
+      heart.classList.toggle('click');
+    });
+  };
+  changeHeartColor();
 });
+
