@@ -5,7 +5,6 @@ const itemQueries = require('../db/queries/items');
 
 //GET route to show user favorites page
 router.get('/', (req, res) => {
-  console.log('hi')
   itemQueries.getSavedItems(req.params.id)
     .then((item) => {
       console.log(item)
