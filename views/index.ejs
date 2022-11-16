@@ -18,6 +18,8 @@
   <link rel="stylesheet" href="/styles/index.css" />
   <link rel="stylesheet" href="/styles/main.css" />
   <link rel="stylesheet" href="/styles/layout.css" />
+  <link rel="stylesheet" href="/styles/filter.css" />
+
 
   <!-- External Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,6 +34,39 @@
 
 <body>
   <%- include('partials/_header') %>
+
+  <div class="filter-bar">
+    <form action="">
+      <h5>Price</h5>
+      <span><input type="number" name="min-price" id="min-price" class="price" placeholder="Min.">
+         - 
+        <input type="number" name="max-price" id="max-price" class="price" placeholder="Max."></span>
+
+      <h5>Category</h5>
+      <select name="category" id="category-selector">
+        <option value="bed">Bed</option>
+        <option value="bath">Bath</option>
+        <option value="kitchen">Kitchen</option>
+        <option value="living">Living</option>
+        <option value="office">Office</option>
+        <option value="patio">Patio</option>
+        <option value="misc">Misc</option>
+      </select>
+
+      <h5>Condition</h5>
+      <select name="condition" id="condition">
+        <option value="new">New</option>
+        <option value="like-new">Like New</option>
+        <option value="good">Good</option>
+        <option value="fair">Fair</option>
+      </select>
+
+      <h5>City</h5>
+      <input type="text" name="city" id="city">
+
+
+    </form>
+  </div>
 
   <div class="main-container">
     <div class="item-container" id="items">

@@ -1,0 +1,22 @@
+.filter-bar {
+  display: flex;
+  flex-direction: column;
+  height: 55vh;
+  background-color: #202020;
+  z-index: 9999;
+  position: fixed;
+  left: 50px;
+  top: 150px;
+  width: 15vw;
+  padding: 1em 1em;
+  color: white;
+}
+
+.filter-bar h5 {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.price {
+  max-width: 75px;
+}
