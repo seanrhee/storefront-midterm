@@ -188,5 +188,11 @@ $(document).ready(() => {
       }
     });;
   });
+
+  // reset button
+  $('.reset-button').click(function (e) { 
+    e.preventDefault();
+    $('#filter-form')[0].reset();
+  });
 // END filter
 });

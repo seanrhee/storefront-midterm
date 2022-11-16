@@ -64,3 +64,12 @@ select {
   max-width: 195px;
 }
 
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.reset-button {
+  margin-top: 1em;
+}
