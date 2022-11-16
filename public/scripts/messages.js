@@ -2,7 +2,7 @@
 
 const createInboxElement = function (message) {
   const $message = $(`
-    <div class="message-container">
+    <div class="message">
      <img src="${message.photo_url}" class="item-picture">
        <div class="contact-container">
          <div class="user-name"> ${message.full_name} </div>
