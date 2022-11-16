@@ -60,5 +60,6 @@ CREATE TABLE messages (
   id SERIAL PRIMARY KEY NOT NULL,
   seller_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   buyer_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  message TEXT NOT NULL
+  message TEXT NOT NULL,
+  date_sent DATE
 );
