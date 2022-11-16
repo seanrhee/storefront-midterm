@@ -22,13 +22,19 @@ $(document).ready(() => {
     }
   }
   
-  async function loadItems(page = 0, category = null) {
+  async function loadItems(page = 0, category = null, filter = false) {
     console.log('loadItems')
     // if category selector
     if (category) {
       return $.get(`/api/items/${category}`, (data) => {
         renderItems(data.items[page]);
       });
+    }
+    if (filter) {
+      return $.get(`/api/filter/${filter}`, (data) => {
+        console.log('filter get');
+        renderItems(data.items[page])
+      })
     }
 
     // if homepage
@@ -39,27 +45,28 @@ $(document).ready(() => {
 
   // search item function
   async function searchItems(search) {
-    console.log('searchItems called')
+    console.log('searchItems called on', search)
     return $.get(`/api/search/${search}`, (data) => {
       console.log('search get')
       renderItems(data.items[0])
     });
   }
 
-  async function filterItems(filter) {
+  async function filterItems(filter, page = 0) {
     console.log('filterItems called');
-    return $.get(`/api/filter/${filter}`, data => {
+    return $.get(`/api/filter/${filter}`, (data) => {
       console.log('filter get');
-      renderItems(data.items[0])
+      renderItems(data.items[page])
     })
   }
 
   // keep track of current page + category
   let currentPage = 0
   let categorySelector = null;
+  let filter = null;
 
   // load items on page load
-  loadItems(currentPage, categorySelector).then(res => {
+  loadItems(currentPage, categorySelector, filter).then(res => {
     if (currentPage < res.items.length - 1) {
       $('.load-more').css('display', 'flex');
     }
@@ -69,7 +76,7 @@ $(document).ready(() => {
   $('.load-more').click(function (e) { 
     e.preventDefault();
     currentPage++;
-    loadItems(currentPage, categorySelector).then(res => {
+    loadItems(currentPage, categorySelector, filter).then(res => {
       if (currentPage === res.items.length-1) {
         $('.load-more').css('display', 'none');
       }
@@ -185,9 +192,18 @@ $(document).ready(() => {
   // click apply
   $('#filter-form').submit(function (e) { 
     e.preventDefault();
-    const filter = $(this).serialize();
+    filter = $(this).serialize();
 
-    
-    
+    currentPage = 0;
+    $('.item-container').empty();
+
+    loadItems(currentPage, null, filter).then(res => {
+      console.log(res);
+      if (currentPage < res.items.length - 1) {
+        $('.load-more').css('display', 'flex');
+      } else if (currentPage === res.items.length - 1) {
+        $('.load-more').css('display', 'none');
+      }
+    });;
   });
 });
