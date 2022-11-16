@@ -23,7 +23,7 @@ $(document).ready(() => {
   }
 
   async function loadItems(page = 0, category = null) {
-    console.log('loadItems')
+    // console.log('loadItems')
     if (category) {
       return $.get(`/api/items/${category}`, (data) => {
         renderItems(data.items[page]);
@@ -68,7 +68,7 @@ $(document).ready(() => {
     $('.item-container').empty();
 
     loadItems(currentPage, categorySelector).then(res => {
-      console.log(res);
+      // console.log(res);
       if (currentPage < res.items.length - 1) {
         $('.load-more').css('display', 'flex');
       } else if (currentPage === res.items.length - 1) {
@@ -124,5 +124,24 @@ $(document).ready(() => {
     });
   };
   changeHeartColor();
+
+  $('#heart').click(function (e) {
+    e.preventDefault();
+    const itemId = e.target.dataset.itemid;
+
+    $.ajax({
+      url: '/favorites',
+      method: 'POST',
+      data: { itemId },
+      success: () => {
+        console.log('success!')
+      },
+      error: () => {
+        console.log('ERROR!')
+      }
+    });
+  });
+
+
 });
 

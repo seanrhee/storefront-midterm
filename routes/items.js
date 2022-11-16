@@ -14,11 +14,8 @@ router.get('/', (req, res) => {
       const categories = [];
 
       for (const category of result.rows) {
-        console.log(category)
         categories.push(category.category)
       }
-
-      console.log(categories);
 
       const templateVars = {
         categories: categories,
@@ -63,6 +60,8 @@ router.get("/:id", (req, res) => {
             categories.push(category.category)
           }
 
+          console.log(item)
+          
           const templateVars = {
             user: req.session.user_id,
             categories: categories,

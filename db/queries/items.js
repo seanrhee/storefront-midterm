@@ -20,8 +20,8 @@ const itemPages = function(database) {
   return result;
 };
 
+//add an item in items table
 const addItem = function (item) {
-  console.log('add item');
   return db.query(
     `INSERT INTO items (owner_id,
       title,
@@ -42,6 +42,7 @@ const addItem = function (item) {
     });
 }
 
+//get all items
 const getItems = () => {
   return db.query(`
   SELECT *
@@ -51,12 +52,13 @@ const getItems = () => {
   .then(data => {
     const result = itemPages(data.rows);
 
-    console.log(result);
+    // console.log(result);
 
     return result;
   });
 };
 
+//get an item's category
 const getCategory = (category) => {
   return db.query(`
   SELECT *
@@ -70,26 +72,45 @@ const getCategory = (category) => {
   })
 }
 
+//get individual item to show users when they click into a listing
 const getIndividualItem = (item) => {
   return db.query(`
   SELECT *
   FROM items
-  JOIN users ON users.id = items.owner_id
   WHERE items.id = $1`, [item])
   .then(data => { //async promise, always use a promise after
+    console.log('data is >>>>>>', data.rows[0])
     return data.rows[0]; //an obj
   });
 }
 
-const getSavedItem = (userId) => {
+//get saved item using userid = 19 (hard coding bc we're not making user login and registration)
+const getSavedItems = (user_id = 19) => {
   return db.query(`
   SELECT *
   FROM saved_items
-  JOIN users ON users.id = user_id
-  WHERE userID - $1`, [userId])
+  JOIN items ON items.id = saved_items.item_id
+  WHERE saved_items.user_id = $1`, [user_id])
   .then(data => {
-    return data.rows[0];
+    console.log(data.rows);
+    return data.rows;
   });
 }
 
-module.exports = { getItems, getCategory, addItem, getIndividualItem, getSavedItem };
+//add an item into the saved_items table
+const addFavoriteItem = (item) => {
+  return db.query(
+    `INSERT INTO saved_items (user_id, item_id)
+    VALUES ($1, $2)
+    RETURNING *`,
+    [19, item.item_id]) //hard coding user_id to 19
+    .then((result) => {
+      console.log('result>>>>>>>>', result.rows[0])
+      return result.rows[0];
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+}
+
+module.exports = { getItems, getCategory, addItem, getIndividualItem, getSavedItems, addFavoriteItem };
