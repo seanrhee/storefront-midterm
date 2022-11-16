@@ -12,6 +12,7 @@ router.get('/', (req, res) => {
   .then(details => {
 
     console.log(details.rows);
+    
       const photos = [];
       const sellers = [];
       const prices = [];
