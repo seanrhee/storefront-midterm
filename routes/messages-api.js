@@ -3,7 +3,7 @@ const router = express.Router();
 const messageQueries = require('../db/queries/messages');
 
 router.get('/', (req, res) => {
-  messageQueries.getMessageDetailsForInbox()
+  messageQueries.getInboxForUser(22)
     .then(details => {
       console.log(details);
       res.json({ details });

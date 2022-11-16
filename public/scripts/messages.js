@@ -1,6 +1,6 @@
 // Client facing scripts here
 $(() => {
-  const createInboxElement = function(message) {
+  const createInboxElement = function (message) {
     const $message = $(`
     <div class="message-container">
      <img src="${message.photo_url}" class="item-picture">
@@ -14,43 +14,33 @@ $(() => {
     </div>
     `);
 
-    const renderMessages = function(inbox) {
+    const renderMessages = function (inbox) {
       for (const message of inbox) {
         $('.inbox-container').append(createInboxElement(message));
       }
     }
 
     async function loadMessages(userId) {
+
       console.log('load messages')
-      if (userId) {
-        return $.get(`/api/items/${category}`, (data) => {
-          renderItems(data.items[page]);
-        });
-      }
-      return $.get('/api/items', (data) => {
-        renderItems(data.items[page]);
+
+      return $.get(`/api/messagess/:${userId}`, (data) => {
+        renderMessages(data);
       });
     }
 
-    return $item;
   }
-
 });
 
 
-
-//   $('#fetch-users').on('click', () => {
-//     $.ajax({
-//       method: 'GET',
-//       url: '/api/users'
-//     })
-//     .done((response) => {
-//       const $usersList = $('#users');
-//       $usersList.empty();
-
-//       for(const user of response.users) {
-//         $(`<li class="user">`).text(user.name).appendTo($usersList);
-//       }
-//     });
-//   });
-// });
+async function loadItems(page = 0, category = null) {
+  console.log('loadItems')
+  if (category) {
+    return $.get(`/api/items/${category}`, (data) => {
+      renderItems(data.items[page]);
+    });
+  }
+  return $.get('/api/items', (data) => {
+    renderItems(data.items[page]);
+  });
+}

@@ -2,12 +2,13 @@ const express = require('express');
 const router = express.Router()
 const db = require('../db/connection');
 const messageQueries = require('../db/queries/messages');
-const itemQueries = require('../db/queries/items');
-
 
 
 router.get('/', (req, res) => {
-  messageQueries.getMessageDetailsForInbox()
+  const tempUser = 22;
+  const user = req.session.user_id;
+
+  messageQueries.getInboxForUser(tempUser)
   .then(details => {
 
     console.log(details.rows);
@@ -26,7 +27,7 @@ router.get('/', (req, res) => {
       }
 
       const templateVars = {
-        user: req.session.user_id,
+        user,
         photos,
         sellers,
         prices,

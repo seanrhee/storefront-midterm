@@ -1,15 +1,25 @@
 const db = require('../connection');
 
-const getMessageDetailsForInbox = () => {
+const getDetailsForInbox = () => {
   return db.query(`
-  SELECT messages.id as message_id, CONCAT(first_name, ' ', last_name) as full_name, items.photo_url, items.owner_id, items.price_per_item, messages.message
+  SELECT messages.id as message_id, users.id, CONCAT(first_name, ' ', last_name) as full_name, items.photo_url, items.owner_id, items.price_per_item, messages.message, messages.buyer_id, messages.seller_id
   FROM users
   JOIN items ON users.id = items.owner_id
   JOIN messages ON users.id = messages.seller_id
-  WHERE items.owner_id < 26
-  GROUP BY messages.id, users.first_name, users.last_name, items.photo_url, items.owner_id, items.price_per_item, messages.message;
+  GROUP BY messages.id, users.id, users.first_name, users.last_name, items.photo_url, items.owner_id, items.price_per_item, messages.message;
   `)
 }
 
+const getInboxForUser = (id) => {
+  return db.query(`
+  SELECT messages.id as message_id, users.id, CONCAT(first_name, ' ', last_name) as full_name, items.photo_url, items.owner_id, items.price_per_item, messages.message, messages.buyer_id, messages.seller_id
+  FROM users
+  JOIN items ON users.id = items.owner_id
+  JOIN messages ON users.id = messages.seller_id
+  WHERE users.id = $1
+  GROUP BY messages.id, users.id, users.first_name, users.last_name, items.photo_url, items.owner_id, items.price_per_item, messages.message;
+  `, [id])
+}
 
-module.exports = { getMessageDetailsForInbox };
+
+module.exports = { getDetailsForInbox, getInboxForUser };
