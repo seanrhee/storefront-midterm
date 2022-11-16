@@ -150,32 +150,6 @@ $(document).ready(() => {
   });
 // END top button
 
-// START search
-  $('.searchButton').click(function (e) {
-    const searchQuery = $('.searchTerm').val();
-
-    if (!searchQuery){
-      loadItems(currentPage, categorySelector).then(res => {
-        if (currentPage < res.items.length - 1) {
-          $('.load-more').css('display', 'flex');
-        }
-      });
-    }
-    $('.item-container').empty();
-
-    console.log(searchQuery)
-    e.preventDefault();
-    searchItems(searchQuery).then(res => {
-      console.log(res);
-      if (currentPage < res.items.length - 1) {
-        $('.load-more').css('display', 'flex');
-      } else if (currentPage === res.items.length - 1) {
-        $('.load-more').css('display', 'none');
-      }
-    });
-  });
-// END search
-
 // START filter
   // click to open filter
   $('.open-filter').click(function (e) { 
@@ -196,9 +170,17 @@ $(document).ready(() => {
 
     currentPage = 0;
     $('.item-container').empty();
+    $('.no-results').empty();
 
     loadItems(currentPage, null, filter).then(res => {
       console.log(res);
+      
+      if (res.items.length === 0) {
+        $('.no-results').append('<h1>NO RESULTS</h1>')
+        $('.load-more').css('display', 'none');
+
+      }
+  
       if (currentPage < res.items.length - 1) {
         $('.load-more').css('display', 'flex');
       } else if (currentPage === res.items.length - 1) {
@@ -206,4 +188,5 @@ $(document).ready(() => {
       }
     });;
   });
+// END filter
 });
