@@ -18,6 +18,7 @@ const getInboxForUser = (id) => {
   JOIN messages ON users.id = messages.seller_id
   WHERE messages.buyer_id = $1
   GROUP BY messages.id, users.id, users.first_name, users.last_name, items.photo_url, items.owner_id, items.price_per_item, messages.message;
+  SORT BY date;
   `, [id])
   .then((data) => {
     return data.rows;
