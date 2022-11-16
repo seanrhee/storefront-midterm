@@ -21,13 +21,8 @@ $(document).ready(() => {
       $('.item-container').append(createItemElement(item));
     }
   }
-<<<<<<< HEAD
-
-  async function loadItems(page = 0, category = null) {
-=======
   
   async function loadItems(page = 0, category = null, filter = false) {
->>>>>>> search-and-filter
     console.log('loadItems')
     // if category selector
     if (category) {
@@ -88,19 +83,6 @@ $(document).ready(() => {
     })
   });
 
-<<<<<<< HEAD
-
-  // START category dropdown selector
-  $('.dropdown-button').click(function (e) {
-    e.preventDefault();
-    //reset currentPage
-    currentPage = 0
-
-    categorySelector = $(this).attr('id');
-
-    $('.item-container').empty();
-
-=======
   
 // START category dropdown selector
   $('.dropdown-button').click(function (e) { 
@@ -119,7 +101,6 @@ $(document).ready(() => {
 
     $(this).css('color', '#808080');
     
->>>>>>> search-and-filter
     loadItems(currentPage, categorySelector).then(res => {
       console.log(res);
       if (currentPage < res.items.length - 1) {
@@ -129,31 +110,7 @@ $(document).ready(() => {
       }
     });
   });
-<<<<<<< HEAD
-  // END category dropdown selector
-
-  // START category drop down on hover
-=======
 // END category dropdown selector
-  
-// START category drop down on hover
->>>>>>> search-and-filter
-  $('#categories').hover(function () {
-    // over
-    $('#category-dropdown').css('display', 'flex');
-  }, function () {
-    // out
-    $('#category-dropdown').css('display', 'none');
-  });
-
-  $('#category-dropdown').hover(function () {
-    // over
-    $('#category-dropdown').css('display', 'flex');
-  }, function () {
-      // out
-      $('#category-dropdown').css('display', 'none');
-  });
-// END category drop down on hover
 
 // START top button
   // When the user scrolls down 20px from the top of the document, show the button
@@ -173,10 +130,6 @@ $(document).ready(() => {
     $("html, body").animate({ scrollTop: 0 }, "slow");
     return false;
   });
-<<<<<<< HEAD
-  // END top button
-});
-=======
 // END top button
 
 // START filter
@@ -225,4 +178,3 @@ $(document).ready(() => {
   });
 // END filter
 });
->>>>>>> search-and-filter
