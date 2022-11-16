@@ -1,12 +1,15 @@
 // Client facing scripts here
 
+// Create HTML for Inbox
 const createInboxElement = function (message) {
-  const $message = $(`
+  const $inbox = $(`
     <div class="message">
      <img src="${message.photo_url}" class="item-picture">
        <div class="contact-container">
+       <div class="name-and-date">
          <div class="user-name"> ${message.full_name} </div>
          <date class="date"> ${timeago.format(message.date_sent)} </date>
+         </div>
          <article>${message.message}</article>
        </div>
      <form class="reply" action="/compose-message" method="GET">
@@ -14,8 +17,7 @@ const createInboxElement = function (message) {
      </form>
     </div>
     `);
-
-  return $message;
+  return $inbox;
 }
 
 const renderMessages = function (messages) {
@@ -28,9 +30,13 @@ const renderMessages = function (messages) {
 $(() => {
   function loadMessages() {
     $.get('/api/messages').then((result) => {
-      console.log(result.messages)
       renderMessages(result.messages);
     });
   }
   loadMessages();
+
+  $('#reply-button').click(function() {
+    $.get('compose-message');
+  })
+
 });

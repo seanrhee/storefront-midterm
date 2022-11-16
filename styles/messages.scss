@@ -23,14 +23,26 @@ main {
       width: 70%;
       padding: 1em 0em 1em 1em;
 
-      .user-name {
+      .name-and-date {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        padding: 1em;
         font-size: larger;
-        font-weight: bold;
-        padding: 10px 15px;
+        date {
+          display: flex;
+          padding-right: 60px;
+        }
+
+        .user-name {
+          font-weight: lighter;
+        }
       }
 
       article {
         display: flex;
+        flex-direction: row;
+        box-shadow: inset 0 0 5px grey;
         font-size: larger;
         font-weight: 300;
         width: 90%;
@@ -38,12 +50,12 @@ main {
         overflow-y: scroll;
         overflow-x: hidden;
         padding: .5em 2em .5em 1.5em;
-        cursor:ns-resize;
-        border-radius: 25px;
+        border-radius: 5px;
         border: 1px;
         border-style: solid;
         border-color: #c0c0c0;
       }
+
     }
 
     button {
@@ -73,6 +85,8 @@ main {
 /* Hide scrollbar for IE, Edge and Firefox */
 
 dialogue {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
