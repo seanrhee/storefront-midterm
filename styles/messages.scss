@@ -29,7 +29,7 @@ main {
         padding: 10px 15px;
       }
 
-      dialogue {
+      article {
         display: flex;
         align-items: center;
         font-size: larger;
@@ -38,7 +38,7 @@ main {
         height: 4em;
         overflow-y: scroll;
         overflow-x: hidden;
-        padding: .5em 2em .5em 1.5em;
+        padding: 4.5em 2em .5em 1.5em;
         cursor:ns-resize;
         border-radius: 25px;
         border: 1px;

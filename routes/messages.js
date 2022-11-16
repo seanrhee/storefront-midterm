@@ -5,21 +5,18 @@ const messageQueries = require('../db/queries/messages');
 
 
 router.get('/', (req, res) => {
-  const tempUser = 22;
   const user = req.session.user_id;
 
-  messageQueries.getInboxForUser(tempUser)
+  messageQueries.getInboxForUser(user)
   .then(details => {
 
-    console.log(details.rows);
-    
       const photos = [];
       const sellers = [];
       const prices = [];
       const fullNames = [];
       const messages = [];
 
-      for (const info of details.rows) {
+      for (const info of details) {
         photos.push(info.photo_url);
         sellers.push(info.owner_id);
         prices.push(info.price_per_item);

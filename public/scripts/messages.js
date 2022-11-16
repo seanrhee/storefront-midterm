@@ -1,12 +1,12 @@
 // Client facing scripts here
-$(() => {
-  const createInboxElement = function (message) {
-    const $message = $(`
+
+const createInboxElement = function (message) {
+  const $message = $(`
     <div class="message-container">
      <img src="${message.photo_url}" class="item-picture">
        <div class="contact-container">
          <div class="user-name"> ${message.full_name} </div>
-         <dialogue>${message.message}</dialogue>
+         <article>${message.message}</article>
        </div>
      <form class="reply" action="/compose-message" method="GET">
        <button type="submit" id="reply-button">Reply</button>
@@ -14,33 +14,21 @@ $(() => {
     </div>
     `);
 
-    const renderMessages = function (inbox) {
-      for (const message of inbox) {
-        $('.inbox-container').append(createInboxElement(message));
-      }
-    }
+  return $message;
+}
 
-    async function loadMessages(userId) {
-
-      console.log('load messages')
-
-      return $.get(`/api/messagess/:${userId}`, (data) => {
-        renderMessages(data);
-      });
-    }
-
+const renderMessages = function (messages) {
+  for (const message of messages) {
+    $('.inbox-container').append(createInboxElement(message));
   }
-});
+};
 
-
-async function loadItems(page = 0, category = null) {
-  console.log('loadItems')
-  if (category) {
-    return $.get(`/api/items/${category}`, (data) => {
-      renderItems(data.items[page]);
+$(() => {
+  function loadMessages() {
+    $.get('/api/messages').then((result) => {
+      console.log(result.details)
+      renderMessages(result.details);
     });
   }
-  return $.get('/api/items', (data) => {
-    renderItems(data.items[page]);
-  });
-}
+  loadMessages();
+});

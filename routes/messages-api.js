@@ -3,9 +3,10 @@ const router = express.Router();
 const messageQueries = require('../db/queries/messages');
 
 router.get('/', (req, res) => {
-  messageQueries.getInboxForUser(22)
+  const user = req.session.user_id;
+
+  messageQueries.getInboxForUser(user)
     .then(details => {
-      console.log(details);
       res.json({ details });
     })
     .catch(err => {
