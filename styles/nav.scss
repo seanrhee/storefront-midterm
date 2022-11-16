@@ -106,37 +106,37 @@ nav {
   cursor: pointer;
 }
 
-.search {
-  width: 13vw;
-  position: relative;
-  display: flex;
-  justify-content: flex-start;
-}
+// .search {
+//   width: 13vw;
+//   position: relative;
+//   display: flex;
+//   justify-content: flex-start;
+// }
 
-.searchTerm {
-  width: 100%;
-  border: 3px solid #808080;
-  border-right: none;
-  padding: 5px;
-  height: 36px;
-  border-radius: 5px 0 0 5px;
-  outline: none;
-  color: #9DBFAF;
-  font-family: 'Poppins', sans-serif;
-}
+// .searchTerm {
+//   width: 100%;
+//   border: 3px solid #808080;
+//   border-right: none;
+//   padding: 5px;
+//   height: 36px;
+//   border-radius: 5px 0 0 5px;
+//   outline: none;
+//   color: #9DBFAF;
+//   font-family: 'Poppins', sans-serif;
+// }
 
-.searchTerm:focus{
-  color: #000;
-}
+// .searchTerm:focus{
+//   color: #000;
+// }
 
-.searchButton {
-  width: 40px;
-  height: 36px;
-  border: 1px solid #808080;
-  background: #808080;
-  text-align: center;
-  color: #fff;
-  border-radius: 0 5px 5px 0;
-  cursor: pointer;
-  font-size: 20px;
-}
+// .searchButton {
+//   width: 40px;
+//   height: 36px;
+//   border: 1px solid #808080;
+//   background: #808080;
+//   text-align: center;
+//   color: #fff;
+//   border-radius: 0 5px 5px 0;
+//   cursor: pointer;
+//   font-size: 20px;
+// }

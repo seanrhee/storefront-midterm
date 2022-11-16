@@ -28,6 +28,11 @@ const filterBar = (param) => {
     queryParams.push(`%${paramObject.city}%`);
     queryString += `WHERE city LIKE $${queryParams.length} `;
   }
+  // if search query is in the param
+  if (paramObject.search) {
+    queryParams.push(`%${paramObject.search}%`);
+    queryString += `AND title ILIKE upper($${queryParams.length}) `
+  }
   // if min/max price are in the search param
   if (paramObject.minprice) {
     queryParams.push(Number(paramObject.minprice));
