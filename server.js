@@ -40,6 +40,7 @@ const widgetApiRoutes = require('./routes/widgets-api');
 const usersRoutes = require('./routes/users');
 const itemApiRoutes = require('./routes/items-api');
 const itemsRoutes = require('./routes/items')
+const filterApiRoutes = require('./routes/filter-api');
 const { user } = require('pg/lib/defaults');
 
 // Mount all resource routes
@@ -48,6 +49,7 @@ const { user } = require('pg/lib/defaults');
 app.use('/api/users', userApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
 app.use('/api/items', itemApiRoutes);
+app.use('/api/filter', filterApiRoutes);
 app.use('/users', usersRoutes);
 app.use('/items', itemsRoutes);
 // Note: mount other resources here, using the same pattern above

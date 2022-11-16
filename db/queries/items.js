@@ -51,8 +51,6 @@ const getItems = () => {
   .then(data => {
     const result = itemPages(data.rows);
 
-    console.log(result);
-
     return result;
   });
 };
@@ -81,4 +79,23 @@ const getIndividualItem = (item) => {
   });
 }
 
+<<<<<<< HEAD
 module.exports = { getItems, getCategory, addItem, getIndividualItem };
+=======
+const searchBar = (param) => {
+  return db.query(`
+  SELECT *
+  FROM items
+  WHERE title LIKE '%$1%' OR description LIKE '%1%'
+  ORDER BY id DESC`, [param])
+  .then(data => {
+    const result = itemPages(data.rows);
+    
+    console.log(result);
+
+    return result;
+  });
+}
+
+module.exports = { getItems, getCategory, itemPages, searchBar };
+>>>>>>> search-and-filter
