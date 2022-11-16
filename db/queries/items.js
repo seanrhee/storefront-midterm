@@ -81,4 +81,15 @@ const getIndividualItem = (item) => {
   });
 }
 
-module.exports = { getItems, getCategory, addItem, getIndividualItem };
+const getSavedItem = (userId) => {
+  return db.query(`
+  SELECT *
+  FROM saved_items
+  JOIN users ON users.id = user_id
+  WHERE userID - $1`, [userId])
+  .then(data => {
+    return data.rows[0];
+  });
+}
+
+module.exports = { getItems, getCategory, addItem, getIndividualItem, getSavedItem };
