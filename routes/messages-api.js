@@ -6,8 +6,8 @@ router.get('/', (req, res) => {
   const user = req.session.user_id;
 
   messageQueries.getInboxForUser(user)
-    .then(details => {
-      res.json({ details });
+    .then(messages => {
+      res.json({ messages });
     })
     .catch(err => {
       res

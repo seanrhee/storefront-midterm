@@ -8,20 +8,20 @@ router.get('/', (req, res) => {
   const user = req.session.user_id;
 
   messageQueries.getInboxForUser(user)
-  .then(details => {
+  .then(messages => {
 
       const photos = [];
       const sellers = [];
       const prices = [];
       const fullNames = [];
-      const messages = [];
+      const sellerMessages = [];
 
-      for (const info of details) {
+      for (const info of messages) {
         photos.push(info.photo_url);
         sellers.push(info.owner_id);
         prices.push(info.price_per_item);
         fullNames.push(info.full_name);
-        messages.push(info.message);
+        sellerMessages.push(info.message);
       }
 
       const templateVars = {
@@ -30,7 +30,7 @@ router.get('/', (req, res) => {
         sellers,
         prices,
         fullNames,
-        messages
+        sellerMessages
       }
 
       res.render('messages', templateVars);

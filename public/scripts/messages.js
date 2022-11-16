@@ -23,11 +23,12 @@ const renderMessages = function (messages) {
   }
 };
 
+
 $(() => {
   function loadMessages() {
     $.get('/api/messages').then((result) => {
-      console.log(result.details)
-      renderMessages(result.details);
+      console.log(result.messages)
+      renderMessages(result.messages);
     });
   }
   loadMessages();
