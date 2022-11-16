@@ -79,9 +79,6 @@ const getIndividualItem = (item) => {
   });
 }
 
-<<<<<<< HEAD
-module.exports = { getItems, getCategory, addItem, getIndividualItem };
-=======
 const searchBar = (param) => {
   return db.query(`
   SELECT *
@@ -97,5 +94,4 @@ const searchBar = (param) => {
   });
 }
 
-module.exports = { getItems, getCategory, itemPages, searchBar };
->>>>>>> search-and-filter
+module.exports = { getItems, getCategory, itemPages, searchBar, addItem, getIndividualItem };
