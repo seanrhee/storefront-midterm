@@ -43,23 +43,6 @@ $(document).ready(() => {
     });
   }
 
-  // search item function
-  async function searchItems(search) {
-    console.log('searchItems called on', search)
-    return $.get(`/api/search/${search}`, (data) => {
-      console.log('search get')
-      renderItems(data.items[0])
-    });
-  }
-
-  async function filterItems(filter, page = 0) {
-    console.log('filterItems called');
-    return $.get(`/api/filter/${filter}`, (data) => {
-      console.log('filter get');
-      renderItems(data.items[page])
-    })
-  }
-
   // keep track of current page + category
   let currentPage = 0
   let categorySelector = null;
