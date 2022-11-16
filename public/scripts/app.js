@@ -37,14 +37,21 @@ $(document).ready(() => {
     });
   }
 
+  // search item function
   async function searchItems(search) {
-    // if search param
     console.log('searchItems called')
     return $.get(`/api/search/${search}`, (data) => {
       console.log('search get')
       renderItems(data.items[0])
     });
-  
+  }
+
+  async function filterItems(filter) {
+    console.log('filterItems called');
+    return $.get(`/api/filter/${filter}`, data => {
+      console.log('filter get');
+      renderItems(data.items[0])
+    })
   }
 
   // keep track of current page + category
@@ -159,5 +166,28 @@ $(document).ready(() => {
         $('.load-more').css('display', 'none');
       }
     });
+  });
+// END search
+
+// START filter
+  // click to open filter
+  $('.open-filter').click(function (e) { 
+    e.preventDefault();
+    $('.filter-bar').css('display', 'flex');
+  });
+
+  // click to close filter
+  $('.close-filter').click(function (e) { 
+    e.preventDefault();
+    $('.filter-bar').css('display', 'none');
+  });
+
+  // click apply
+  $('#filter-form').submit(function (e) { 
+    e.preventDefault();
+    const filter = $(this).serialize();
+
+    
+    
   });
 });
