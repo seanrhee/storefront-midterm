@@ -6,7 +6,7 @@ const createInboxElement = function (message) {
      <img src="${message.photo_url}" class="item-picture">
        <div class="contact-container">
          <div class="user-name"> ${message.full_name} </div>
-         <div class="date"> ${message.date} </div>
+         <date class="date"> ${timeago.format(message.date_sent)} </date>
          <article>${message.message}</article>
        </div>
      <form class="reply" action="/compose-message" method="GET">

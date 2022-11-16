@@ -61,5 +61,5 @@ CREATE TABLE messages (
   seller_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   buyer_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   message TEXT NOT NULL,
-  date_sent DATE
+  date_sent TEXT
 );
