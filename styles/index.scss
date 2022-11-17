@@ -109,3 +109,17 @@
   color: white;
   font-weight: bolder;
 }
+
+.favourite-button {
+  color: white;
+  font-size: 1.5em;
+  text-shadow: 2px 2px 5px #404040;
+  position: absolute;
+  margin-top: 10px;
+  margin-left: 10px;
+  transition: color 0.3s ease-in-out;
+}
+
+.favourite-button:hover {
+  color: rgb(221, 128, 128);
+}

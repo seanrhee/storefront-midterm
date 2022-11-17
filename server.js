@@ -41,6 +41,7 @@ const usersRoutes = require('./routes/users');
 const itemApiRoutes = require('./routes/items-api');
 const itemsRoutes = require('./routes/items')
 const filterApiRoutes = require('./routes/filter-api');
+const favouritesRoutes = require('./routes/favourites');
 const { user } = require('pg/lib/defaults');
 
 // Mount all resource routes
@@ -52,6 +53,8 @@ app.use('/api/items', itemApiRoutes);
 app.use('/api/filter', filterApiRoutes);
 app.use('/users', usersRoutes);
 app.use('/items', itemsRoutes);
+app.use('/favourites', favouritesRoutes);
+
 // Note: mount other resources here, using the same pattern above
 // Home page
 // Warning: avoid creating more routes in this file!

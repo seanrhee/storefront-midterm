@@ -4,12 +4,13 @@ $(document).ready(() => {
     const $item = $(`
       <a class="item-link" href="/items/${item.id}">
         <div class="item-div">
-            <img class="image-thumb" src=${item.photo_url} alt="item thumbnail">
-            <div class="item-info">
-              <h3>$${item.price_per_item}</h3>
-              <h4 class="item-title">${item.title}</h4>
-            </div>
+          <i class="fa-sharp fa-solid fa-heart favourite-button"></i>
+          <img class="image-thumb" src=${item.photo_url} alt="item thumbnail">
+          <div class="item-info">
+            <h3>$${item.price_per_item}</h3>
+            <h4 class="item-title">${item.title}</h4>
           </div>
+        </div>
       </a>
     `);
 
@@ -22,7 +23,7 @@ $(document).ready(() => {
     }
   }
   
-  async function loadItems(page = 0, category = null, filter = false) {
+  async function loadItems(page = 0, category = null, filter = false, id = null) {
     console.log('loadItems')
     // if category selector
     if (category) {
@@ -41,23 +42,6 @@ $(document).ready(() => {
     return $.get('/api/items', (data) => {
       renderItems(data.items[page]);
     });
-  }
-
-  // search item function
-  async function searchItems(search) {
-    console.log('searchItems called on', search)
-    return $.get(`/api/search/${search}`, (data) => {
-      console.log('search get')
-      renderItems(data.items[0])
-    });
-  }
-
-  async function filterItems(filter, page = 0) {
-    console.log('filterItems called');
-    return $.get(`/api/filter/${filter}`, (data) => {
-      console.log('filter get');
-      renderItems(data.items[page])
-    })
   }
 
   // keep track of current page + category
@@ -83,7 +67,6 @@ $(document).ready(() => {
     })
   });
 
-  
 // START category dropdown selector
   $('.dropdown-button').click(function (e) { 
     e.preventDefault();
@@ -177,4 +160,7 @@ $(document).ready(() => {
     $('#filter-form')[0].reset();
   });
 // END filter
+
+// START fav button
+  $
 });
