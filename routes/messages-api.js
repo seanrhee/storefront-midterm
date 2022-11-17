@@ -4,7 +4,6 @@ const messageQueries = require('../db/queries/messages');
 
 router.get('/', (req, res) => {
   const user = req.session.user_id;
-
   messageQueries.getInboxDetails(user)
     .then(messages => {
       res.json({ messages });
@@ -22,7 +21,7 @@ router.get('/:seller_id', (req, res) => {
   const user = req.session.user_id;
   const seller = req.params.seller_id;
 
-  messageQueries.getChatHistoryWithUser(user, seller)
+  messageQueries.getChatHistory(user, seller)
     .then(messages => {
       res.json({ messages });
     })

@@ -24,6 +24,7 @@ const createInboxElement = function (message) {
 // Render the messages
 const renderMessages = function (messages) {
   for (const message of messages) {
+    console.log(message);
     $('.inbox-container').append(createInboxElement(message));
   }
 };
