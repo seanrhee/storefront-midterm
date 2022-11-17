@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
 router.get('/:creator_id', (req, res) => {
   // const user = req.session.user_id;
   const user = 5;
-  const creator = req.params.creator_id;
+  const creator = req.params;
 
   messageQueries.getChatHistory(user, creator)
     .then(page => {
