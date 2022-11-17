@@ -10,7 +10,13 @@ const router  = express.Router();
 const userQueries = require('../db/queries/users');
 
 router.get('/:id', (req, res) => {
-    console.log('im here')
+  const userCookie = req.session.user_id;
+  const userId = req.params.id;
+
+  // if (userId === userCookie) {
+  //   console.log(`my cookies match!`)
+  // }
+
     userQueries.getUsers(req.params.id)
     .then(items => {
     

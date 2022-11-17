@@ -4,6 +4,14 @@
   object-fit: cover;
 }
 
+.page-label h1 {
+  margin-bottom: 0;
+}
+
+thead th:nth-child(2) {
+  width: 50%;
+}
+
 td {
   text-align: center;
   vertical-align: middle;
@@ -21,4 +29,8 @@ td {
   background-color: #202020;
   color: white;
   accent-color: #202020;
+}
+
+table {
+  min-width: 100%;
 }
