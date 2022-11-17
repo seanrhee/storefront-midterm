@@ -5,9 +5,9 @@ const itemQueries = require('../db/queries/items');
 
 //GET route to show user favorites page
 router.get('/', (req, res) => {
-  itemQueries.getSavedItems(req.params.id)
+  itemQueries.getSavedItems(req.params.user_id)
     .then((item) => {
-      console.log(item)
+      console.log('item is >>>>>>>>>', item)
       db.query(`
       SELECT category
       FROM items
@@ -31,32 +31,18 @@ router.get('/', (req, res) => {
     })
 });
 
-
 router.post('/', (req, res) => {
   const item_id = req.body.itemId; //reads data from ajax data { itemId }
-  itemQueries.addFavoriteItem({ item_id }) //addFavortieItem only accpets an obj so made item_id into obj
+  console.log('item_id is >>>>>>>>>>>>', item_id)
+  itemQueries.toggleFavoriteItem({ item_id }) //addFavortieItem only accpets an obj so made item_id into obj
 })
 
+router.post('/:id/delete', (req, res) => {
+  const item_id = req.params.id;
+  itemQueries.deleteItem({ item_id })
 
+})
 
-//POST route to update the saved_items database and store the values in req.body
-// router.post('/', (req, res) => {
-//   const userId = req.session.userId;
-
-//   if (!userId) {
-//     res.status(401).send("Please log in to view your saved items.");
-//   } else {
-//     itemQueries.getSavedItem({ ...req.body, owner_id: userId })
-//     console.log(item)
-//       .then(item => {
-//         res.redirect(`/favorites/${item.id}`); //redirect the user to show item page
-//       })
-//       .catch(e => {
-//         console.error(e);
-//         res.send(e)
-//       });
-//   };
-// })
 
 
 

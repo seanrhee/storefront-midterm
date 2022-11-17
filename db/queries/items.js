@@ -1,12 +1,12 @@
 const db = require('../connection');
 
-const itemPages = function(database) {
+const itemPages = function (database) {
   const perPage = 16;
 
   const inputDatabase = database;
 
   const result = inputDatabase.reduce((resultArray, item, index) => {
-    const pageIndex = Math.floor(index/perPage);
+    const pageIndex = Math.floor(index / perPage);
 
     if (!resultArray[pageIndex]) {
       resultArray[pageIndex] = [];
@@ -49,13 +49,13 @@ const getItems = () => {
   FROM items
   ORDER BY id DESC
   `)
-  .then(data => {
-    const result = itemPages(data.rows);
+    .then(data => {
+      const result = itemPages(data.rows);
 
-    // console.log(result);
+      // console.log(result);
 
-    return result;
-  });
+      return result;
+    });
 };
 
 //get an item's category
@@ -65,23 +65,23 @@ const getCategory = (category) => {
   FROM items
   WHERE category = $1
   ORDER BY id DESC`, [category])
-  .then(data => {
-    const result = itemPages(data.rows)
+    .then(data => {
+      const result = itemPages(data.rows)
 
-    return result;
-  })
+      return result;
+    })
 }
 
 //get individual item to show users when they click into a listing
 const getIndividualItem = (item) => {
   return db.query(`
   SELECT *
-  FROM items
+  FROM users
+  JOIN items ON users.id = items.owner_id
   WHERE items.id = $1`, [item])
-  .then(data => { //async promise, always use a promise after
-    console.log('data is >>>>>>', data.rows[0])
-    return data.rows[0]; //an obj
-  });
+    .then(data => { //async promise, always use a promise after
+      return data.rows[0]; //an obj
+    });
 }
 
 //get saved item using userid = 19 (hard coding bc we're not making user login and registration)
@@ -91,26 +91,58 @@ const getSavedItems = (user_id = 19) => {
   FROM saved_items
   JOIN items ON items.id = saved_items.item_id
   WHERE saved_items.user_id = $1`, [user_id])
-  .then(data => {
-    console.log(data.rows);
-    return data.rows;
-  });
-}
-
-//add an item into the saved_items table
-const addFavoriteItem = (item) => {
-  return db.query(
-    `INSERT INTO saved_items (user_id, item_id)
-    VALUES ($1, $2)
-    RETURNING *`,
-    [19, item.item_id]) //hard coding user_id to 19
-    .then((result) => {
-      console.log('result>>>>>>>>', result.rows[0])
-      return result.rows[0];
-    })
-    .catch((err) => {
-      console.log(err.message);
+    .then(data => {
+      console.log(data.rows);
+      return data.rows;
     });
 }
 
-module.exports = { getItems, getCategory, addItem, getIndividualItem, getSavedItems, addFavoriteItem };
+//add an item into the saved_items table
+// const addFavoriteItem = (item) => {
+//   console.log('item is >>>>>>>>>>>>', item.item_id)
+//   return db.query(
+//     `INSERT INTO saved_items (user_id, item_id)
+//     VALUES ($1, $2)
+//     RETURNING *`,
+//     [19, item.item_id]) //hard coding user_id to 19
+//     .then((result) => {
+//       console.log('result>>>>>>>>', result.rows[0])
+//       return result.rows[0];
+//     })
+//     .catch((err) => {
+//       console.log(err.message);
+//     });
+// }
+
+//const toggle favitem(itemid), determine if id exsist in the table, if it does delete and if it doesnt insert it
+const toggleFavoriteItem = (item) => {
+  console.log('togglefav item id>>>>>>', item.item_id)
+  return db.query(`
+    SELECT *
+    FROM saved_items
+    WHERE item_id = $1`, [item.item_id])
+    .then((result) => {
+      console.log(result.rows)
+      if (result.rows.length === 0) {
+        return db.query(
+          `INSERT INTO saved_items (user_id, item_id)
+            VALUES ($1, $2)
+            RETURNING *`,
+          [19, item.item_id])
+      } else {
+        return db.query(
+          `DELETE FROM saved_items
+          WHERE item_id = $1`,
+          [item.item_id])
+      }
+    })
+}
+
+const deleteItem = (item) => {
+  return db.query(`
+  DELETE FROM saved_items
+  WHERE item_id = $1`, [item.item_id])
+}
+
+
+module.exports = { getItems, getCategory, addItem, getIndividualItem, getSavedItems, toggleFavoriteItem, deleteItem };

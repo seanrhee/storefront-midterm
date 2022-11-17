@@ -28,9 +28,9 @@ router.get('/', (req, res) => {
 
 //POST route to update the items database and store the values in req.body
 router.post('/', (req, res) => {
-  const userId = req.session.userId;
+  const userId = req.session.user_id;
 
-  if (!userId) {
+  if (userId !== 19) {
     res.status(401).send("Please log in to post your ad.");
   } else {
     itemQueries.addItem({ ...req.body, owner_id: userId })
@@ -60,12 +60,10 @@ router.get("/:id", (req, res) => {
             categories.push(category.category)
           }
 
-          console.log(item)
-          
           const templateVars = {
             user: req.session.user_id,
             categories: categories,
-            item,
+            item
           };
 
           res.render("item", templateVars);

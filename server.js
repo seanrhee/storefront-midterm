@@ -69,7 +69,7 @@ app.get('/', (req, res) => {
 
 app.post('/login', (req, res) => {
   // set user_id cookie to user.id
-  req.session.user_id = 5;
+  req.session.user_id = 19;
 
   res.redirect('/');
   return;
