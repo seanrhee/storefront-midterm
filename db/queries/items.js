@@ -47,6 +47,7 @@ const getItems = () => {
   return db.query(`
   SELECT *
   FROM items
+  WHERE sold = false
   ORDER BY id DESC
   `)
     .then(data => {
