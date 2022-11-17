@@ -154,4 +154,20 @@ const deleteUserItem = (id) => {
   })
 }
 
-module.exports = { getItems, getCategory, addItem, getIndividualItem, getSavedItems, toggleFavoriteItem, deleteItem, itemPages, searchBar, deleteUserItem };
+const updateUserItem = (item, itemId, owner_id) => {
+  console.log('edit', item, itemId, owner_id);
+
+  return db.query(`
+  UPDATE items
+  SET owner_id = $1, title = $2, price_per_item = $3, description = $4, photo_url, = $5, sold = false, condition = $6, category = $7
+  WHERE id = $8
+  `, [owner_id, item.title, item.price_per_item, item.description, item.photo_url, item.condition, item.category, itemId])
+  .then(item => {
+    console.log('query returned', item)
+    return item;
+  })
+}
+
+module.exports = { getItems, getCategory, addItem, getIndividualItem, getSavedItems, toggleFavoriteItem, deleteItem, itemPages, searchBar, deleteUserItem, updateUserItem };
+
+

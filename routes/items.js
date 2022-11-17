@@ -118,6 +118,20 @@ router.get('/:id/edit', (req, res) => {
   })  
 })
 
+router.post('/:id/edit', (req, res) => {
+  const userId = req.session.user_id;
+  const productId = req.params.id;
+
+  console.log(req.body)
+  console.log(userId)
+  itemQueries.updateUserItem(req.body, productId, userId)
+  .then(result => {
+    console.log('here be results', result)
+    res.redirect(`/items/${productId}`);
+    return;
+  })
+})
+
 // //POST route to let users update individual item info
 // router.post("/:id", (req, res) => {
 //   itemQueries.getIndividualItem(req.params.id)

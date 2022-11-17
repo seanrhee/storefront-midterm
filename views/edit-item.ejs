@@ -55,7 +55,7 @@
           <div class="new-item-form__field-wrapper">
             <label for="new-item-form__description">Description</label>
             <textarea placeholder="Description" name="description" id="new-item-form__description" cols="30"
-              rows="10" value='<%= item.description %>' required></textarea>
+              rows="10" required><%= item.description %></textarea>
           </div>
 
           <div class="new-item-form__field-wrapper">
@@ -66,7 +66,7 @@
           <div class="new-item-form__field-wrapper">
             <label for="new-item-form__condition">Condition</label>
             <select id="new-item-form__condition" name="condition" required>
-              <option value="<%= item.condition %>" disabled selected><%= item.condition %></option>
+              <option value="<%= item.condition %>" selected><%= item.condition %></option>
               <option value="new">New</option>
               <option value="used-like-new">Used - Like New</option>
               <option value="used-good">Used - Good</option>
@@ -77,7 +77,7 @@
           <div class="new-item-form__field-wrapper">
             <label for="new-item-form__category">Category</label>
             <select id="new-item-form__category" name="category" required>
-              <option value="<%= item.category %>" disabled selected><%= item.category %></option>
+              <option value="<%= item.category %>" selected><%= item.category %></option>
               <option value="bedroom">Bedroom</option>
               <option value="bathroom">Bathroom</option>
               <option value="living-room">Living Room</option>
@@ -91,7 +91,7 @@
           <hr>
 
           <div class="new-item-form__field-wrapper">
-            <button>Edit</button>
+            <button type="submit">Edit</button>
             <a id="item-form__cancel" href="/">Cancel</a>
           </div>
 
