@@ -102,6 +102,22 @@ router.post('/:id/delete', (req, res) => {
   })
 })
 
+router.get('/:id/edit', (req, res) => {
+  const userId = req.session.user_id;
+  const productId = req.params.id;
+
+  itemQueries.getIndividualItem(productId)
+  .then(result => {
+    console.log(result);
+    const templateVars = {
+      user: userId,
+      item: result
+    }
+
+    res.render('edit-item', templateVars)
+  })  
+})
+
 // //POST route to let users update individual item info
 // router.post("/:id", (req, res) => {
 //   itemQueries.getIndividualItem(req.params.id)

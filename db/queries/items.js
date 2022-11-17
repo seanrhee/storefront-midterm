@@ -73,6 +73,7 @@ const getCategory = (category) => {
 
 //get individual item to show users when they click into a listing
 const getIndividualItem = (item) => {
+  console.log('getIndividualItem called')
   return db.query(`
   SELECT *
   FROM users
