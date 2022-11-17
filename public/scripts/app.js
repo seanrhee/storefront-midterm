@@ -1,6 +1,6 @@
 // Client facing scripts here
 $(document).ready(() => {
-  const createItemElement = function(item) {
+  const createItemElement = function (item) {
     const $item = $(`
       <a class="item-link" href="/items/${item.id}">
         <div class="item-div">
@@ -16,7 +16,7 @@ $(document).ready(() => {
     return $item;
   }
 
-  const renderItems = function(items) {
+  const renderItems = function (items) {
     for (const item of items) {
       $('.item-container').append(createItemElement(item));
     }
@@ -74,7 +74,7 @@ $(document).ready(() => {
 
 // START top button
   // When the user scrolls down 20px from the top of the document, show the button
-  window.onscroll = function() {scrollFunction()};
+  window.onscroll = function () { scrollFunction() };
 
   function scrollFunction() {
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
@@ -94,19 +94,19 @@ $(document).ready(() => {
 
 // START filter
   // click to open filter
-  $('.open-filter').click(function (e) { 
+  $('.open-filter').click(function (e) {
     e.preventDefault();
     $('.filter-bar').css('display', 'flex');
   });
 
   // click to close filter
-  $('.close-filter').click(function (e) { 
+  $('.close-filter').click(function (e) {
     e.preventDefault();
     $('.filter-bar').css('display', 'none');
   });
 
   // click apply
-  $('#filter-form').submit(function (e) { 
+  $('#filter-form').submit(function (e) {
     e.preventDefault();
     filter = $(this).serialize();
 
@@ -116,13 +116,13 @@ $(document).ready(() => {
 
     loadItems(currentPage, null, filter).then(res => {
       console.log(res);
-      
+
       if (res.items.length === 0) {
         $('.no-results').append('<h1>NO RESULTS</h1>')
         $('.load-more').css('display', 'none');
 
       }
-  
+
       if (currentPage < res.items.length - 1) {
         $('.load-more').css('display', 'flex');
       } else if (currentPage === res.items.length - 1) {
@@ -132,9 +132,10 @@ $(document).ready(() => {
   });
 
   // reset button
-  $('.reset-button').click(function (e) { 
+  $('.reset-button').click(function (e) {
     e.preventDefault();
     $('#filter-form')[0].reset();
   });
 // END filter
 });
+

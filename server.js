@@ -39,7 +39,8 @@ const userApiRoutes = require('./routes/users-api');
 const widgetApiRoutes = require('./routes/widgets-api');
 const usersRoutes = require('./routes/users');
 const itemApiRoutes = require('./routes/items-api');
-const itemsRoutes = require('./routes/items')
+const itemsRoutes = require('./routes/items');
+const favoriteRoutes = require('./routes/favorites');
 const filterApiRoutes = require('./routes/filter-api');
 const { user } = require('pg/lib/defaults');
 
@@ -52,6 +53,7 @@ app.use('/api/items', itemApiRoutes);
 app.use('/api/filter', filterApiRoutes);
 app.use('/users', usersRoutes);
 app.use('/items', itemsRoutes);
+app.use('/favorites', favoriteRoutes)
 // Note: mount other resources here, using the same pattern above
 // Home page
 // Warning: avoid creating more routes in this file!
@@ -69,7 +71,7 @@ app.get('/', (req, res) => {
 
 app.post('/login', (req, res) => {
   // set user_id cookie to user.id
-  req.session.user_id = 5;
+  req.session.user_id = 19;
 
   res.redirect('/');
   return;

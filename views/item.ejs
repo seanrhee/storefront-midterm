@@ -32,7 +32,8 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="/vendor/jquery-3.0.0.js"></script>
-  <script defer src="/scripts/app.js"></script>
+  <script defer src="/scripts/favorites.js"></script>
+  <!-- <script defer src="/scripts/app.js"></script> -->
 </head>
 
 <body>
@@ -73,6 +74,14 @@
           <!-- Product Pricing -->
           <div class="product-price">
             <span>$<%=item.price_per_item%></span>
+            <i data-itemId=<%=item.id%> id="heart" class="<%= isFavorite? 'red' : 'grey'%> fa-solid fa-heart"></i></span>
+                  <!-- <%if (isFavorite) { %>
+                    <span class="heart-icon" href="/favorites">
+                      <i data-itemId=<%=item.id%> id="heart" class="red fa-solid fa-heart"></i></span>
+                    <% } else { %>
+                      <span class="heart-icon" href="/favorites">
+                        <i data-itemId=<%=item.id%> id="heart" class="grey fa-solid fa-heart"></i></span>
+                      <% } %> -->
           </div>
         </div>
 

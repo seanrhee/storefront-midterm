@@ -1,8 +1,8 @@
 .individualItemContainer {
   display: flex;
   justify-content: center;
-  padding-top: 14em;
-  padding-bottom: 8em;
+  padding-top: 10em;
+  padding-bottom: 14em;
   max-width: 1200px;
   margin: 0 auto;
   height: 100%;
@@ -67,9 +67,26 @@
 .product-price span {
   font-size: 20px;
   font-weight: 300;
-  color: #404040;
-  margin-right: 20px;
+  color: #000000;
+  margin-right: 80%;
   padding-bottom:1em;
+}
+
+#heart {
+  color: #808080;
+  font-size: 30px;
+}
+
+#heart.click {
+  color: red;
+}
+
+.red {
+  color: red !important;
+}
+
+.grey {
+  color:#808080 !important;
 }
 
 .send-message {
@@ -82,6 +99,7 @@
   padding: 12px 30px;
   transition: all .5s;
 }
+
 .send-message:hover {
   background-color: #808080;
 }

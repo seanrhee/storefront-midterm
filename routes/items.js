@@ -14,11 +14,8 @@ router.get('/', (req, res) => {
       const categories = [];
 
       for (const category of result.rows) {
-        console.log(category)
         categories.push(category.category)
       }
-
-      console.log(categories);
 
       const templateVars = {
         categories: categories,
@@ -31,9 +28,9 @@ router.get('/', (req, res) => {
 
 //POST route to update the items database and store the values in req.body
 router.post('/', (req, res) => {
-  const userId = req.session.userId;
+  const userId = req.session.user_id;
 
-  if (!userId) {
+  if (userId !== 19) {
     res.status(401).send("Please log in to post your ad.");
   } else {
     itemQueries.addItem({ ...req.body, owner_id: userId })
@@ -49,13 +46,16 @@ router.post('/', (req, res) => {
 
 //GET route to show users individual item page
 router.get("/:id", (req, res) => {
-  itemQueries.getIndividualItem(req.params.id)
+  const userId = req.session.user_id;
+  const productId = req.params.id;
+
+  itemQueries.getIndividualItem(productId)
     .then((item) => {
       db.query(`
-      SELECT category
-      FROM items
-      GROUP BY category
-      ORDER BY category`)
+    SELECT category
+    FROM items
+    GROUP BY category
+    ORDER BY category`)
         .then(result => {
           const categories = [];
 
@@ -63,15 +63,32 @@ router.get("/:id", (req, res) => {
             categories.push(category.category)
           }
 
-          const templateVars = {
-            user: req.session.user_id,
-            categories: categories,
-            item,
-          };
+          let isFavorite = false;
+          itemQueries.getSavedItems(userId)
+            .then((items) => {
+              for (let rows of items) {
+                let itemId = rows.item_id.toString();
+                if (itemId === productId) {
+                  isFavorite = true;
+                  break;
+                }
+              }
 
-          res.render("item", templateVars);
+              const templateVars = {
+                user: userId,
+                categories: categories,
+                item,
+                isFavorite
+              };
+
+              console.log('templatevars >>>>>>>>>>>>>', templateVars)
+              res.render("item", templateVars);
+            })
         })
     })
+
+
+
 
 });
 

@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:category', (req, res) => {
-  console.log(req.params.category);
+  // console.log(req.params.category);
   itemQueries.getCategory(req.params.category.toUpperCase())
   .then(items => {
     res.json({ items });
