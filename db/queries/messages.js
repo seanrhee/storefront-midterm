@@ -31,6 +31,12 @@ const getChatHistory = (id, creator_id) => {
   })
 };
 
+const getContactInfo = (details) => {
+  return db.query(`
+  SELECT * FROM users WHERE user.id = $1
+  `, [details])
+}
+
 
 // JOIN message_recipients ON message_id = messages.id
 
@@ -41,4 +47,4 @@ const getChatHistory = (id, creator_id) => {
 
 // insert into messages (creator_id, recipient_id, message, created_at, parent_message_id) values (5, 29, 'User-centric logistical system engine', '1664937644000', 20);
 
-module.exports = { getInboxDetails, getChatHistory };
+module.exports = { getInboxDetails, getChatHistory, getContactInfo };
