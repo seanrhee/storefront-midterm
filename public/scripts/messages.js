@@ -32,6 +32,7 @@ $(() => {
   function loadMessages() {
 
     $.get('/api/messages').then((result) => {
+      console.log(result)
       renderMessages(result.messages);
     });
   }
