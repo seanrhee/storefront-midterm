@@ -5,7 +5,7 @@ const messageQueries = require('../db/queries/messages');
 router.get('/', (req, res) => {
   const user = req.session.user_id;
 
-  messageQueries.getInboxForUser(user)
+  messageQueries.getInboxDetails(user)
     .then(messages => {
       res.json({ messages });
     })
@@ -14,6 +14,7 @@ router.get('/', (req, res) => {
         .status(500)
         .json({ error: err.message });
     });
+
 });
 
 

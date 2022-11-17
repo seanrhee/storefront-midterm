@@ -8,7 +8,7 @@ const createInboxElement = function (message) {
      <img src="${message.photo_url}" class="item-picture">
        <div class="contact-container">
        <div class="name-and-date">
-         <div class="user-name"> ${message.full_name} </div>
+         <div class="user-name"> ${message.first_name} ${message.last_name} </div>
          <date class="date"> ${timeago.format(message.date_sent)} </date>
          </div>
          <article>${message.message}</article>
