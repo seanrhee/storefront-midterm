@@ -9,11 +9,11 @@ const createInboxElement = function (message) {
        <div class="contact-container">
        <div class="name-and-date">
          <div class="user-name"> ${message.first_name} ${message.last_name} </div>
-         <date class="date"> ${timeago.format(message.date_sent)} </date>
+         <date class="date"> ${timeago.format(message.created_at)} </date>
          </div>
          <article>${message.message}</article>
        </div>
-     <form class="reply" action="/compose-message/${message.seller_id}" method="GET">
+     <form class="reply" action="/compose-message/${message.creator_id}" method="GET">
        <button type="submit" id="reply-button">Reply</button>
      </form>
     </div>
@@ -24,7 +24,6 @@ const createInboxElement = function (message) {
 // Render the messages
 const renderMessages = function (messages) {
   for (const message of messages) {
-    console.log(message);
     $('.inbox-container').append(createInboxElement(message));
   }
 };
@@ -37,3 +36,40 @@ $(() => {
   }
   loadMessages();
 });
+
+
+
+////////////////////////////////////////////////////////////////
+// FOR COMPOSE-MESSAGE
+////////////////////////////////////////////////////////////////
+
+// Create HTML for Messaging
+// const recipientDetails = function (message) {
+//   const $recipientInfo = $(`
+
+//   <div id="ad-info">
+//   <div class="ad-display">
+//     <img src="photo-here" class="item-picture">
+//     <div class="item-price">price here</div>
+//   </div>
+//     <div class="ad-title">title here</div>
+//   </div>
+//   <div class="recipient-name">${message.creator_id}</div>
+
+//     `);
+//   return $recipientInfo;
+// }
+
+// // Render the messages
+// const renderPage = function (page) {
+//     $('#message-container').append(recipientDetails(page));
+// };
+
+// $(() => {
+//   function loadMessages() {
+//     $.get('/api/messages/:creator_id').then((result) => {
+//       renderMessages(result.page);
+//     });
+//   }
+//   loadMessages();
+// });

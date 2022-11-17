@@ -67,10 +67,10 @@
           <div class="received">received testing a really long message for editing purposes actually needs to be a bit longer still and let's test out what happens when we make it even longer!</div>
         </iframe>
 
-        <form class="reply" action="/messages" method="POST">
-            <input type="text" name="new-message" id="new-message" label="text-box-for-messaging" maxlength="500" autofocus
+        <form class="reply" action="/chat-box" method="POST">
+            <input type="textarea" name="new-message" id="new-message" label="text-box-for-messaging" maxlength="500" autofocus
               required placeholder="Write a new message..."></input>
-            <button type="submit" id="send-button">Send</button>
+            <input type="submit" value="send" id="send-button"></input>
         </form>
       </div>
 

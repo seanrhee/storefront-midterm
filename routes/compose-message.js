@@ -5,24 +5,24 @@ const messageQueries = require('../db/queries/messages');
 
 
 
-router.get('/:seller_id', (req, res) => {
-  const seller = req.params.seller_id;
-  const user = req.session.user_id;
+router.get('/:creator_id', (req, res) => {
+  const creator = req.params.creator_id;
+  // const user = req.session.user_id;
+  const user = 5;
 
-  messageQueries.getInboxDetails(user)
+  messageQueries.getInboxDetails(user, creator)
   .then(messages => {
     console.log(messages);
 
       const templateVars = {
         user,
-        seller
+        creator
       }
 
       res.render('compose-message', templateVars);
     })
 })
 
-POST :
 
 
 module.exports = router;

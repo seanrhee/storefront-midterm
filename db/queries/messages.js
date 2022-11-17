@@ -5,10 +5,9 @@ const db = require('../connection');
 const getInboxDetails = (id) => {
   return db.query(`
   SELECT * FROM messages
-  JOIN users ON users.id = seller_id
-  JOIN items ON users.id = owner_id
-  WHERE seller_id != $1
-  ORDER BY date_sent DESC
+  JOIN users ON users.id = creator_id
+  WHERE messages.recipient_id = $1
+
   `, [id])
   .then((data) => {
     return data.rows;
@@ -18,26 +17,28 @@ const getInboxDetails = (id) => {
 
 // LEFT JOIN: The LEFT JOIN keyword returns all records from the left table (table1), and the matching records from the right table (table2).
 
-// Get message history with a seller
-const getChatHistory = (id, seller_id) => {
+// Get message history
+const getChatHistory = (id, creator_id) => {
   return db.query(`
 
-  SELECT * FROM messages
-  FULL JOIN users ON users.id = seller_id
-  JOIN items ON users.id = owner_id
-  WHERE buyer_id = $1 and seller_id = $2
-  ORDER BY date_sent DESC
-  `, [id, seller_id])
+  SELECT *
+  FROM messages
+  WHERE messages.recipient_id = $1 AND messages.creator_id = $2
+
+  `, [id, creator_id])
   .then((data) => {
     return data.rows;
   })
 };
 
+
+// JOIN message_recipients ON message_id = messages.id
+
+// SELECT * FROM MESSAGES
+// JOIN users ON users.id = recipient_id
+// JOIN message_recipients ON message_id = messages.id
+// WHERE creator_id = $1
+
+// insert into messages (creator_id, recipient_id, message, created_at, parent_message_id) values (5, 29, 'User-centric logistical system engine', '1664937644000', 20);
+
 module.exports = { getInboxDetails, getChatHistory };
-
-
-// SELECT * FROM messages
-// FULL JOIN users ON users.id = seller_id
-// JOIN items ON users.id = owner_id
-// WHERE buyer_id = $1 and seller_id = $2
-// ORDER BY date_sent DESC

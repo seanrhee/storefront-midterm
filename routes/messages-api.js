@@ -3,7 +3,8 @@ const router = express.Router();
 const messageQueries = require('../db/queries/messages');
 
 router.get('/', (req, res) => {
-  const user = req.session.user_id;
+  // const user = req.session.user_id;
+  const user = 5;
 
   messageQueries.getInboxDetails(user)
     .then(messages => {
@@ -18,18 +19,19 @@ router.get('/', (req, res) => {
 });
 
 
-router.get('/:seller_id', (req, res) => {
-  const user = req.session.user_id;
-  const seller = req.params.seller_id;
+router.get('/:creator_id', (req, res) => {
+  // const user = req.session.user_id;
+  const user = 5;
+  const creator = req.params.creator_id;
 
-  messageQueries.getChatHistory(user, seller)
-    .then(messages => {
-      res.json({ messages });
+  messageQueries.getChatHistory(user, creator)
+    .then(page => {
+      res.json({ page });
     })
     .catch(err => {
       res
         .status(500)
-        .json({ error: err.message });
+        .json({ error: err.page });
     });
 });
 
