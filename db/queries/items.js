@@ -108,7 +108,7 @@ const toggleFavoriteItem = (item) => {
           `INSERT INTO saved_items (user_id, item_id)
             VALUES ($1, $2)
             RETURNING *`,
-          [19, item.item_id])
+          [19, item.item_id]) //hard-coded user_id 19 to get saved_items
       } else {
         return db.query(
           `DELETE FROM saved_items
