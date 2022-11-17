@@ -18,8 +18,8 @@
   <link rel="stylesheet" href="/styles/index.css" />
   <link rel="stylesheet" href="/styles/main.css" />
   <link rel="stylesheet" href="/styles/layout.css" />
-  <link rel="stylesheet" href="/styles/messages.css" />
-  <link rel="stylesheet" href="/styles/compose-message.css" />
+  <link rel="stylesheet" href="/styles/filter.css" />
+
 
   <!-- External Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,7 +37,12 @@
 <body>
   <%- include('partials/_header') %>
 
+  <%- include('partials/_filter') %>
+
   <div class="main-container">
+    <div class="no-results">
+
+    </div>
     <div class="item-container" id="items">
 
     </div>

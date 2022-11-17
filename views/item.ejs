@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="/styles/layout.css" />
   <link rel="stylesheet" href="/styles/new-item.css" />
   <link rel="stylesheet" href="/styles/nav.css" />
+  <link rel="stylesheet" href="/styles/footer.css" />
   <link rel="stylesheet" href="/styles/item-page.css" />
 
   <!-- External Fonts -->
@@ -24,6 +25,10 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Bungee&family=Poppins&family=Source+Sans+Pro:ital,wght@0,300;0,600;1,300;1,600&display=swap"
     rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="/vendor/jquery-3.0.0.js"></script>
@@ -48,33 +53,44 @@
           <span class="category">
             <%=item.category%>
           </span>
+          <!-- location -->
+          <div class="location">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>
+              <%=item.city%>, <%=item.province%>
+                  <%=item.postal_code%>, <%=item.country%>
+            </span>
+          </div>
           <h1>
             <%=item.title%>
           </h1>
           <p>
-            <%=item.description%>
-          </p>
-          <p>
             Condition: <%=item.condition%>
           </p>
-        </div>
-
-        <div>
+          <p>
+            <%=item.description%>
+          </p>
           <!-- Product Pricing -->
           <div class="product-price">
             <span>$<%=item.price_per_item%></span>
           </div>
-
-          <div class="message-box">
-            <label for="message">Contact Seller</label>
-            <textarea placeholder="Hi, I'm interested! Please contact me if this is still available." name="message" id="message" cols="30"
-              rows="3"></textarea>
-          </div>
-
-          <a href="#" class="send-message">Send Message</a>
         </div>
-    </main>
 
+        <!-- contact seller -->
+        <div>
+          <div class="message-box">
+            <label for="message">Contact <%=item.first_name%>
+                <%=item.last_name%></label>
+            <textarea placeholder="Hi, I'm interested! Please contact me if this is still available." name="message"
+              id="message" cols="30" rows="3"></textarea>
+          </div>
+          <a href="#" class="send-message">Send Message</a>
+          <span class="seller-phone_number">or call <%=item.phone_number%> </span>
+        </div>
+
+
+    </main>
+    <%- include('partials/_footer') %>
 </body>
 
 </html>

@@ -51,8 +51,6 @@ const getItems = () => {
   .then(data => {
     const result = itemPages(data.rows);
 
-    // console.log(result);
-
     return result;
   });
 };
@@ -74,11 +72,26 @@ const getIndividualItem = (item) => {
   return db.query(`
   SELECT *
   FROM items
-  WHERE id = $1`, [item])
+  JOIN users ON users.id = items.owner_id
+  WHERE items.id = $1`, [item])
   .then(data => { //async promise, always use a promise after
     return data.rows[0]; //an obj
   });
 }
 
+const searchBar = (param) => {
+  return db.query(`
+  SELECT *
+  FROM items
+  WHERE title LIKE '%$1%' OR description LIKE '%1%'
+  ORDER BY id DESC`, [param])
+  .then(data => {
+    const result = itemPages(data.rows);
 
-module.exports = { getItems, getCategory, addItem, getIndividualItem };
+    console.log(result);
+
+    return result;
+  });
+}
+
+module.exports = { getItems, getCategory, itemPages, searchBar, addItem, getIndividualItem };
