@@ -9,6 +9,11 @@ router.get('/', (req, res) => {
 
 module.exports = router;
 
+
 router.post('/', (req, res) => {
-  
+  const tempUser = 5;
+  console.log(req.body);
+  const templateVars = { user: tempUser, message: req.body }
+
+  res.render('compose-message', templateVars);
 })
