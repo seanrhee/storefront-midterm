@@ -19,12 +19,10 @@ router.get('/:id', (req, res) => {
         itemList: items
       }
 
-
-        console.log(templateVars.itemList)
-    
-        res.render('my-ads', templateVars);
-        return;
-
+      console.log(templateVars.itemList)
+  
+      res.render('my-ads', templateVars);
+      return;
     })
     .catch(err => {
       res

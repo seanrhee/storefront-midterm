@@ -1,0 +1,24 @@
+.item-thumb {
+  width: 5vw;
+  height: 5vw;
+  object-fit: cover;
+}
+
+td {
+  text-align: center;
+  vertical-align: middle;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.btn {
+  border: none;
+  background-color: #202020;
+  color: white;
+}
+
+#sold:checked {
+  background-color: #202020;
+  color: white;
+  accent-color: #202020;
+}
