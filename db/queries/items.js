@@ -92,7 +92,7 @@ const getSavedItems = (user_id = 19) => {
   JOIN items ON items.id = saved_items.item_id
   WHERE saved_items.user_id = $1`, [user_id])
     .then(data => {
-      console.log(data.rows);
+      // console.log(data.rows);
       return data.rows;
     });
 }
@@ -118,11 +118,10 @@ const getSavedItems = (user_id = 19) => {
 const toggleFavoriteItem = (item) => {
   console.log('togglefav item id>>>>>>', item.item_id)
   return db.query(`
-    SELECT *
+    SELECT item_id
     FROM saved_items
     WHERE item_id = $1`, [item.item_id])
     .then((result) => {
-      console.log(result.rows)
       if (result.rows.length === 0) {
         return db.query(
           `INSERT INTO saved_items (user_id, item_id)
@@ -144,5 +143,20 @@ const deleteItem = (item) => {
   WHERE item_id = $1`, [item.item_id])
 }
 
+const isFavorite = (item) => {
+  return db.query(`
+  SELECT item_id
+  FROM saved_items
+  WHERE item_id = $1`, [item.item_id])
+    .then((data) => {
+      console.log('this is result.rows>>>>>', data.rows)
+      if (data.rows.length === 0) {
+        return false;
+      } else {
+        return true;
+      }
+    });
+}
 
-module.exports = { getItems, getCategory, addItem, getIndividualItem, getSavedItems, toggleFavoriteItem, deleteItem };
+
+module.exports = { getItems, getCategory, addItem, getIndividualItem, getSavedItems, toggleFavoriteItem, deleteItem, isFavorite};

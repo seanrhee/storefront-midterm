@@ -7,7 +7,7 @@ const itemQueries = require('../db/queries/items');
 router.get('/', (req, res) => {
   itemQueries.getSavedItems(req.params.user_id)
     .then((item) => {
-      console.log('item is >>>>>>>>>', item)
+      // console.log('item is >>>>>>>>>', item)
       db.query(`
       SELECT category
       FROM items
@@ -33,7 +33,7 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   const item_id = req.body.itemId; //reads data from ajax data { itemId }
-  console.log('item_id is >>>>>>>>>>>>', item_id)
+  // console.log('item_id is >>>>>>>>>>>>', item_id)
   itemQueries.toggleFavoriteItem({ item_id }) //addFavortieItem only accpets an obj so made item_id into obj
 })
 

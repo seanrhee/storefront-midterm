@@ -116,32 +116,6 @@ $(document).ready(() => {
   });
   // END top button
 
-  //change heart icon to red on click
-  const changeHeartColor = () => {
-    const heart = document.getElementById('heart');
-    heart.addEventListener('click', function () {
-      heart.classList.toggle('click');
-    });
-  };
-  changeHeartColor();
-
-  $('#heart').click(function (e) {
-    e.preventDefault();
-    const itemId = e.target.dataset.itemid;
-
-    $.ajax({
-      url: '/favorites',
-      method: 'POST',
-      data: { itemId },
-      success: () => {
-        console.log('success!')
-      },
-      error: () => {
-        console.log('ERROR!')
-      }
-    });
-  });
-
 
 });
 

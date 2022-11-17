@@ -1,27 +1,27 @@
-// Client facing scripts here
+//change heart icon to red on click
 $(document).ready(() => {
-  const createItemElement = function (item) {
-    const $item = $(`
-      <a class="item-link" href="/items/${item.id}">
-        <div class="item-div">
-            <img class="image-thumb" src=${item.photo_url} alt="item thumbnail">
-            <div class="item-info">
-              <h3>$${item.price_per_item}</h3>
-              <h4 class="item-title">${item.title}</h4>
-            </div>
-          </div>
-      </a>
-    `);
+  const changeHeartColor = () => {
+    const heart = document.getElementById('heart');
+    console.log('click', heart)
+      heart.classList.toggle('red');
+      heart.classList.toggle('grey');
+  };
 
-    return $item;
-  }
+  $('#heart').click(function (e) {
+    e.preventDefault();
+    changeHeartColor();
+    const itemId = e.target.dataset.itemid;
 
-  const renderItems = function (items) {
-    for (const item of items) {
-      $('.favorite-container').append(createItemElement(item));
-    }
-  }
-
-  renderItems(items);
-
-})
+    $.ajax({
+      url: '/favorites',
+      method: 'POST',
+      data: { itemId },
+      success: () => {
+        console.log('success!')
+      },
+      error: () => {
+        console.log('ERROR!')
+      }
+    });
+  });
+});
