@@ -54,7 +54,7 @@
           </div>
           <div class="seller-name">name here</div>
 
-        <figure id="message-history">
+        <iframe src="/chat-box" id="message-history">
           <div class="sent">sent</div>
           <div class="received">received</div>
           <div class="sent">sent</div>
@@ -65,9 +65,9 @@
           <div class="received">received</div>
           <div class="sent">sent testing a really long message for editing purposes actually needs to be a bit longer still and let's test out what happens when we make it even longer!</div>
           <div class="received">received testing a really long message for editing purposes actually needs to be a bit longer still and let's test out what happens when we make it even longer!</div>
-        </figure>
+        </iframe>
 
-        <form class="reply" action="/compose-message" method="POST">
+        <form class="reply" action="/messages" method="POST">
             <input type="text" name="new-message" id="new-message" label="text-box-for-messaging" maxlength="500" autofocus
               required placeholder="Write a new message..."></input>
             <button type="submit" id="send-button">Send</button>

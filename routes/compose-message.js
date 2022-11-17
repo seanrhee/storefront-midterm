@@ -22,5 +22,7 @@ router.get('/:seller_id', (req, res) => {
     })
 })
 
+POST :
+
 
 module.exports = router;

@@ -45,6 +45,7 @@ const { user } = require('pg/lib/defaults');
 const messageApiRoutes = require('./routes/messages-api');
 const userMessages = require('./routes/messages');
 const composeMessage = require('./routes/compose-message');
+const chatMessages = require('./routes/chat-box');
 
 
 // Mount all resource routes
@@ -59,6 +60,7 @@ app.use('/users', usersRoutes);
 app.use('/items', itemsRoutes);
 app.use('/messages', userMessages);
 app.use('/compose-message', composeMessage);
+app.use('/chat-box', chatMessages);
 // Note: mount other resources here, using the same pattern above
 
 // Home page
