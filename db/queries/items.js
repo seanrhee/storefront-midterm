@@ -141,4 +141,16 @@ const searchBar = (param) => {
   });
 }
 
-module.exports = { getItems, getCategory, addItem, getIndividualItem, getSavedItems, toggleFavoriteItem, deleteItem, itemPages, searchBar};
+const deleteUserItem = (id) => {
+  console.log('delete', id);
+
+  return db.query(`
+  DELETE FROM items
+  WHERE id = $1`, [id])
+  .then(data => {
+    console.log(data);
+    return data;
+  })
+}
+
+module.exports = { getItems, getCategory, addItem, getIndividualItem, getSavedItems, toggleFavoriteItem, deleteItem, itemPages, searchBar, deleteUserItem };

@@ -30,7 +30,6 @@ router.get('/:id', (req, res) => {
         .json({ error: err.message });
     });
   }
-
-); 
+);
 
 module.exports = router;

@@ -62,8 +62,8 @@
                   <input type="checkbox" id="sold" name="sold" value="sold">
                 <% } %>
               </td>
-              <td><form method="GET" action="/items/<%= item.id %>"><button class="btn">Edit</button></form></td>
-              <td><form method="POST" action="/items/<%= item.id %>?_method=DELETE"><button class="btn">Delete</button></form></td>
+              <td><form method="GET" action="/items/<%= item.id %>/edit"><button class="btn">Edit</button></form></td>
+              <td><form method="POST" action="/items/<%= item.id %>/delete"><button class="btn">Delete</button></form></td>
             </tr>
           <% } %>
         </tbody>

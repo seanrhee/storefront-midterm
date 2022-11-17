@@ -86,11 +86,21 @@ router.get("/:id", (req, res) => {
             })
         })
     })
-
-
-
-
 });
+
+// post route to delete item
+router.post('/:id/delete', (req, res) => {
+  console.log('post to delete')
+  const userId = req.session.user_id;
+  const productId = req.params.id;
+
+  itemQueries.deleteUserItem(productId)
+  .then(result => {
+    console.log(result)
+    res.redirect(`/users/${userId}`)
+    return;
+  })
+})
 
 // //POST route to let users update individual item info
 // router.post("/:id", (req, res) => {
