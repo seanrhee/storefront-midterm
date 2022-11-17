@@ -4,6 +4,7 @@ const messageQueries = require('../db/queries/messages');
 
 router.get('/', (req, res) => {
   const user = req.session.user_id;
+
   messageQueries.getInboxDetails(user)
     .then(messages => {
       res.json({ messages });

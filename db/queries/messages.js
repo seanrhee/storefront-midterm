@@ -23,9 +23,10 @@ const getChatHistory = (id, seller_id) => {
   return db.query(`
 
   SELECT * FROM messages
-  LEFT JOIN users ON users.id = buyer_id
-  LEFT JOIN items ON users.id = seller_id
+  FULL JOIN users ON users.id = seller_id
+  JOIN items ON users.id = owner_id
   WHERE buyer_id = $1 and seller_id = $2
+  ORDER BY date_sent DESC
   `, [id, seller_id])
   .then((data) => {
     return data.rows;
@@ -33,3 +34,10 @@ const getChatHistory = (id, seller_id) => {
 };
 
 module.exports = { getInboxDetails, getChatHistory };
+
+
+// SELECT * FROM messages
+// FULL JOIN users ON users.id = seller_id
+// JOIN items ON users.id = owner_id
+// WHERE buyer_id = $1 and seller_id = $2
+// ORDER BY date_sent DESC
