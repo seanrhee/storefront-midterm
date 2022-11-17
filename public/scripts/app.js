@@ -22,24 +22,51 @@ $(document).ready(() => {
     }
   }
 
-  async function loadItems(page = 0, category = null) {
-    // console.log('loadItems')
+  async function loadItems(page = 0, category = null, filter = false) {
+    console.log('loadItems')
+    // if category selector
     if (category) {
       return $.get(`/api/items/${category}`, (data) => {
         renderItems(data.items[page]);
       });
     }
+    if (filter) {
+      return $.get(`/api/filter/${filter}`, (data) => {
+        console.log('filter get');
+        renderItems(data.items[page])
+      })
+    }
+
+    // if homepage
     return $.get('/api/items', (data) => {
       renderItems(data.items[page]);
     });
   }
 
+  // search item function
+  async function searchItems(search) {
+    console.log('searchItems called on', search)
+    return $.get(`/api/search/${search}`, (data) => {
+      console.log('search get')
+      renderItems(data.items[0])
+    });
+  }
+
+  async function filterItems(filter, page = 0) {
+    console.log('filterItems called');
+    return $.get(`/api/filter/${filter}`, (data) => {
+      console.log('filter get');
+      renderItems(data.items[page])
+    })
+  }
+
   // keep track of current page + category
   let currentPage = 0
   let categorySelector = null;
+  let filter = null;
 
   // load items on page load
-  loadItems(currentPage, categorySelector).then(res => {
+  loadItems(currentPage, categorySelector, filter).then(res => {
     if (currentPage < res.items.length - 1) {
       $('.load-more').css('display', 'flex');
     }
@@ -49,23 +76,30 @@ $(document).ready(() => {
   $('.load-more').click(function (e) {
     e.preventDefault();
     currentPage++;
-    loadItems(currentPage, categorySelector).then(res => {
-      if (currentPage === res.items.length - 1) {
+    loadItems(currentPage, categorySelector, filter).then(res => {
+      if (currentPage === res.items.length-1) {
         $('.load-more').css('display', 'none');
       }
     })
   });
 
 
-  // START category dropdown selector
+// START category dropdown selector
   $('.dropdown-button').click(function (e) {
     e.preventDefault();
     //reset currentPage
     currentPage = 0
+    $('.dropdown-button').css('color', '');
+
 
     categorySelector = $(this).attr('id');
 
+    $('#categories').unbind('mouseenter mouseleave');
+    $('#category-dropdown').unbind('mouseenter mouseleave');
+
     $('.item-container').empty();
+
+    $(this).css('color', '#808080');
 
     loadItems(currentPage, categorySelector).then(res => {
       // console.log(res);
@@ -76,27 +110,9 @@ $(document).ready(() => {
       }
     });
   });
-  // END category dropdown selector
+// END category dropdown selector
 
-  // START category drop down on hover
-  $('#categories').hover(function () {
-    // over
-    $('#category-dropdown').css('display', 'flex');
-  }, function () {
-    // out
-    $('#category-dropdown').css('display', 'none');
-  });
-
-  $('#category-dropdown').hover(function () {
-    // over
-    $('#category-dropdown').css('display', 'flex');
-  }, function () {
-    // out
-    $('#category-dropdown').css('display', 'none');
-  });
-  // END category drop down on hover
-
-  // START top button
+// START top button
   // When the user scrolls down 20px from the top of the document, show the button
   window.onscroll = function () { scrollFunction() };
 
@@ -114,8 +130,52 @@ $(document).ready(() => {
     $("html, body").animate({ scrollTop: 0 }, "slow");
     return false;
   });
-  // END top button
+// END top button
 
+// START filter
+  // click to open filter
+  $('.open-filter').click(function (e) {
+    e.preventDefault();
+    $('.filter-bar').css('display', 'flex');
+  });
 
+  // click to close filter
+  $('.close-filter').click(function (e) {
+    e.preventDefault();
+    $('.filter-bar').css('display', 'none');
+  });
+
+  // click apply
+  $('#filter-form').submit(function (e) {
+    e.preventDefault();
+    filter = $(this).serialize();
+
+    currentPage = 0;
+    $('.item-container').empty();
+    $('.no-results').empty();
+
+    loadItems(currentPage, null, filter).then(res => {
+      console.log(res);
+
+      if (res.items.length === 0) {
+        $('.no-results').append('<h1>NO RESULTS</h1>')
+        $('.load-more').css('display', 'none');
+
+      }
+
+      if (currentPage < res.items.length - 1) {
+        $('.load-more').css('display', 'flex');
+      } else if (currentPage === res.items.length - 1) {
+        $('.load-more').css('display', 'none');
+      }
+    });;
+  });
+
+  // reset button
+  $('.reset-button').click(function (e) {
+    e.preventDefault();
+    $('#filter-form')[0].reset();
+  });
+// END filter
 });
 

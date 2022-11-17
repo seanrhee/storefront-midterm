@@ -41,6 +41,7 @@ const usersRoutes = require('./routes/users');
 const itemApiRoutes = require('./routes/items-api');
 const itemsRoutes = require('./routes/items');
 const favoriteRoutes = require('./routes/favorites');
+const filterApiRoutes = require('./routes/filter-api');
 const { user } = require('pg/lib/defaults');
 
 // Mount all resource routes
@@ -49,6 +50,7 @@ const { user } = require('pg/lib/defaults');
 app.use('/api/users', userApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
 app.use('/api/items', itemApiRoutes);
+app.use('/api/filter', filterApiRoutes);
 app.use('/users', usersRoutes);
 app.use('/items', itemsRoutes);
 app.use('/favorites', favoriteRoutes)

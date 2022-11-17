@@ -52,10 +52,8 @@ const getItems = () => {
     .then(data => {
       const result = itemPages(data.rows);
 
-      // console.log(result);
-
-      return result;
-    });
+    return result;
+  });
 };
 
 //get an item's category
@@ -97,23 +95,6 @@ const getSavedItems = (user_id = 19) => {
     });
 }
 
-//add an item into the saved_items table
-// const addFavoriteItem = (item) => {
-//   console.log('item is >>>>>>>>>>>>', item.item_id)
-//   return db.query(
-//     `INSERT INTO saved_items (user_id, item_id)
-//     VALUES ($1, $2)
-//     RETURNING *`,
-//     [19, item.item_id]) //hard coding user_id to 19
-//     .then((result) => {
-//       console.log('result>>>>>>>>', result.rows[0])
-//       return result.rows[0];
-//     })
-//     .catch((err) => {
-//       console.log(err.message);
-//     });
-// }
-
 //const toggle favitem(itemid), determine if id exsist in the table, if it does delete and if it doesnt insert it
 const toggleFavoriteItem = (item) => {
   console.log('togglefav item id>>>>>>', item.item_id)
@@ -143,20 +124,20 @@ const deleteItem = (item) => {
   WHERE item_id = $1`, [item.item_id])
 }
 
-const isFavorite = (item) => {
+
+const searchBar = (param) => {
   return db.query(`
-  SELECT item_id
-  FROM saved_items
-  WHERE item_id = $1`, [item.item_id])
-    .then((data) => {
-      console.log('this is result.rows>>>>>', data.rows)
-      if (data.rows.length === 0) {
-        return false;
-      } else {
-        return true;
-      }
-    });
+  SELECT *
+  FROM items
+  WHERE title LIKE '%$1%' OR description LIKE '%1%'
+  ORDER BY id DESC`, [param])
+  .then(data => {
+    const result = itemPages(data.rows);
+
+    console.log(result);
+
+    return result;
+  });
 }
 
-
-module.exports = { getItems, getCategory, addItem, getIndividualItem, getSavedItems, toggleFavoriteItem, deleteItem, isFavorite};
+module.exports = { getItems, getCategory, addItem, getIndividualItem, getSavedItems, toggleFavoriteItem, deleteItem, itemPages, searchBar};
