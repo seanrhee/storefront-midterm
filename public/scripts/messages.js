@@ -1,5 +1,6 @@
 // Client facing scripts here
 
+
 // Create HTML for Inbox
 const createInboxElement = function (message) {
   const $inbox = $(`
@@ -12,7 +13,7 @@ const createInboxElement = function (message) {
          </div>
          <article>${message.message}</article>
        </div>
-     <form class="reply" action="/compose-message" method="GET">
+     <form class="reply" action="/compose-message/${message.seller_id}" method="GET">
        <button type="submit" id="reply-button">Reply</button>
      </form>
     </div>
@@ -20,12 +21,12 @@ const createInboxElement = function (message) {
   return $inbox;
 }
 
+// Render the messages
 const renderMessages = function (messages) {
   for (const message of messages) {
     $('.inbox-container').append(createInboxElement(message));
   }
 };
-
 
 $(() => {
   function loadMessages() {
@@ -34,9 +35,4 @@ $(() => {
     });
   }
   loadMessages();
-
-  $('#reply-button').click(function() {
-    $.get('compose-message');
-  })
-
 });

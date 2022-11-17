@@ -16,4 +16,20 @@ router.get('/', (req, res) => {
     });
 });
 
+
+router.get('/:seller_id', (req, res) => {
+  const user = req.session.user_id;
+  const seller = req.params.seller_id;
+
+  messageQueries.getChatHistoryWithUser(user, seller)
+    .then(messages => {
+      res.json({ messages });
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
+});
+
 module.exports = router;

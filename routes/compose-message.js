@@ -6,40 +6,83 @@ const messageQueries = require('../db/queries/messages');
 
 
 router.get('/', (req, res) => {
-  const templateVars = { user: req.session.user_id }
+  const user = req.session.user_id;
 
-  db.query(`SELECT users.id, first_name, last_name, items.photo_url, items.owner_id, items.price_per_item, items.title
-  FROM users
-  JOIN items ON users.id = items.owner_id
-  WHERE items.owner_id < 26
-  GROUP BY users.id, items.photo_url, items.owner_id, items.price_per_item, items.title
-  `)
-    .then(result => {
+  messageQueries.getChatHistoryWithUser(user)
+  .then(messages => {
+    const ids = [];
+    const fullNames = [];
       const photos = [];
-      const sellers = [];
       const prices = [];
-      const firstNames = [];
-      const lastNames = [];
+      const sellerMessages = [];
+      const buyers = [];
+      const sellers = [];
+      const dates = [];
       const titles = [];
 
-      // console.log(result.rows);
-
-      for (const info of result.rows) {
-        photos.push(info.photo_url);
-        sellers.push(info.owner_id);
+      for (const info of messages) {
+        ids.push(info.message_id);
+        fullNames.push(info.full_name);
         prices.push(info.price_per_item);
-        firstNames.push(info.first_name);
-        lastNames.push(info.last_name);
+        photos.push(info.photo_url);
+        sellerMessages.push(info.message);
+        buyers.push(info.buyer_id);
+        sellers.push(info.seller_id);
+        dates.push(info.date_sent);
         titles.push(info.title);
       }
 
       const templateVars = {
-        user: req.session.user_id,
+        user,
         photos,
         sellers,
         prices,
-        firstNames,
-        lastNames,
+        fullNames,
+        sellerMessages,
+        dates,
+        titles
+      }
+
+      res.render('compose-message', templateVars);
+    })
+})
+
+router.get('/:seller_id', (req, res) => {
+  const seller = req.params.seller_id;
+  const user = req.session.user_id;
+
+  messageQueries.getInboxForUser(user)
+  .then(messages => {
+    const ids = [];
+    const fullNames = [];
+      const photos = [];
+      const prices = [];
+      const sellerMessages = [];
+      const buyers = [];
+      const sellers = [];
+      const dates = [];
+      const titles = [];
+
+      for (const info of messages) {
+        ids.push(info.message_id);
+        fullNames.push(info.full_name);
+        prices.push(info.price_per_item);
+        photos.push(info.photo_url);
+        sellerMessages.push(info.message);
+        buyers.push(info.buyer_id);
+        sellers.push(info.seller_id);
+        dates.push(info.date_sent);
+        titles.push(info.title);
+      }
+
+      const templateVars = {
+        user,
+        photos,
+        sellers,
+        prices,
+        fullNames,
+        sellerMessages,
+        dates,
         titles
       }
 
@@ -55,19 +98,19 @@ router.get('/', (req, res) => {
 // });
 
 
-router.post('/', (req, res) => {
-  const userId = req.session.userId;
-  console.log(req.body)
-  messageQueries.createNewMessage({ ...req.body, owner_id: userId })
-    .then(item => {
-      res.redirect(`/items/${item.id}`); //redirect the user to show item page
-    })
-    .catch(e => {
-      console.error(e);
-      res.send(e)
-    });
+// router.post('/', (req, res) => {
+//   const userId = req.session.userId;
+//   console.log(req.body)
+//   messageQueries.createNewMessage({ ...req.body, owner_id: userId })
+//     .then(item => {
+//       res.redirect(`/items/${item.id}`); //redirect the user to show item page
+//     })
+//     .catch(e => {
+//       console.error(e);
+//       res.send(e)
+//     });
 
 
-})
+// })
 
 module.exports = router;
