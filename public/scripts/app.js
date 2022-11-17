@@ -111,24 +111,6 @@ $(document).ready(() => {
     });
   });
 // END category dropdown selector
-  
-// START category drop down on hover
-  $('#categories').hover(function () {
-    // over
-    $('#category-dropdown').css('display', 'flex');
-  }, function () {
-    // out
-    $('#category-dropdown').css('display', 'none');
-  });
-
-  $('#category-dropdown').hover(function () {
-    // over
-    $('#category-dropdown').css('display', 'flex');
-  }, function () {
-      // out
-      $('#category-dropdown').css('display', 'none');
-  });
-// END category drop down on hover
 
 // START top button
   // When the user scrolls down 20px from the top of the document, show the button
