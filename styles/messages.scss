@@ -1,0 +1,90 @@
+main {
+  margin-top: 100px;
+  padding: 2em 23vw;
+
+  .inbox-container {
+    .message-container {
+      border: 1px;
+      border-bottom-style: solid;
+      padding: 2em 0em 1em 0em;
+
+      .contact-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        font-weight: 600;
+        font-size: large;
+        padding-left: 5px;
+        padding-top: 2em;
+
+        .user-name {
+          font-weight: 300;
+          font-size: x-large;
+          padding-bottom: 40px;
+        }
+      }
+
+      .contact {
+        display: flex;
+        flex-direction: column;
+
+        // .email {
+        //   .phone-number {
+        //     .address {}
+        //   }
+        // }
+      }
+    }
+  }
+
+  .response {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+
+    .message {
+      background-color: #FFFF;
+      font-size: larger;
+      font-weight: 300;
+      width: 85%;
+      height: 4em;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 20px;
+      border-radius: 10px;
+      border-style: solid;
+      border-color: #c0c0c0;
+      box-shadow: 2px 2px 2px grey;
+    }
+
+    form {
+      #reply-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        background-color: black;
+        font-size: 1.2em;
+        height: 75px;
+        width: 75px;
+        background-color: #000;
+        border-radius: 50%;
+        cursor: pointer;
+        color: white;
+      }
+    }
+  }
+
+  .date {
+    padding-left: 20px;
+    font-size: small;
+  }
+}
+
+#reply-button:hover {
+  background-color: #808080;
+  color: #FFF;
+}

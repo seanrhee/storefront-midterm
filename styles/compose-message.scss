@@ -1,0 +1,134 @@
+#return-to-inbox {
+  display: flex;
+  justify-content: flex-end;
+  position: fixed;
+  bottom: 225px;
+  right: 17vw;
+  height: 75px;
+  width: 75px;
+  background-color: #000;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+}
+
+// #ad-info {
+//   display: flex;
+
+//   .ad-display {
+//     display: flex;
+//     flex-direction: column;
+
+//     .item-picture {
+//       height: 125px;
+//       width: 125px;
+//     }
+
+//     .item-price {
+//       display: flex;
+//       justify-content: center;
+//       align-items: center;
+//       height: 50px;
+//       color: #c0c0c0;
+//       font-size: x-large;
+//       background-color: black;
+//     }
+//   }
+
+//   .ad-title {
+//     display: flex;
+//     font-size: xx-large;
+//     margin: .5em 0em 0em 1em;
+//   }
+// }
+
+.seller-name {
+  display: flex;
+  justify-content: end;
+  font-size: x-large;
+  font-weight: 300;
+  margin-left: 2em;
+}
+
+
+#message-history {
+  flex-direction: column;
+  height: 600px;
+  width: 100%;
+  overflow-y: auto;
+  // transform: rotate(180deg);
+  font-weight: 100;
+  font-size: large;
+  margin: 1em 0em 1em 0em;
+  padding-top: 1em;
+  background-color: white;
+  border-top: 2em;
+  border-bottom: 2em;
+  border-color: black;
+  border-style: inset;
+}
+
+.received {
+  // transform: rotate(180deg);
+  padding: 1.5em;
+  margin: 1em 1em 1em 15em;
+  border-radius: 2em;
+  background-color: black;
+  color: white;
+}
+
+.sent {
+  // transform: rotate(180deg);
+  padding: 1.5em;
+  margin: 0em 15em 1em 1em;
+  border-radius: 2em;
+  background-color: #808080;
+  color: white;
+}
+
+.reply {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+
+  #new-message {
+    width: 90%;
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: none;
+    overflow: auto;
+    border-style: solid;
+    border-color: black;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+  }
+
+  #send-button {
+    align-self: end;
+    box-sizing: border-box;
+    margin: 0em 0em 0em 2em;
+    height: 3em;
+    width: 10%;
+    border: 1px;
+    border-style: solid;
+    border-radius: 25px;
+    cursor: pointer;
+  }
+}
+
+#return-to-inbox:hover {
+  background-color: #808080;
+  color: #FFF;
+}
+
+#send-button:hover {
+  background-color: #808080;
+  color: #FFF;
+}

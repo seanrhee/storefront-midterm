@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS transactions CASCADE;
 DROP TABLE IF EXISTS saved_items CASCADE;
 DROP TABLE IF EXISTS ratings CASCADE;
 DROP TABLE IF EXISTS messages CASCADE;
+DROP TABLE IF EXISTS message_recipients CASCADE;
 
 -- Example:
 -- INSERT INTO users (name, email)
@@ -58,7 +59,8 @@ CREATE TABLE ratings (
 
 CREATE TABLE messages (
   id SERIAL PRIMARY KEY NOT NULL,
-  seller_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  buyer_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  message TEXT NOT NULL
+  creator_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  recipient_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  message TEXT NOT NULL,
+  created_at TEXT
 );

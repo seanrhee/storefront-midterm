@@ -43,6 +43,10 @@ const itemsRoutes = require('./routes/items');
 const favoriteRoutes = require('./routes/favorites');
 const filterApiRoutes = require('./routes/filter-api');
 const { user } = require('pg/lib/defaults');
+const messageApiRoutes = require('./routes/messages-api');
+const userMessages = require('./routes/messages');
+const composeMessage = require('./routes/compose-message');
+
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -51,10 +55,13 @@ app.use('/api/users', userApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
 app.use('/api/items', itemApiRoutes);
 app.use('/api/filter', filterApiRoutes);
+app.use('/api/messages', messageApiRoutes);
 app.use('/users', usersRoutes);
 app.use('/items', itemsRoutes);
-app.use('/favorites', favoriteRoutes)
+app.use('/messages', userMessages);
+app.use('/compose-message', composeMessage);
 // Note: mount other resources here, using the same pattern above
+
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).

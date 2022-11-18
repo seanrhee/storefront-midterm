@@ -138,6 +138,8 @@ const searchBar = (param) => {
   .then(data => {
     const result = itemPages(data.rows);
 
+    console.log(result);
+
     return result;
   });
 }
