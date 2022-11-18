@@ -2,23 +2,25 @@
 const createInboxElement = function (message) {
   const $inbox = $(`
 
-       <div class="contact-container">
+  <div class="message-container">
+  <date class="date"> ${timeago.format(message.created_at)} </date>
 
-         <div class="user-name"> ${message.first_name} ${message.last_name} </div>
-         <div class="email"> ${message.email} </div>
-         <div class="phone-number"> ${message.phone_number} </div>
-         <date class="date"> ${timeago.format(message.created_at)} </date>
+          <div class="contact-container">
+            <div class="user-name"> ${message.first_name} ${message.last_name} </div>
+            <div class="contact">
+              <div class="phone-number"> ${message.phone_number} </div>
+              <div class="email"> ${message.email} </div>
+              <div id="address"> ${message.city} ${message.province}</div>
+            </div>
+          </div>
 
-         <div id="address">
-         ${message.street, message.city, message.province, message.country, message.postal_code}
-         </div>
-
-         </div>
-         <article>${message.message}</article>
-       </div>
-     <form class="reply" action="/compose-message/${message.creator_id}" method="GET">
-       <button type="submit" id="reply-button">Reply</button>
-     </form>
+          <div class="response">
+            <article class="message">${message.message}</article>
+            <form class="reply" action="/compose-message/${message.creator_id}" method="GET">
+              <button type="submit" id="reply-button">Reply</button>
+            </form>
+      </div>
+</div>
     </div>
     `);
   return $inbox;
