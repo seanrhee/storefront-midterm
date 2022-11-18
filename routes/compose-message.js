@@ -3,7 +3,6 @@ const router = express.Router()
 const db = require('../db/connection');
 const messageQueries = require('../db/queries/messages');
 
-
 router.get('/:id', (req, res) => {
   const { user_id } = req.session;
   const sender = req.params.id;
@@ -22,19 +21,16 @@ router.get('/:id', (req, res) => {
     })
 })
 
-
 router.post('/:id', (req, res) => {
   const { user_id } = req.session;
-  const userMessage = req.body.message;
+  const {message } = req.body;
   const { id } = req.params;
   const timestamp = Date.now();
 
-  messageQueries.sendMessage(user_id, id, userMessage, timestamp)
+  messageQueries.sendMessage(user_id, id, message, timestamp)
     .then(result => {
-      console.log('we got the query back from the post')
       res.redirect(`/compose-message/${id}`)
     })
-
 })
 
 module.exports = router;

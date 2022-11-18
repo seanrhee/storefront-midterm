@@ -64,9 +64,3 @@ CREATE TABLE messages (
   message TEXT NOT NULL,
   created_at TEXT
 );
-
-CREATE TABLE message_recipients (
-  id SERIAL PRIMARY KEY NOT NULL,
-  recipient_id INTEGER,
-  message_id INTEGER REFERENCES messages(id) ON DELETE CASCADE
-);

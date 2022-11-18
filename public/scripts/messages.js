@@ -1,7 +1,6 @@
 // Create HTML for Inbox
-const createInboxElement = function (message) {
+const createInboxElement = message => {
   const $inbox = $(`
-
   <div class="message-container">
    <div class="contact-container">
     <div class="user-name"> ${message.first_name} ${message.last_name} </div>
@@ -24,17 +23,14 @@ const createInboxElement = function (message) {
   return $inbox;
 }
 
-// Render the messages
-const renderMessages = function (messages) {
+const renderMessages = messages => {
   for (const message of messages) {
     $('.inbox-container').append(createInboxElement(message));
   }
 };
 
 $(() => {
-  console.log("ready!")
   function loadMessages() {
-
     $.get('/api/messages').then((result) => {
       renderMessages(result.messages);
     });

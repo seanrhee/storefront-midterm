@@ -1,9 +1,8 @@
-
 $(document).ready(() => {
   console.log('ready!');
 
   const createChatBox = function (messages) {
-    // Find the user_id in the url parameters for the recipient
+    // Find the user's id in the url parameters to render messages as recipient
     const pathname = window.location.pathname.split("/");
     const id = pathname[pathname.length - 1];
 

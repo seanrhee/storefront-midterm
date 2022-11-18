@@ -1,7 +1,6 @@
 const db = require('../connection');
 
-
-// Get all messages
+// Gets all messages from database
 const getInboxDetails = (id) => {
   return db.query(`
 SELECT * FROM messages
@@ -14,6 +13,7 @@ ORDER BY messages.created_at DESC
   })
 };
 
+// Gets user information for message recipients
 const getUserDetails = (id) => {
     return db.query(`
   SELECT * FROM messages
@@ -25,14 +25,12 @@ const getUserDetails = (id) => {
     })
   };
 
+  // Inserts a new message into the messages table
 const sendMessage = (sender, recipient, message, timestamp) => {
-  console.log('send message called');
-  console.log(message)
   return db.query(`
   INSERT INTO messages (creator_id, recipient_id, message, created_at)
   VALUES ($1, $2, $3, $4);
   `, [sender, recipient, message, timestamp]).then(result => {
-    console.log("query sent");
     return result.rows;
   })
 }
