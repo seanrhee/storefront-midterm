@@ -120,13 +120,14 @@ const toggleFavoriteItem = (item) => {
     })
 }
 
-const deleteItem = (item) => {
+//Delete item from saved_items table
+const deleteFavItem = (item) => {
   return db.query(`
   DELETE FROM saved_items
-  WHERE item_id = $1`, [item.item_id])
+  WHERE item_id = $1`, [item])
 }
 
-
+//used for filter
 const searchBar = (param) => {
   return db.query(`
   SELECT *
@@ -136,12 +137,11 @@ const searchBar = (param) => {
   .then(data => {
     const result = itemPages(data.rows);
 
-    console.log(result);
-
     return result;
   });
 }
 
+//Delete item from database
 const deleteUserItem = (id) => {
   console.log('delete', id);
 
@@ -154,6 +154,7 @@ const deleteUserItem = (id) => {
   })
 }
 
+//Edit product info
 const updateUserItem = (item, itemId, owner_id) => {
   console.log('edit', item, itemId, owner_id);
 
@@ -169,4 +170,4 @@ const updateUserItem = (item, itemId, owner_id) => {
   })
 }
 
-module.exports = { getItems, getCategory, addItem, getIndividualItem, getSavedItems, toggleFavoriteItem, deleteItem, itemPages, searchBar, deleteUserItem, updateUserItem };
+module.exports = { getItems, getCategory, addItem, getIndividualItem, getSavedItems, toggleFavoriteItem, deleteFavItem, itemPages, searchBar, deleteUserItem, updateUserItem };

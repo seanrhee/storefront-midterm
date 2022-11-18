@@ -31,16 +31,21 @@ router.get('/', (req, res) => {
     })
 });
 
+//POST route to add to saved_items table after clicking on heart icon
 router.post('/', (req, res) => {
   const item_id = req.body.itemId; //reads data from ajax data { itemId }
-  // console.log('item_id is >>>>>>>>>>>>', item_id)
   itemQueries.toggleFavoriteItem({ item_id }) //addFavortieItem only accpets an obj so made item_id into obj
 })
 
+//POST route to delete from the saved_items table 
 router.post('/:id/delete', (req, res) => {
-  const item_id = req.params.id;
-  itemQueries.deleteItem({ item_id })
-
+  const productId = req.params.id;
+  itemQueries.deleteFavItem(productId)
+  .then(result => {
+    console.log(result)
+    res.redirect(`/favorites`)
+    return;
+  })
 })
 
 
