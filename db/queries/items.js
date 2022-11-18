@@ -90,7 +90,8 @@ const getSavedItems = (user_id = 19) => {
   SELECT *
   FROM saved_items
   JOIN items ON items.id = saved_items.item_id
-  WHERE saved_items.user_id = $1`, [user_id])
+  WHERE saved_items.user_id = $1
+  ORDER BY items.id ASC`, [user_id])
     .then(data => {
       // console.log(data.rows);
       return data.rows;
