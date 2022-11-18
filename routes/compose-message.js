@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router()
 const db = require('../db/connection');
-// const messageQueries = require('../db/queries/messages');
+const messageQueries = require('../db/queries/messages');
 
 
 router.get('/:id', (req, res) => {
@@ -42,11 +42,18 @@ router.get('/:id', (req, res) => {
 
 
 router.post('/:id', (req, res) => {
+  const user = req.session.user_id
+  const newMessage = req.body.message;
+  // db.query(`
+  // INSERT INTO messages (creator_id, recipient_id, created_at) values (${user}, , ${newMessage}, ${timeago date});
+  // `)
 // console.log(req.body.message)
-const newMessage = req.body.message;
+// db.query()
   // res.redirect('messages');
 })
 
+
+// insert into messages (creator_id, recipient_id, message, created_at) values (44, 5, 'Multi-channelled content-based ability', '1659442703000');
 
 
 // <form class="form-inline" action="/urls" method="POST">
