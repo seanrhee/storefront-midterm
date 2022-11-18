@@ -3,8 +3,7 @@ const router = express.Router();
 const messageQueries = require('../db/queries/messages');
 
 router.get('/', (req, res) => {
-  // const user = req.session.user_id;
-  const user = 5;
+  const user = req.session.user_id;
 
   messageQueries.getInboxDetails(user)
     .then(messages => {
@@ -20,7 +19,6 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   // const user = req.session.user_id;
   const user = req.params.id;
-  console.log(user);
 
   messageQueries.getUserDetails(user)
     .then(page => {

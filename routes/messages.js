@@ -4,7 +4,8 @@ const messageQueries = require('../db/queries/messages');
 
 
 router.get('/', (req, res) => {
-  const templateVars = { user: req.session.user_id }
+  const user = req.session.user_id;
+  const templateVars = { user }
 
   messageQueries.getInboxDetails(user)
     .then(result => { })

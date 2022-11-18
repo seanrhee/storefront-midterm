@@ -1,29 +1,36 @@
 // Create HTML for Messaging
-const recipientDetails = function (page) {
-  const $recipientInfo = $(`
+const createChatBox = function (messages) {
+  const $message = $(`
 
-  <div id="ad-info">
-  <div class="ad-display">
-    <div class="item-price">price here</div>
+  <div class="sent">
+  ${messages.first_name}
   </div>
-    <div class="ad-title">title here</div>
-  </div>
-  <div class="recipient-name">${page.creator_id}</div>
+  <div class="received">received</div>
+
 
     `);
-  return $recipientInfo;
+  return $message;
 }
 
-// Render the messages
-const renderPage = function (page) {
-  $('#message-container').append(recipientDetails(page));
+const renderMessages = function (messages) {
+  for (const message of messages) {
+    $('#message-history').append(createChatBox(message));
+  }
 };
 
 $(() => {
-  function loadMessages() {
-    $.get('/api/messages/:id').then((result) => {
+  const userId = $(window.location.pathname.slice(13))
+  console.log(userId)
+  console.log('document ready');
+  function loadMessages(id) {
+    $.get(`/api/messages/${id}`).then((result) => {
+      console.log(result);
       renderMessages(result.page);
     });
   }
-  loadMessages();
+  loadMessages(id);
 });
+
+
+
+
