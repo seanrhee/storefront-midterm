@@ -7,7 +7,7 @@
   <meta charset="UTF-8" >
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <meta name="viewport" content="width=device-width, initial-scale=1.0" >
-  
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
@@ -28,15 +28,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Poppins&family=Source+Sans+Pro:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet">
 
   <script src="/vendor/jquery-3.0.0.js"></script>
-  <!-- <script defer src="/scripts/app.js"></script> -->
+
 </head>
 
 <body>
   <%- include('partials/_header') %>
-  
-  <div class="main-container">
+
+  <div class="ads-main-container">
     <div class="page-label">
-      <h1>My Ads</h1>
+      <h3>My Ads</h3>
     </div>
 
     <div class="item-container" id="items">
@@ -44,12 +44,13 @@
         <thead>
           <tr>
             <th scope="col">Image</th>
-            <th scope="col">Ad</th>
+            <th scope="col">Title</th>
             <!-- <th scope="col">Sold</th> -->
             <th scope="col">Edit</th>
             <th scope="col">Delete</th>
           </tr>
         </thead>
+
         <tbody>
           <% for (let item of itemList) { %>
             <tr>
@@ -69,17 +70,6 @@
         </tbody>
       </table>
     </div>
-    <div class="to-top">
-      <div class="top">
-        <p>TOP</p>
-      </div>
-    </div>
-    
-    <div class="load-more">
-      <button class="load-button">Load More</button>
-    </div>
-  </div>
-
 
   <%- include('partials/_footer') %>
 </body>
