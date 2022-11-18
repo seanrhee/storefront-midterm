@@ -5,9 +5,8 @@ const messageQueries = require('../db/queries/messages');
 
 
 router.get('/:id', (req, res) => {
-  // const user = { req.session.user_id };
+  const { user_id } = req.session;
   const sender = req.params.id;
-  const user = 5;
 
   db.query(`SELECT * FROM users WHERE users.id = ${sender}`)
     .then(result => {
@@ -30,13 +29,13 @@ router.get('/:id', (req, res) => {
 
       const recipient = result.rows[0];
 
-          const templateVars = {
-            user,
-            recipient,
-            sender,
-          }
+      const templateVars = {
+        user: user_id,
+        recipient,
+        sender,
+      }
 
-          res.render('compose-message', templateVars);
+      res.render('compose-message', templateVars);
     })
 })
 
