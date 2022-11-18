@@ -5,7 +5,6 @@
 const createInboxElement = function (message) {
   const $inbox = $(`
     <div class="message">
-     <img src="${message.photo_url}" class="item-picture">
        <div class="contact-container">
        <div class="name-and-date">
          <div class="user-name"> ${message.first_name} ${message.last_name} </div>
@@ -32,7 +31,6 @@ $(() => {
   function loadMessages() {
 
     $.get('/api/messages').then((result) => {
-      console.log(result)
       renderMessages(result.messages);
     });
   }
