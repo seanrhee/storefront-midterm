@@ -1,29 +1,27 @@
 const express = require('express');
 const router = express.Router()
 const db = require('../db/connection');
-const messageQueries = require('../db/queries/messages');
+// const messageQueries = require('../db/queries/messages');
 
 
-
-router.get('/:creator_id', (req, res) => {
-  const creator = req.params.creator_id;
+router.get('/:id', (req, res) => {
+  const sender = req.params.id;
   const user = 5;
 
   let recipient;
   let item
 
-  db.query(`SELECT * FROM users WHERE users.id = ${creator}`)
+  db.query(`SELECT * FROM users WHERE users.id = ${sender}`)
     .then(result => {
       recipient = result.rows[0];
-      console.log(recipient);
-      db.query(`SELECT * FROM items WHERE owner_id = ${creator}`)
+      db.query(`SELECT * FROM items WHERE owner_id = ${sender}`)
         .then(result => {
           item = result.rows[0];
 
           const templateVars = {
             user,
             recipient,
-            creator,
+            sender,
             item,
           }
 
@@ -32,5 +30,8 @@ router.get('/:creator_id', (req, res) => {
     })
 })
 
+router.post('/:id', (req, res) => {
+  console.log(req.params.id);
+})
 
 module.exports = router;

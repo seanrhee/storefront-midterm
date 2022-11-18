@@ -17,12 +17,12 @@ router.get('/', (req, res) => {
     });
 });
 
-router.get('/:creator_id', (req, res) => {
+router.get('/:id', (req, res) => {
   // const user = req.session.user_id;
-  const user = 5;
-  const creator = req.params;
+  const user = req.params.id;
+  console.log(user);
 
-  messageQueries.getChatHistory(user, creator)
+  messageQueries.getUserDetails(user)
     .then(page => {
       res.json({ page });
     })

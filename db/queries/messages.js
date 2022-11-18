@@ -14,5 +14,17 @@ ORDER BY messages.created_at DESC
   })
 };
 
+const getUserDetails = (id) => {
+    return db.query(`
+  SELECT * FROM users
+  JOIN items ON items.owner_id = users.id
+  WHERE users.id = $1
+    `, [id])
+    .then((data) => {
+      return data.rows;
+    })
+  };
 
-module.exports = { getInboxDetails };
+
+
+module.exports = { getInboxDetails, getUserDetails };
