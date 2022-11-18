@@ -1,15 +1,10 @@
-// .favorite-main-container {
-//   display: flex;
-//   flex-direction: column;
-//   height:100%;
-// }
-
 .favorite-main-container {
   width: 100vw;
   height: 100%;
   margin-top: 5em;
   margin-bottom: 15em;
   font-family: "Poppins", sans-serif;
+  min-height: 80vh;
 }
 
 h3 {
@@ -23,27 +18,11 @@ h3 {
   object-fit: cover;
 }
 
-// thead th:nth-child(2) {
-//   width: 50%;
-// }
-
-// th {
-//   text-align: center;
-//   vertical-align: middle;
-//   padding-left: 1em;
-//   padding-right: 1em;
-// }
-
 .btn {
   border: none;
   background-color: #202020;
   color: white;
 }
-
-// table {
-//   min-width: 100%;
-// }
-
 
 table {
   border-collapse: collapse;
@@ -51,7 +30,6 @@ table {
 }
 
 .table td, .table th {
-  // border: 1px solid #ddd;
   padding: 8px;
   text-align: center;
   vertical-align: middle;
@@ -64,10 +42,10 @@ table {
 .table tr:hover {background-color: #ddd;}
 
 .table th {
+  background-color: rgba(221, 221, 221, 0.543);
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: center;
-  // background-color: black;
   color: black;
-  font-size: 24px;
+  font-size: 20px;
 }
