@@ -159,10 +159,10 @@ const updateUserItem = (item, itemId, owner_id) => {
 
   return db.query(`
   UPDATE items
-  SET owner_id = $1, title = $2, price_per_item = $3, description = $4, photo_url = $5, sold = $6, condition = $7, category = $8
-  WHERE id = $9
+  SET title = $1, price_per_item = $2, description = $3, photo_url = $4, sold = $5, condition = $6, category = $7
+  WHERE id = $8
   RETURNING *
-  `, [owner_id, item.title, item.price_per_item, item.description, item.photo_url, item.sold, item.condition, item.category, itemId])
+  `, [item.title, item.price_per_item, item.description, item.photo_url, item.sold, item.condition, item.category, itemId])
   .then(item => {
     console.log('query returned', item)
     return item;
