@@ -10,7 +10,6 @@ router.get('/:id', (req, res) => {
   db.query(`SELECT * FROM users WHERE users.id = ${sender}`)
     .then(result => {
       const recipient = result.rows[0];
-
       const templateVars = {
         user: user_id,
         recipient,
