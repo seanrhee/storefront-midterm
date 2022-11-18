@@ -17,9 +17,8 @@ ORDER BY messages.created_at DESC
 const getUserDetails = (id) => {
     return db.query(`
   SELECT * FROM messages
-  JOIN users ON creator_id = users.id
-  JOIN items on items.owner_id = creator_id
-  WHERE users.id = $1
+  FULL JOIN users ON recipient_id = users.id
+  WHERE users.id = $1 OR creator_id = $1
     `, [id])
     .then((data) => {
       return data.rows;

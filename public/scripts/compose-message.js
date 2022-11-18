@@ -1,46 +1,51 @@
-// Create HTML for Messaging
-const createChatBox = function (messages) {
-  const $message = $(`
 
-  just
-  trying
-  to
-  get
-  something
-  to
+$(document).ready(() => {
+  console.log('ready!');
 
-  <div class="sent">
-  ${messages.first_name}
-  </div>
-  <div class="received">received</div>
+  const createChatBox = function (messages) {
+    // Find the user_id in the url parameters for the recipient
+    const pathname = window.location.pathname.split("/");
+    const id = pathname[pathname.length - 1];
+    
+    const recipient = `${messages.recipient_id}`;
+    const creator = `${messages.creator_id}`;
 
-  show up
-  anywhere
-
-
+    if (id === creator) {
+      const $message = $(`
+          <div class="sent">
+          ${messages.first_name} ${messages.last_name}
+          ${messages.message}
+          </div>
     `);
-  return $message;
-}
+      return $message;
+    }
 
-const renderMessages = function (messages) {
-  for (const message of messages) {
-    $('#message-history').append(createChatBox(message));
+    if (id === recipient) {
+      const $message = $(`
+          <div class="received">
+          ${messages.first_name} ${messages.last_name}
+          ${messages.message}
+          </div>
+    `);
+      return $message;
+    }
   }
-};
 
-$(() => {
-  const userId = $(window.location.pathname.slice(13))
-  console.log(userId)
-  console.log('document ready');
-  function loadMessages(id) {
-    $.get(`/api/messages/${id}`).then((result) => {
-      console.log(result);
+  const renderMessages = function (messages) {
+    for (const message of messages) {
+      $('#message-history').append(createChatBox(message));
+    }
+  };
+
+  function loadMessages() {
+    const pathname = window.location.pathname.split("/");
+    const id = pathname[pathname.length - 1];
+
+    $.get(`/api/messages/${id}/`).then((result) => {
       renderMessages(result.page);
     });
   }
-  loadMessages(id);
+
+  loadMessages();
 });
-
-
-
 

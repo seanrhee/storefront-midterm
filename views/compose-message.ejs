@@ -33,7 +33,7 @@
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="/vendor/jquery-3.0.0.js"></script>
-  <script defer src="/scripts/compose-message.js"></script>
+  <script defer src="/scripts/compose-message.js" param="1"></script>
 </head>
 
 <body>
@@ -43,7 +43,7 @@
 
       <form action="/messages/">
         <button id="return-to-inbox"> INBOX </button>
-      </form>
+    </form>
 
       <div id="message-container">
 
@@ -53,12 +53,7 @@
 
 
         <article id="message-history">
-          <div class="sent">sent</div>
-          <div class="received">received</div>
-          <div class="sent">sent testing a really long message for editing purposes actually needs to be a bit longer
-            still and let's test out what happens when we make it even longer!</div>
-          <div class="received">received testing a really long message for editing purposes actually needs to be a bit
-            longer still and let's test out what happens when we make it even longer!</div>
+  
         </article>
 
 

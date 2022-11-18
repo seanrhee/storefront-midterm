@@ -17,8 +17,8 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-  // const user = req.session.user_id;
-  const user = req.params.id;
+  const user = req.session.user_id;
+  // const user = req.params.id;
 
   messageQueries.getUserDetails(user)
     .then(page => {

@@ -32,7 +32,7 @@ router.post('/:id', (req, res) => {
   messageQueries.sendMessage(user_id, id, userMessage, timestamp)
     .then(result => {
       console.log('we got the query back from the post')
-      res.redirect('/messages')
+      res.redirect(`/compose-message/${id}`)
     })
 
 })
