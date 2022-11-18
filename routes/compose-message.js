@@ -10,23 +10,6 @@ router.get('/:id', (req, res) => {
 
   db.query(`SELECT * FROM users WHERE users.id = ${sender}`)
     .then(result => {
-      // console.log(result);
-      // rows: [
-      //   {
-      //     id: 44,
-      //     first_name: 'Derward',
-      //     last_name: 'Birden',
-      //     email: 'dbirden17@vinaora.com',
-      //     password: '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u',
-      //     phone_number: '828-516-4687',
-      //     street: '3104 Sullivan Lane',
-      //     city: 'Kamloops',
-      //     province: 'British Columbia',
-      //     country: 'Canada',
-      //     postal_code: 'H9P3S9'
-      //   }
-      // ],
-
       const recipient = result.rows[0];
 
       const templateVars = {

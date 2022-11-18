@@ -28,7 +28,9 @@
     href="https://fonts.googleapis.com/css2?family=Bungee&family=Poppins&family=Source+Sans+Pro:ital,wght@0,300;0,600;1,300;1,600&display=swap"
     rel="stylesheet">
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js" integrity="sha512-SVDh1zH5N9ChofSlNAK43lcNS7lWze6DTVx1JCXH1Tmno+0/1jMpdbR8YDgDUfcUrPp1xyE53G42GFrcM0CMVg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js"
+    integrity="sha512-SVDh1zH5N9ChofSlNAK43lcNS7lWze6DTVx1JCXH1Tmno+0/1jMpdbR8YDgDUfcUrPp1xyE53G42GFrcM0CMVg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/compose-message.js"></script>
@@ -39,28 +41,28 @@
 
     <main>
 
-      <a href="http://localhost:8080/messages">
-        <button type="button" id="return-to-inbox" action="/messages" method="GET">INBOX</button>
-      </a>
 
       <div id="message-container">
 
-
-          <div class="seller-name"><%= recipient.first_name + ' ' + recipient.last_name %></div>
+      <div class="seller-name">
+        <%= recipient.first_name + ' ' + recipient.last_name %>
+      </div>
 
 
         <article id="message-history">
           <div class="sent">sent</div>
           <div class="received">received</div>
-          <div class="sent">sent testing a really long message for editing purposes actually needs to be a bit longer still and let's test out what happens when we make it even longer!</div>
-          <div class="received">received testing a really long message for editing purposes actually needs to be a bit longer still and let's test out what happens when we make it even longer!</div>
+          <div class="sent">sent testing a really long message for editing purposes actually needs to be a bit longer
+            still and let's test out what happens when we make it even longer!</div>
+          <div class="received">received testing a really long message for editing purposes actually needs to be a bit
+            longer still and let's test out what happens when we make it even longer!</div>
         </article>
 
 
         <form class="reply" action="/compose-message/<%= sender %>" method="POST">
-            <input type="textarea" name="message" id="new-message" label="text-box-for-messaging" maxlength="500" autofocus
-              required placeholder="Write a new message..."></input>
-              <button id="send-button" type="submit">SEND</button>
+          <input type="textarea" name="message" id="new-message" label="text-box-for-messaging" maxlength="500"
+            autofocus required placeholder="Write a new message..."></input>
+          <button id="send-button" type="submit">SEND</button>
         </form>
       </div>
 
