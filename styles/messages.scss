@@ -6,16 +6,16 @@ main {
     .message-container {
       border: 1px;
       border-bottom-style: solid;
-      padding-top: 2em;
+      padding: 2em 0em 1em 0em;
 
       .contact-container {
         display: flex;
         justify-content: space-between;
-        align-items: flex-end;
         font-weight: 600;
         font-size: large;
 
         .user-name {
+          font-weight: 300;
           font-size: x-large;
         }
       }
@@ -23,7 +23,6 @@ main {
       .contact {
         display: flex;
         flex-direction: column;
-        align-items: flex-end;
 
         // .email {
         //   .phone-number {
@@ -39,7 +38,7 @@ main {
     align-items: center;
     justify-content: space-between;
     padding-top: 40px;
-    padding-bottom: 40px;
+    padding-bottom: 10px;
 
     .message {
       background-color: #FFFF;
@@ -49,7 +48,7 @@ main {
       height: 4em;
       overflow-y: auto;
       overflow-x: hidden;
-      padding: .5em 2em .5em 1.5em;
+      padding: 20px;
       border-radius: 10px;
       border-style: solid;
       border-color: #c0c0c0;
@@ -72,6 +71,10 @@ main {
         color: white;
       }
     }
+  }
+
+  .date {
+    padding-left: 20px;
   }
 }
 
