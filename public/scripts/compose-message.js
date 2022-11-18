@@ -6,15 +6,14 @@ $(document).ready(() => {
     // Find the user_id in the url parameters for the recipient
     const pathname = window.location.pathname.split("/");
     const id = pathname[pathname.length - 1];
-    
+
     const recipient = `${messages.recipient_id}`;
     const creator = `${messages.creator_id}`;
 
     if (id === creator) {
       const $message = $(`
           <div class="sent">
-          ${messages.first_name} ${messages.last_name}
-          ${messages.message}
+          ${messages.first_name} ${messages.last_name}: ${messages.message}
           </div>
     `);
       return $message;
@@ -23,8 +22,7 @@ $(document).ready(() => {
     if (id === recipient) {
       const $message = $(`
           <div class="received">
-          ${messages.first_name} ${messages.last_name}
-          ${messages.message}
+          You: ${messages.message}
           </div>
     `);
       return $message;
@@ -43,9 +41,8 @@ $(document).ready(() => {
 
     $.get(`/api/messages/${id}/`).then((result) => {
       renderMessages(result.page);
-    });
+    })
   }
-
   loadMessages();
 });
 
