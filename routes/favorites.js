@@ -33,11 +33,17 @@ router.get('/', (req, res) => {
 
 //POST route to add to saved_items table after clicking on heart icon
 router.post('/', (req, res) => {
-  const item_id = req.body.itemId; //reads data from ajax data { itemId }
-  itemQueries.toggleFavoriteItem({ item_id }) //addFavortieItem only accpets an obj so made item_id into obj
+  const userId = req.session.user_id;
+
+  if (userId !== 19) {
+    res.status(400).send("Please log in to save furniture.");
+  } else {
+    const item_id = req.body.itemId; //reads data from ajax data { itemId }
+    itemQueries.toggleFavoriteItem({ item_id }) //addFavortieItem only accpets an obj so made item_id into obj
+  }
 })
 
-//POST route to delete from the saved_items table 
+//POST route to delete from the saved_items table
 router.post('/:id/delete', (req, res) => {
   const productId = req.params.id;
   itemQueries.deleteFavItem(productId)
