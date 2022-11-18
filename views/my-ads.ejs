@@ -45,7 +45,7 @@
           <tr>
             <th scope="col">Image</th>
             <th scope="col">Ad</th>
-            <th scope="col">Sold</th>
+            <!-- <th scope="col">Sold</th> -->
             <th scope="col">Edit</th>
             <th scope="col">Delete</th>
           </tr>
@@ -55,13 +55,13 @@
             <tr>
               <td><img class='item-thumb' src="<%= item.photo_url %>" alt=""></td>
               <td><span><%= item.title %></span></td>
-              <td>
-                <% if (item.sold) { %>
-                  <input type="checkbox" id="sold" name="sold" value="sold" checked>
+              <!-- <td>
+                <% if (item.sold === true) { %>
+                  <form method="POST" action="/items/<%= item.id %>/sold/<%= item.sold %>" disabled><button class="btn">Sold</button></form>
                 <% } else { %>
-                  <input type="checkbox" id="sold" name="sold" value="sold">
+                  <form method="POST" action="/items/<%= item.id %>/sold/<%= item.sold %>"><button class="btn">Mark As Sold</button></form>
                 <% } %>
-              </td>
+              </td> -->
               <td><form method="GET" action="/items/<%= item.id %>/edit"><button class="btn">Edit</button></form></td>
               <td><form method="POST" action="/items/<%= item.id %>/delete"><button class="btn">Delete</button></form></td>
             </tr>

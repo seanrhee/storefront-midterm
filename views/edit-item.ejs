@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="/styles/new-item.css" />
   <link rel="stylesheet" href="/styles/nav.css" />
   <link rel="stylesheet" href="/styles/footer.css" />
+  <link rel="stylesheet" href="/styles/my_ads.css" />
 
   <!-- External Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -87,6 +88,22 @@
               <option value="miscellaneous">Miscellaneous</option>
             </select>
           </div>
+
+          <div class="new-item-form__field-wrapper">
+            <label for="new-item-form__sold">This item has been sold: </label>
+            <% if (item.sold) { %>
+            <input type="radio" name="sold" id="sold" value="true" checked>
+            <label for="sold">Sold</label>
+            <input type="radio" name="sold" id="notsold" value="false">
+            <label for="notsold">Not Sold</label>
+            <% } else { %>
+            <input type="radio" name="sold" id="sold" value="true">
+            <label for="sold">Sold</label>
+            <input type="radio" name="sold" id="notsold" value="false" checked>
+            <label for="notsold">Not Sold</label>
+            <% } %>
+          </div>
+
 
           <hr>
 

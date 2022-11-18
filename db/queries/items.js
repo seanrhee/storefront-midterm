@@ -162,7 +162,7 @@ const updateUserItem = (item, itemId, owner_id) => {
   SET owner_id = $1, title = $2, price_per_item = $3, description = $4, photo_url = $5, sold = $6, condition = $7, category = $8
   WHERE id = $9
   RETURNING *
-  `, [owner_id, item.title, item.price_per_item, item.description, item.photo_url, false, item.condition, item.category, itemId])
+  `, [owner_id, item.title, item.price_per_item, item.description, item.photo_url, item.sold, item.condition, item.category, itemId])
   .then(item => {
     console.log('query returned', item)
     return item;
