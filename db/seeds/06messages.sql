@@ -8,3 +8,13 @@ insert into messages (creator_id, recipient_id, message, created_at) values (3, 
 insert into messages (creator_id, recipient_id, message, created_at) values (25, 5, 'Up-sized national hardware', '1647281761000');
 insert into messages (creator_id, recipient_id, message, created_at) values (26, 5, 'Future-proofed interactive synergy', '1650007755000');
 insert into messages (creator_id, recipient_id, message, created_at) values (44, 5, 'Multi-channelled content-based ability', '1659442703000');
+insert into messages (creator_id, recipient_id, message, created_at) values (19, 7, 'Fully-configurable tangible definition', '1647468219000');
+insert into messages (creator_id, recipient_id, message, created_at) values (19, 3, 'Optimized non-volatile groupware', '1664852731000');
+insert into messages (creator_id, recipient_id, message, created_at) values (19, 25, 'Compatible disintermediate info-mediaries', '1658470682000');
+insert into messages (creator_id, recipient_id, message, created_at) values (19, 26, 'Networked bottom-line knowledge base', '1643843348000');
+insert into messages (creator_id, recipient_id, message, created_at) values (19, 44, 'Networked value-added hierarchy', '1653645249000');
+insert into messages (creator_id, recipient_id, message, created_at) values (7, 19, 'Up-sized holistic capability', '1649317669000');
+insert into messages (creator_id, recipient_id, message, created_at) values (3, 19, 'Implemented attitude-oriented ability', '1639857545000');
+insert into messages (creator_id, recipient_id, message, created_at) values (25, 19, 'Up-sized national hardware', '1647281761000');
+insert into messages (creator_id, recipient_id, message, created_at) values (26, 19, 'Future-proofed interactive synergy', '1650007755000');
+insert into messages (creator_id, recipient_id, message, created_at) values (44, 19, 'Multi-channelled content-based ability', '1659442703000');

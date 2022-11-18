@@ -47,8 +47,13 @@
 
       <div id="message-container">
 
-        <div class="seller-name">
-          <%= recipient.first_name + ' ' + recipient.last_name %>
+        <div id="recipient-information">
+          <div class="contact-info">
+            <div class="phone-number"> <%= recipient.phone_number %></div>
+            <div class="email"> <%= recipient.email %></div>
+            <div class="address"><%= recipient.city + ', ' + recipient.province %></div>
+          </div>
+          <div class="recipient-name"> <%= recipient.first_name + ' ' + recipient.last_name %> </div>
         </div>
 
 

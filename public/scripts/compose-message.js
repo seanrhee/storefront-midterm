@@ -11,8 +11,8 @@ $(document).ready(() => {
 
     if (id === creator) {
       const $message = $(`
-          <div class="sent">
-          ${messages.first_name} ${messages.last_name}: ${messages.message}
+          <div class="sent"><b>
+          ${messages.first_name} ${messages.last_name}: </b> ${messages.message}
           </div>
     `);
       return $message;
@@ -21,7 +21,7 @@ $(document).ready(() => {
     if (id === recipient) {
       const $message = $(`
           <div class="received">
-          You: ${messages.message}
+          <b>You:</b> ${messages.message}
           </div>
     `);
       return $message;

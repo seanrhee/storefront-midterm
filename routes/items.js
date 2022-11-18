@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
 
         categories.push(category.category)
       }
-      
+
       const templateVars = {
         categories: categories,
         user: req.session.user_id

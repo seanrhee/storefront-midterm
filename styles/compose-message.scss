@@ -1,6 +1,4 @@
 #return-to-inbox {
-  display: flex;
-  justify-content: flex-end;
   position: fixed;
   bottom: 225px;
   right: 17vw;
@@ -8,48 +6,26 @@
   width: 75px;
   background-color: #000;
   border-radius: 50%;
-  align-items: center;
-  justify-content: center;
   cursor: pointer;
   color: white;
 }
 
-// #ad-info {
-//   display: flex;
-
-//   .ad-display {
-//     display: flex;
-//     flex-direction: column;
-
-//     .item-picture {
-//       height: 125px;
-//       width: 125px;
-//     }
-
-//     .item-price {
-//       display: flex;
-//       justify-content: center;
-//       align-items: center;
-//       height: 50px;
-//       color: #c0c0c0;
-//       font-size: x-large;
-//       background-color: black;
-//     }
-//   }
-
-//   .ad-title {
-//     display: flex;
-//     font-size: xx-large;
-//     margin: .5em 0em 0em 1em;
-//   }
-// }
-
-.seller-name {
+#recipient-information {
   display: flex;
-  justify-content: end;
-  font-size: x-large;
-  font-weight: 300;
-  margin-left: 2em;
+  align-items: flex-end;
+  justify-content: space-between;
+  .recipient-name {
+    display: flex;
+    justify-content: end;
+    font-size: x-large;
+    font-weight: 300;
+    margin-left: 2em;
+  }
+  // .contact-info {
+    //   .address {}
+    //   .phone_number {}
+    //   .email {}
+  // }
 }
 
 
@@ -58,43 +34,43 @@
   height: 600px;
   width: 100%;
   overflow-y: auto;
-  // transform: rotate(180deg);
+  overflow-wrap: break-word;
   font-weight: 100;
   font-size: large;
   margin: 1em 0em 1em 0em;
   padding-top: 1em;
   background-color: white;
-  border-top: 2em;
-  border-bottom: 2em;
-  border-color: black;
+  border-top: 5px;
+  border-bottom: 5px;
+  border-color:  #404040;
   border-style: inset;
 }
-
 .received {
-  // transform: rotate(180deg);
+  background-color: whitesmoke;
   padding: 1.5em;
   margin: 1em 1em 1em 15em;
   border-radius: 2em;
-  background-color: black;
-  color: white;
+  // border: 1px solid grey;
+  box-shadow: 10px 3px 0px #404040;
+  border-bottom: none;
 }
 
 .sent {
+  background-color: whitesmoke;
   // transform: rotate(180deg);
   padding: 1.5em;
   margin: 0em 15em 1em 1em;
   border-radius: 2em;
-  background-color: #808080;
-  color: white;
+  // border: 1px solid #404040;
+  border-bottom: none;
+  box-shadow: -10px 3px 0px #808080;
 }
 
-.reply {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
 
+.reply {
+  margin: 2em;
   #new-message {
-    width: 90%;
+    width: 80%;
     height: 150px;
     padding: 12px 20px;
     box-sizing: border-box;
@@ -102,11 +78,10 @@
     border-radius: 4px;
     background-color: #f8f8f8;
     resize: none;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     border-style: solid;
-    border-color: black;
-    background-color: black;
-    color: white;
+    border-color: #c0c0c0;
     border-radius: 5px;
   }
 
