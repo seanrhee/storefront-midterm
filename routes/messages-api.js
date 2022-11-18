@@ -15,9 +15,7 @@ router.get('/', (req, res) => {
         .status(500)
         .json({ error: err.message });
     });
-
 });
-
 
 router.get('/:creator_id', (req, res) => {
   // const user = req.session.user_id;

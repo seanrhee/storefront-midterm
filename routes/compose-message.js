@@ -5,53 +5,29 @@ const messageQueries = require('../db/queries/messages');
 
 
 
-router.get('/:id', (req, res) => {
-  const creator = req.params.id;
-  console.log(req.params);
-  console.log("after")
+router.get('/:creator_id', (req, res) => {
+  const creator = req.params.creator_id;
   const user = 5;
+
   let recipient;
-  let contactId;
-  let firstName;
-  let lastName;
-  let itemId;
-  let itemTitle;
-  let itemPrice;
-  let itemPhoto;
+  let item
 
-  messageQueries.getInboxDetails(user, creator)
-    .then(message => {
-      // console.log(message);
-
-      contactId = message[0].creator_id;
-      recipient = message[0].recipient_id;
-      db.query(`SELECT first_name, users.last_name FROM users WHERE users.id = ${contactId}`)
+  db.query(`SELECT * FROM users WHERE users.id = ${creator}`)
+    .then(result => {
+      recipient = result.rows[0];
+      console.log(recipient);
+      db.query(`SELECT * FROM items WHERE owner_id = ${creator}`)
         .then(result => {
-          firstName = result.rows[0].first_name;
-          lastName = result.rows[0].last_name;
-          db.query(`SELECT * FROM items WHERE owner_id = ${contactId}`)
-            .then(item => {
-              itemId = item.rows[0].id;
-              itemTitle = item.rows[0].title;
-              itemPrice = item.rows[0].price_per_item;
-              itemPhoto = item.rows[0].photo_url;
+          item = result.rows[0];
 
+          const templateVars = {
+            user,
+            recipient,
+            creator,
+            item,
+          }
 
-              const templateVars = {
-                user,
-                recipient,
-                creator,
-                contactId,
-                firstName,
-                lastName,
-                itemId,
-                itemTitle,
-                itemPrice,
-                itemPhoto
-              }
-
-              res.render('compose-message', templateVars);
-            })
+          res.render('compose-message', templateVars);
         })
     })
 })

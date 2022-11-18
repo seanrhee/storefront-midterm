@@ -62,8 +62,7 @@ CREATE TABLE messages (
   creator_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   recipient_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   message TEXT NOT NULL,
-  created_at TEXT,
-  parent_message_id INTEGER
+  created_at TEXT
 );
 
 CREATE TABLE message_recipients (
