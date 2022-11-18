@@ -47,6 +47,7 @@ const getItems = () => {
   return db.query(`
   SELECT *
   FROM items
+  WHERE sold = false
   ORDER BY id DESC
   `)
     .then(data => {
@@ -72,6 +73,7 @@ const getCategory = (category) => {
 
 //get individual item to show users when they click into a listing
 const getIndividualItem = (item) => {
+  console.log('getIndividualItem called')
   return db.query(`
   SELECT *
   FROM users
@@ -140,4 +142,31 @@ const searchBar = (param) => {
   });
 }
 
-module.exports = { getItems, getCategory, addItem, getIndividualItem, getSavedItems, toggleFavoriteItem, deleteItem, itemPages, searchBar};
+const deleteUserItem = (id) => {
+  console.log('delete', id);
+
+  return db.query(`
+  DELETE FROM items
+  WHERE id = $1`, [id])
+  .then(data => {
+    console.log(data);
+    return data;
+  })
+}
+
+const updateUserItem = (item, itemId, owner_id) => {
+  console.log('edit', item, itemId, owner_id);
+
+  return db.query(`
+  UPDATE items
+  SET title = $1, price_per_item = $2, description = $3, photo_url = $4, sold = $5, condition = $6, category = $7
+  WHERE id = $8
+  RETURNING *
+  `, [item.title, item.price_per_item, item.description, item.photo_url, item.sold, item.condition, item.category, itemId])
+  .then(item => {
+    console.log('query returned', item)
+    return item;
+  })
+}
+
+module.exports = { getItems, getCategory, addItem, getIndividualItem, getSavedItems, toggleFavoriteItem, deleteItem, itemPages, searchBar, deleteUserItem, updateUserItem };

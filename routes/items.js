@@ -86,11 +86,54 @@ router.get("/:id", (req, res) => {
             })
         })
     })
-
-
-
-
 });
+
+// post route to delete item
+router.post('/:id/delete', (req, res) => {
+  console.log('post to delete')
+  const userId = req.session.user_id;
+  const productId = req.params.id;
+
+  itemQueries.deleteUserItem(productId)
+  .then(result => {
+    console.log(result)
+    res.redirect(`/users/${userId}`)
+    return;
+  })
+})
+
+router.get('/:id/edit', (req, res) => {
+  const userId = req.session.user_id;
+  const productId = req.params.id;
+
+  itemQueries.getIndividualItem(productId)
+  .then(result => {
+    console.log(result);
+    const templateVars = {
+      user: userId,
+      item: result
+    }
+
+    res.render('edit-item', templateVars)
+  })
+})
+
+router.post('/:id/edit', (req, res) => {
+  const userId = req.session.user_id;
+  const productId = req.params.id;
+  console.log('req bodyparams>>>>>>>>', req.params)
+  console.log('req body>>>>>>>>', req.body)
+  console.log('user id >>>>>>>', userId)
+  itemQueries.updateUserItem(req.body, productId, userId)
+  .then(result => {
+    console.log('here be results', result)
+    res.redirect(`/items/${productId}`);
+    return;
+  })
+  .catch((err) => {
+    console.log(err);
+  })
+})
 
 // //POST route to let users update individual item info
 // router.post("/:id", (req, res) => {

@@ -21,8 +21,8 @@ $(document).ready(() => {
       $('.item-container').append(createItemElement(item));
     }
   }
-
-  async function loadItems(page = 0, category = null, filter = false) {
+  
+  async function loadItems(page = 0, category = null, filter = false, id = null) {
     console.log('loadItems')
     // if category selector
     if (category) {
@@ -36,28 +36,17 @@ $(document).ready(() => {
         renderItems(data.items[page])
       })
     }
+    if (id) {
+      return $.get(`/api/users/${id}`, (data) => {
+        console.log('user_id get')
+        renderItems(data.items[page])
+      })
+    }
 
     // if homepage
     return $.get('/api/items', (data) => {
       renderItems(data.items[page]);
     });
-  }
-
-  // search item function
-  async function searchItems(search) {
-    console.log('searchItems called on', search)
-    return $.get(`/api/search/${search}`, (data) => {
-      console.log('search get')
-      renderItems(data.items[0])
-    });
-  }
-
-  async function filterItems(filter, page = 0) {
-    console.log('filterItems called');
-    return $.get(`/api/filter/${filter}`, (data) => {
-      console.log('filter get');
-      renderItems(data.items[page])
-    })
   }
 
   // keep track of current page + category
@@ -82,35 +71,6 @@ $(document).ready(() => {
       }
     })
   });
-
-
-// START category dropdown selector
-  $('.dropdown-button').click(function (e) {
-    e.preventDefault();
-    //reset currentPage
-    currentPage = 0
-    $('.dropdown-button').css('color', '');
-
-
-    categorySelector = $(this).attr('id');
-
-    $('#categories').unbind('mouseenter mouseleave');
-    $('#category-dropdown').unbind('mouseenter mouseleave');
-
-    $('.item-container').empty();
-
-    $(this).css('color', '#808080');
-
-    loadItems(currentPage, categorySelector).then(res => {
-      // console.log(res);
-      if (currentPage < res.items.length - 1) {
-        $('.load-more').css('display', 'flex');
-      } else if (currentPage === res.items.length - 1) {
-        $('.load-more').css('display', 'none');
-      }
-    });
-  });
-// END category dropdown selector
 
 // START top button
   // When the user scrolls down 20px from the top of the document, show the button
