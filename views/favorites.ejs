@@ -55,7 +55,7 @@
           <% for (let favItem of item) { %>
             <tr>
               <td>
-                <img class='item-thumb' src="<%= favItem.photo_url %>" alt="">
+                <img class='favitem-thumb' src="<%= favItem.photo_url %>" alt="">
               </td>
               <td>
                 <span><%= favItem.title %></span>
@@ -65,7 +65,7 @@
               </td>
               <td>
                 <form method="POST" action="/favorites/<%=favItem.item_id%>/delete">
-                  <button type="submit" class="btn">Delete</button>
+                  <button type="submit" class="btn">Remove</button>
                 </form>
               </td>
             </tr>
@@ -73,17 +73,6 @@
         </tbody>
       </table>
     </div>
-    <div class="to-top">
-      <div class="top">
-        <p>TOP</p>
-      </div>
-    </div>
-
-    <div class="load-more">
-      <button class="load-button">Load More</button>
-    </div>
-  </div>
-
 
   <%- include('partials/_footer') %>
 </body>
