@@ -43,16 +43,15 @@ router.get('/:id', (req, res) => {
 router.post('/:id', (req, res) => {
   const { user_id } = req.session;
   const { message }  = req.body;
+  const { id } = req.params;
   console.log(user_id, message);
   console.log(req.params);
-  // db.query(`
-  // INSERT INTO messages (creator_id, recipient_id, created_at) values (${user}, , ${newMessage}, ${timeago date});
-  // `)
-  // console.log(req.body.message)
-  // db.query()
-  // res.redirect('messages');
+  db.query(`
+  INSERT INTO messages (creator_id, recipient_id, message, created_at) values (${user_id}, ${id} , ${message}, ${timeago.format(new Date())});
+  `).then(result => {
+    console.log(result)
+    res.redirect('messages')
+  })
 })
-
-
 
 module.exports = router;
