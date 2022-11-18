@@ -5,12 +5,12 @@ const createInboxElement = function (message) {
   <div class="message-container">
 
   <div class="contact-container">
+  <div class="user-name"> ${message.first_name} ${message.last_name} </div>
   <div class="contact">
   <div class="phone-number"> ${message.phone_number} </div>
   <div class="email"> ${message.email} </div>
-  <div id="address"> ${message.city} ${message.province}</div>
+  <div id="address"> ${message.city}, ${message.province}</div>
   </div>
-  <div class="user-name"> ${message.first_name} ${message.last_name} </div>
   </div>
 
   <div class="response">

@@ -2,10 +2,20 @@
 const createChatBox = function (messages) {
   const $message = $(`
 
+  just
+  trying
+  to
+  get
+  something
+  to
+
   <div class="sent">
   ${messages.first_name}
   </div>
   <div class="received">received</div>
+
+  show up
+  anywhere
 
 
     `);
