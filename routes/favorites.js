@@ -35,12 +35,12 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   const userId = req.session.user_id;
 
-  if (userId !== 19) {
-    res.status(400).send("Please log in to save furniture.");
-  } else {
+  // if (userId !== 19) {
+  //   res.status(400).send("Please log in to save furniture.");
+  // } else {
     const item_id = req.body.itemId; //reads data from ajax data { itemId }
     itemQueries.toggleFavoriteItem({ item_id }) //addFavortieItem only accpets an obj so made item_id into obj
-  }
+  // }
 })
 
 //POST route to delete from the saved_items table

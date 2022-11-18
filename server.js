@@ -58,6 +58,7 @@ app.use('/api/filter', filterApiRoutes);
 app.use('/api/messages', messageApiRoutes);
 app.use('/users', usersRoutes);
 app.use('/items', itemsRoutes);
+app.use('/favorites', favoriteRoutes);
 app.use('/messages', userMessages);
 app.use('/compose-message', composeMessage);
 // Note: mount other resources here, using the same pattern above
