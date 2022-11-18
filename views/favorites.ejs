@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Home Page</title>
+  <title>Favorites Page</title>
 
   <meta charset="UTF-8" >
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
@@ -36,32 +36,36 @@
   <%- include('partials/_header') %>
 
   <div class="favorite-main-container">
-    <div class="favorite-container" id="favorites">
+    <div class="favorite-container">
       <h3>My Favorites</h3>
+    </div>
+
+    <div>
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">Picture</th>
+            <th scope="col">Image</th>
             <th scope="col">Title</th>
             <th scope="col">Price</th>
             <th scope="col">Delete</th>
           </tr>
         </thead>
+
         <tbody>
           <% for (let favItem of item) { %>
             <tr>
               <td>
-                <%= item.photo_url %>
+                <img class='item-thumb' src="<%= favItem.photo_url %>" alt="">
               </td>
               <td>
-                <%= favItem.title %>
+                <span><%= favItem.title %></span>
               </td>
               <td>
                 <%= favItem.price_per_item %>
               </td>
               <td>
-                <form method="POST" action="favorites/<%=favItem.item_id%>/delete">
-                  <button type="submit" class="btn btn-outline-danger">Delete</button>
+                <form method="POST" action="/favorites/<%=favItem.item_id%>/delete">
+                  <button type="submit" class="btn">Delete</button>
                 </form>
               </td>
             </tr>
