@@ -14,35 +14,35 @@
   color: white;
 }
 
-#ad-info {
-  display: flex;
+// #ad-info {
+//   display: flex;
 
-  .ad-display {
-    display: flex;
-    flex-direction: column;
+//   .ad-display {
+//     display: flex;
+//     flex-direction: column;
 
-    .item-picture {
-      height: 125px;
-      width: 125px;
-    }
+//     .item-picture {
+//       height: 125px;
+//       width: 125px;
+//     }
 
-    .item-price {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 50px;
-      color: #c0c0c0;
-      font-size: x-large;
-      background-color: black;
-    }
-  }
+//     .item-price {
+//       display: flex;
+//       justify-content: center;
+//       align-items: center;
+//       height: 50px;
+//       color: #c0c0c0;
+//       font-size: x-large;
+//       background-color: black;
+//     }
+//   }
 
-  .ad-title {
-    display: flex;
-    font-size: xx-large;
-    margin: .5em 0em 0em 1em;
-  }
-}
+//   .ad-title {
+//     display: flex;
+//     font-size: xx-large;
+//     margin: .5em 0em 0em 1em;
+//   }
+// }
 
 .seller-name {
   display: flex;
@@ -93,7 +93,7 @@
   justify-content: space-between;
   flex-direction: row;
 
-  input {
+  #new-message {
     width: 90%;
     height: 150px;
     padding: 12px 20px;

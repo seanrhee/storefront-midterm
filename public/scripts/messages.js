@@ -1,6 +1,3 @@
-// Client facing scripts here
-
-
 // Create HTML for Inbox
 const createInboxElement = function (message) {
   const $inbox = $(`

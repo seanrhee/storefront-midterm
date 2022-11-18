@@ -31,6 +31,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js" integrity="sha512-SVDh1zH5N9ChofSlNAK43lcNS7lWze6DTVx1JCXH1Tmno+0/1jMpdbR8YDgDUfcUrPp1xyE53G42GFrcM0CMVg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="/vendor/jquery-3.0.0.js"></script>
+  <script defer src="/scripts/composemessage.js"></script>
   <!-- <script defer src="/scripts/messages.js"></script> -->
 </head>
 
@@ -45,13 +46,7 @@
 
       <div id="message-container">
 
-        <div id="ad-info">
-          <div class="ad-display">
-            <img src="<%= item.photo_url %>" class="item-picture">
-            <div class="item-price">$<%= item.price_per_item %></div>
-          </div>
-            <div class="ad-title"><%= item.title %></div>
-          </div>
+
           <div class="seller-name"><%= recipient.first_name + ' ' + recipient.last_name %></div>
 
 
@@ -68,10 +63,11 @@
           <div class="received">received testing a really long message for editing purposes actually needs to be a bit longer still and let's test out what happens when we make it even longer!</div>
         </article>
 
-        <form class="reply" action="/compose-message" method="POST">
-            <input type="textarea" name="new-message" id="new-message" label="text-box-for-messaging" maxlength="500" autofocus
+
+        <form class="reply" action="/compose-message/:id" method="POST">
+            <input type="textarea" name="message" id="new-message" label="text-box-for-messaging" maxlength="500" autofocus
               required placeholder="Write a new message..."></input>
-            <input type="submit" value="send" id="send-button"></input>
+              <button id="send-button" type="submit">SEND</button>
         </form>
       </div>
 
