@@ -115,20 +115,23 @@ router.get('/:id/edit', (req, res) => {
     }
 
     res.render('edit-item', templateVars)
-  })  
+  })
 })
 
 router.post('/:id/edit', (req, res) => {
   const userId = req.session.user_id;
   const productId = req.params.id;
-
-  console.log(req.body)
-  console.log(userId)
+  console.log('req bodyparams>>>>>>>>', req.params)
+  console.log('req body>>>>>>>>', req.body)
+  console.log('user id >>>>>>>', userId)
   itemQueries.updateUserItem(req.body, productId, userId)
   .then(result => {
     console.log('here be results', result)
     res.redirect(`/items/${productId}`);
     return;
+  })
+  .catch((err) => {
+    console.log(err);
   })
 })
 
