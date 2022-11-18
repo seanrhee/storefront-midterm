@@ -37,11 +37,15 @@ router.post('/', (req, res) => {
   itemQueries.toggleFavoriteItem({ item_id }) //addFavortieItem only accpets an obj so made item_id into obj
 })
 
+//POST route to delete from the saved_items table 
 router.post('/:id/delete', (req, res) => {
-  const userId = req.session.user_id;
   const productId = req.params.id;
-  itemQueries.deleteItem({ item_id })
-
+  itemQueries.deleteFavItem(productId)
+  .then(result => {
+    console.log(result)
+    res.redirect(`/favorites`)
+    return;
+  })
 })
 
 

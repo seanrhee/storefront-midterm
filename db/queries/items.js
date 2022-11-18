@@ -118,10 +118,10 @@ const toggleFavoriteItem = (item) => {
     })
 }
 
-const deleteItem = (item) => {
+const deleteFavItem = (item) => {
   return db.query(`
   DELETE FROM saved_items
-  WHERE item_id = $1`, [item.item_id])
+  WHERE item_id = $1`, [item])
 }
 
 
@@ -134,10 +134,8 @@ const searchBar = (param) => {
   .then(data => {
     const result = itemPages(data.rows);
 
-    console.log(result);
-
     return result;
   });
 }
 
-module.exports = { getItems, getCategory, addItem, getIndividualItem, getSavedItems, toggleFavoriteItem, deleteItem, itemPages, searchBar};
+module.exports = { getItems, getCategory, addItem, getIndividualItem, getSavedItems, toggleFavoriteItem, deleteFavItem, itemPages, searchBar};
