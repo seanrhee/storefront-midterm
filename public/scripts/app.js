@@ -1,6 +1,6 @@
 // Client facing scripts here
 $(document).ready(() => {
-  const createItemElement = function(item) {
+  const createItemElement = function (item) {
     const $item = $(`
       <a class="item-link" href="/items/${item.id}">
         <div class="item-div">
@@ -16,13 +16,13 @@ $(document).ready(() => {
     return $item;
   }
 
-  const renderItems = function(items) {
+  const renderItems = function (items) {
     for (const item of items) {
       $('.item-container').append(createItemElement(item));
     }
   }
   
-  async function loadItems(page = 0, category = null, filter = false) {
+  async function loadItems(page = 0, category = null, filter = false, id = null) {
     console.log('loadItems')
     // if category selector
     if (category) {
@@ -36,28 +36,17 @@ $(document).ready(() => {
         renderItems(data.items[page])
       })
     }
+    if (id) {
+      return $.get(`/api/users/${id}`, (data) => {
+        console.log('user_id get')
+        renderItems(data.items[page])
+      })
+    }
 
     // if homepage
     return $.get('/api/items', (data) => {
       renderItems(data.items[page]);
     });
-  }
-
-  // search item function
-  async function searchItems(search) {
-    console.log('searchItems called on', search)
-    return $.get(`/api/search/${search}`, (data) => {
-      console.log('search get')
-      renderItems(data.items[0])
-    });
-  }
-
-  async function filterItems(filter, page = 0) {
-    console.log('filterItems called');
-    return $.get(`/api/filter/${filter}`, (data) => {
-      console.log('filter get');
-      renderItems(data.items[page])
-    })
   }
 
   // keep track of current page + category
@@ -83,38 +72,9 @@ $(document).ready(() => {
     })
   });
 
-  
-// START category dropdown selector
-  $('.dropdown-button').click(function (e) { 
-    e.preventDefault();
-    //reset currentPage
-    currentPage = 0
-    $('.dropdown-button').css('color', '');
-
-    
-    categorySelector = $(this).attr('id');
-
-    $('#categories').unbind('mouseenter mouseleave');
-    $('#category-dropdown').unbind('mouseenter mouseleave');
-        
-    $('.item-container').empty();
-
-    $(this).css('color', '#808080');
-    
-    loadItems(currentPage, categorySelector).then(res => {
-      console.log(res);
-      if (currentPage < res.items.length - 1) {
-        $('.load-more').css('display', 'flex');
-      } else if (currentPage === res.items.length - 1) {
-        $('.load-more').css('display', 'none');
-      }
-    });
-  });
-// END category dropdown selector
-
 // START top button
   // When the user scrolls down 20px from the top of the document, show the button
-  window.onscroll = function() {scrollFunction()};
+  window.onscroll = function () { scrollFunction() };
 
   function scrollFunction() {
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
@@ -134,19 +94,19 @@ $(document).ready(() => {
 
 // START filter
   // click to open filter
-  $('.open-filter').click(function (e) { 
+  $('.open-filter').click(function (e) {
     e.preventDefault();
     $('.filter-bar').css('display', 'flex');
   });
 
   // click to close filter
-  $('.close-filter').click(function (e) { 
+  $('.close-filter').click(function (e) {
     e.preventDefault();
     $('.filter-bar').css('display', 'none');
   });
 
   // click apply
-  $('#filter-form').submit(function (e) { 
+  $('#filter-form').submit(function (e) {
     e.preventDefault();
     filter = $(this).serialize();
 
@@ -156,13 +116,13 @@ $(document).ready(() => {
 
     loadItems(currentPage, null, filter).then(res => {
       console.log(res);
-      
+
       if (res.items.length === 0) {
         $('.no-results').append('<h1>NO RESULTS</h1>')
         $('.load-more').css('display', 'none');
 
       }
-  
+
       if (currentPage < res.items.length - 1) {
         $('.load-more').css('display', 'flex');
       } else if (currentPage === res.items.length - 1) {
@@ -172,9 +132,10 @@ $(document).ready(() => {
   });
 
   // reset button
-  $('.reset-button').click(function (e) { 
+  $('.reset-button').click(function (e) {
     e.preventDefault();
     $('#filter-form')[0].reset();
   });
 // END filter
 });
+

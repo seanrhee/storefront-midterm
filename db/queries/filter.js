@@ -51,7 +51,7 @@ const filterBar = (param) => {
     queryString += `AND category = $${queryParams.length} `;
   }
 
-  queryString += `
+  queryString += ` AND sold = false
   ORDER BY id DESC
   `;
 

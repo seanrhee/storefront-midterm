@@ -1,8 +1,10 @@
 main {
   display: flex;
   justify-content: center;
-  padding-top: 10em;
-  padding-bottom: 5em;
+  padding-top: 120px;
+  padding-bottom: 3em;
+  margin-bottom: 100px;
+  height: 100%;
 
   #new-item-form {
     align-items: center;
