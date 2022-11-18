@@ -25,6 +25,16 @@ const getUserDetails = (id) => {
     })
   };
 
+const sendMessage = (sender, recipient, message, timestamp) => {
+  console.log('send message called');
+  console.log(message)
+  return db.query(`
+  INSERT INTO messages (creator_id, recipient_id, message, created_at)
+  VALUES ($1, $2, $3, $4);
+  `, [sender, recipient, message, timestamp]).then(result => {
+    console.log("query sent");
+    return result.rows;
+  })
+}
 
-
-module.exports = { getInboxDetails, getUserDetails };
+module.exports = { getInboxDetails, getUserDetails, sendMessage };

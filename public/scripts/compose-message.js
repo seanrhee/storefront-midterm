@@ -16,7 +16,7 @@ const recipientDetails = function (page) {
 
 // Render the messages
 const renderPage = function (page) {
-    $('#message-container').append(recipientDetails(page));
+  $('#message-container').append(recipientDetails(page));
 };
 
 $(() => {

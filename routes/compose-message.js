@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router()
 const db = require('../db/connection');
 const messageQueries = require('../db/queries/messages');
+const timeago = require('javascript-time-ago')
+
 
 
 router.get('/:id', (req, res) => {
@@ -42,16 +44,22 @@ router.get('/:id', (req, res) => {
 
 router.post('/:id', (req, res) => {
   const { user_id } = req.session;
-  const { message }  = req.body;
+  const userMessage = req.body.message;
   const { id } = req.params;
-  console.log(user_id, message);
+  const timestamp = Date.now();
+  console.log(user_id, userMessage);
   console.log(req.params);
-  db.query(`
-  INSERT INTO messages (creator_id, recipient_id, message, created_at) values (${user_id}, ${id} , ${message}, ${timeago.format(new Date())});
-  `).then(result => {
-    console.log(result)
-    res.redirect('messages')
+
+
+
+
+
+  messageQueries.sendMessage(user_id, id, userMessage, timestamp)
+  .then(result => {
+    console.log('we got the query back from the post')
+    res.redirect('/messages')
   })
+
 })
 
 module.exports = router;
