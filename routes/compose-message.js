@@ -42,33 +42,18 @@ router.get('/:id', (req, res) => {
 
 
 router.post('/:id', (req, res) => {
-  const user = req.session.user_id
-  const newMessage = req.body.message;
+  const { user_id } = req.session;
+  const { message }  = req.body;
+  console.log(user_id, message);
+  console.log(req.params);
   // db.query(`
   // INSERT INTO messages (creator_id, recipient_id, created_at) values (${user}, , ${newMessage}, ${timeago date});
   // `)
-// console.log(req.body.message)
-// db.query()
+  // console.log(req.body.message)
+  // db.query()
   // res.redirect('messages');
 })
 
-
-// insert into messages (creator_id, recipient_id, message, created_at) values (44, 5, 'Multi-channelled content-based ability', '1659442703000');
-
-
-// <form class="form-inline" action="/urls" method="POST">
-// <div class="form-group mb-2">
-//   <label for="longURL">Enter a URL:</label>
-//   <input
-//     class="form-control"
-//     type="text"
-//     name="longURL"
-//     placeholder="http://"
-//     style="width: 300px; margin: 1em"
-//   />
-//   <button type="submit" class="btn btn-primary">Submit</button>
-// </div>
-// </form>
 
 
 module.exports = router;

@@ -63,7 +63,7 @@
         </article>
 
 
-        <form class="reply" action="/compose-message/:id" method="POST">
+        <form class="reply" action="/compose-message/<%= sender =>" method="POST">
             <input type="textarea" name="message" id="new-message" label="text-box-for-messaging" maxlength="500" autofocus
               required placeholder="Write a new message..."></input>
               <button id="send-button" type="submit">SEND</button>
