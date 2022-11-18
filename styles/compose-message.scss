@@ -51,7 +51,7 @@
   margin: 1em 1em 1em 15em;
   border-radius: 2em;
   // border: 1px solid grey;
-  box-shadow: 8px 1px 2px grey;
+  box-shadow: 10px 3px 0px #404040;
   border-bottom: none;
 }
 
@@ -63,17 +63,14 @@
   border-radius: 2em;
   // border: 1px solid #404040;
   border-bottom: none;
-  box-shadow: -8px 1px 2px #404040
+  box-shadow: -10px 3px 0px #808080;
 }
 
 
 .reply {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-
+  margin: 2em;
   #new-message {
-    width: 90%;
+    width: 80%;
     height: 150px;
     padding: 12px 20px;
     box-sizing: border-box;
