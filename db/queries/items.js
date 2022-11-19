@@ -73,7 +73,6 @@ const getCategory = (category) => {
 
 //get individual item to show users when they click into a listing
 const getIndividualItem = (item) => {
-  console.log('getIndividualItem called')
   return db.query(`
   SELECT *
   FROM users
@@ -93,14 +92,12 @@ const getSavedItems = (user_id = 19) => {
   WHERE saved_items.user_id = $1
   ORDER BY items.id ASC`, [user_id])
     .then(data => {
-      // console.log(data.rows);
       return data.rows;
     });
 }
 
 //const toggle favitem(itemid), determine if id exsist in the table, if it does delete and if it doesnt insert it
 const toggleFavoriteItem = (item) => {
-  console.log('togglefav item id>>>>>>', item.item_id)
   return db.query(`
     SELECT item_id
     FROM saved_items
@@ -138,29 +135,22 @@ const searchBar = (param) => {
   .then(data => {
     const result = itemPages(data.rows);
 
-    console.log(result);
-
     return result;
   });
 }
 
 //Delete item from database
 const deleteUserItem = (id) => {
-  console.log('delete', id);
-
   return db.query(`
   DELETE FROM items
   WHERE id = $1`, [id])
   .then(data => {
-    console.log(data);
     return data;
   })
 }
 
 //Edit product info
 const updateUserItem = (item, itemId, owner_id) => {
-  console.log('edit', item, itemId, owner_id);
-
   return db.query(`
   UPDATE items
   SET title = $1, price_per_item = $2, description = $3, photo_url = $4, sold = $5, condition = $6, category = $7
@@ -168,7 +158,6 @@ const updateUserItem = (item, itemId, owner_id) => {
   RETURNING *
   `, [item.title, item.price_per_item, item.description, item.photo_url, item.sold, item.condition, item.category, itemId])
   .then(item => {
-    console.log('query returned', item)
     return item;
   })
 }
