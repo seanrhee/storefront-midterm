@@ -173,4 +173,14 @@ const updateUserItem = (item, itemId, owner_id) => {
   })
 }
 
-module.exports = { getItems, getCategory, addItem, getIndividualItem, getSavedItems, toggleFavoriteItem, deleteFavItem, itemPages, searchBar, deleteUserItem, updateUserItem };
+// Get owner_id for item so user can contact the seller
+const getItemOwner = (id) => {
+  return db.query(`
+    SELECT owner_id FROM items
+    WHERE items.id = $1`, [id])
+    .then(data => {
+      return data.rows;
+    })
+};
+
+module.exports = { getItems, getCategory, addItem, getIndividualItem, getSavedItems, toggleFavoriteItem, deleteFavItem, itemPages, searchBar, deleteUserItem, updateUserItem, getItemOwner };

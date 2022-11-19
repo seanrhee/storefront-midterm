@@ -90,10 +90,13 @@
           <div class="message-box">
             <label for="message">Contact <%=item.first_name%>
                 <%=item.last_name%></label>
-            <textarea placeholder="Hi, I'm interested! Please contact me if this is still available." name="message"
-              id="message" cols="30" rows="3"></textarea>
-          </div>
-          <a href="#" class="send-message">Send Message</a>
+
+                <form method="POST">
+                  <textarea placeholder="Hi, I'm interested! Please contact me if this is still available." name="message"
+                  id="message" cols="30" rows="3"></textarea>
+                </div>
+                <button type="submit" class="send-message">Send Message</button>
+              </form>
           <span class="seller-phone_number">or call <%=item.phone_number%> </span>
         </div>
 

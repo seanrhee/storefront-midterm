@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db/connection');
 const itemQueries = require('../db/queries/items');
+const messageQueries = require('../db/queries/messages');
 
 //GET route to show user create new item page
 router.get('/', (req, res) => {
@@ -82,7 +83,7 @@ router.get("/:id", (req, res) => {
                 isFavorite
               };
 
-              console.log('templatevars >>>>>>>>>>>>>', templateVars)
+              // console.log('templatevars >>>>>>>>>>>>>', templateVars)
               res.render("item", templateVars);
             })
         })
@@ -91,13 +92,13 @@ router.get("/:id", (req, res) => {
 
 // post route to delete item
 router.post('/:id/delete', (req, res) => {
-  console.log('post to delete')
+  // console.log('post to delete')
   const userId = req.session.user_id;
   const productId = req.params.id;
 
   itemQueries.deleteUserItem(productId)
   .then(result => {
-    console.log(result)
+    // console.log(result)
     res.redirect(`/users/${userId}`)
     return;
   })
@@ -109,7 +110,7 @@ router.get('/:id/edit', (req, res) => {
 
   itemQueries.getIndividualItem(productId)
   .then(result => {
-    console.log(result);
+    // console.log(result);
     const templateVars = {
       user: userId,
       item: result
@@ -122,12 +123,12 @@ router.get('/:id/edit', (req, res) => {
 router.post('/:id/edit', (req, res) => {
   const userId = req.session.user_id;
   const productId = req.params.id;
-  console.log('req bodyparams>>>>>>>>', req.params)
-  console.log('req body>>>>>>>>', req.body)
-  console.log('user id >>>>>>>', userId)
+  // console.log('req bodyparams>>>>>>>>', req.params)
+  // console.log('req body>>>>>>>>', req.body)
+  // console.log('user id >>>>>>>', userId)
   itemQueries.updateUserItem(req.body, productId, userId)
   .then(result => {
-    console.log('here be results', result)
+    // console.log('here be results', result)
     res.redirect(`/items/${productId}`);
     return;
   })
@@ -135,6 +136,22 @@ router.post('/:id/edit', (req, res) => {
     console.log(err);
   })
 })
+
+router.post('/:id', (req, res) => {
+  const { user_id } = req.session;
+  const { message } = req.body;
+  const { id } = req.params;
+  const timestamp = Date.now();
+
+  itemQueries.getItemOwner(id)
+    .then(result => {
+      const owner_id = result[0].owner_id
+      messageQueries.sendMessage(user_id, owner_id, message, timestamp)
+        .then(result => {
+          res.redirect(`/items/${id}`)
+        })
+    })
+});
 
 // //POST route to let users update individual item info
 // router.post("/:id", (req, res) => {
