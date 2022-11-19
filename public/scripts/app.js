@@ -23,7 +23,6 @@ $(document).ready(() => {
   }
   
   async function loadItems(page = 0, category = null, filter = false, id = null) {
-    console.log('loadItems')
     // if category selector
     if (category) {
       return $.get(`/api/items/${category}`, (data) => {
@@ -32,13 +31,11 @@ $(document).ready(() => {
     }
     if (filter) {
       return $.get(`/api/filter/${filter}`, (data) => {
-        console.log('filter get');
         renderItems(data.items[page])
       })
     }
     if (id) {
       return $.get(`/api/users/${id}`, (data) => {
-        console.log('user_id get')
         renderItems(data.items[page])
       })
     }
@@ -115,8 +112,6 @@ $(document).ready(() => {
     $('.no-results').empty();
 
     loadItems(currentPage, null, filter).then(res => {
-      console.log(res);
-
       if (res.items.length === 0) {
         $('.no-results').append('<h1>NO RESULTS</h1>')
         $('.load-more').css('display', 'none');
