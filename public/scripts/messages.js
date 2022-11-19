@@ -2,14 +2,7 @@
 const createInboxElement = message => {
   const $inbox = $(`
   <div class="message-container">
-   <div class="contact-container">
-    <div class="user-name"> ${message.first_name} ${message.last_name} </div>
-      <div class="contact">
-        <div class="phone-number"> ${message.phone_number} </div>
-        <div class="email"> ${message.email} </div>
-        <div id="address"> ${message.city}, ${message.province}</div>
-      </div>
-    </div>
+    <div class="user-name"> from: <b>${message.first_name} ${message.last_name}</b> </div>
     <div class="response">
       <article class="message">${message.message}</article>
       <form class="reply" action="/compose-message/${message.creator_id}" method="GET">
@@ -31,6 +24,8 @@ const renderMessages = messages => {
 
 $(() => {
   function loadMessages() {
+    // $.get('/api/items').then(result => {
+
     $.get('/api/messages').then((result) => {
       renderMessages(result.messages);
     });

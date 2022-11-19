@@ -68,9 +68,11 @@
 
 
 .reply {
-  margin: 2em;
+  display: flex;
+  justify-content: space-between;
   #new-message {
-    width: 80%;
+    display: flex;
+    width: 85%;
     height: 150px;
     padding: 12px 20px;
     box-sizing: border-box;
@@ -88,11 +90,11 @@
   #send-button {
     align-self: end;
     box-sizing: border-box;
-    margin: 0em 0em 0em 2em;
+    margin: 0px 15px 10px 0px;
     height: 3em;
     width: 10%;
     border: 1px;
-    border-style: solid;
+    // border-style: solid;
     border-radius: 25px;
     cursor: pointer;
   }

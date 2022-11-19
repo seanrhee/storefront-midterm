@@ -1,38 +1,21 @@
 main {
   margin-top: 100px;
   padding: 2em 23vw;
+  h2 {
+    font-weight: 300;
+  }
 
   .inbox-container {
     .message-container {
       border: 1px;
       border-bottom-style: solid;
-      padding: 2em 0em 1em 0em;
+      padding: 2em 0em 2em 0em;
 
-      .contact-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        font-weight: 600;
-        font-size: large;
-        padding-left: 5px;
-        padding-top: 2em;
+      .user-name {
+        font-weight: 300;
+        font-size: x-large;
+  padding-left: 10px;
 
-        .user-name {
-          font-weight: 300;
-          font-size: x-large;
-          padding-bottom: 40px;
-        }
-      }
-
-      .contact {
-        display: flex;
-        flex-direction: column;
-
-        // .email {
-        //   .phone-number {
-        //     .address {}
-        //   }
-        // }
       }
     }
   }
@@ -77,12 +60,14 @@ main {
       }
     }
   }
-
-  .date {
-    padding-left: 20px;
-    font-size: small;
-  }
 }
+
+.date {
+  padding-left: 20px;
+  font-size: small;
+  font-weight:600;
+}
+
 
 #reply-button:hover {
   background-color: #808080;
