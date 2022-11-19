@@ -55,6 +55,12 @@
           </div>
           <div class="recipient-name"> <%= recipient.first_name + ' ' + recipient.last_name %> </div>
         </div>
+        <form class="reply" action="/compose-message/<%= sender %>" method="POST">
+          <input type="textarea" name="message" id="new-message" label="text-box-for-messaging" maxlength="500"
+            autofocus required placeholder="Write a new message..."></input>
+          <button id="send-button" type="submit">SEND</button>
+        </form>
+      </div>
 
 
         <article id="message-history">
@@ -62,12 +68,6 @@
         </article>
 
 
-        <form class="reply" action="/compose-message/<%= sender %>" method="POST">
-          <input type="textarea" name="message" id="new-message" label="text-box-for-messaging" maxlength="500"
-            autofocus required placeholder="Write a new message..."></input>
-          <button id="send-button" type="submit">SEND</button>
-        </form>
-      </div>
 
 
     </main>

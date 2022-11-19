@@ -14,18 +14,15 @@
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
+  padding-bottom: 1em;
   .recipient-name {
     display: flex;
     justify-content: end;
+    margin-right: 150px;
     font-size: x-large;
-    font-weight: 300;
+    font-weight: 600;
     margin-left: 2em;
   }
-  // .contact-info {
-    //   .address {}
-    //   .phone_number {}
-    //   .email {}
-  // }
 }
 
 
@@ -45,23 +42,32 @@
   border-color:  #404040;
   border-style: inset;
 }
+.received-date {
+  display: flex;
+  justify-content: flex-end;
+  font-size: smaller;
+  margin: 0em 1em 1em 15em;
+}
 .received {
+  margin: 1em 1em 0em 15em;
   background-color: whitesmoke;
   padding: 1.5em;
-  margin: 1em 1em 1em 15em;
   border-radius: 2em;
-  // border: 1px solid grey;
   box-shadow: 10px 3px 0px #404040;
   border-bottom: none;
-}
+  }
 
-.sent {
+  .sent-date {
+    display: flex;
+    justify-content: flex-start;
+  font-size: smaller;
+    margin: 0em 1em 1em 1em;
+  }
+  .sent {
+  margin: 0em 15em 0em 1em;
   background-color: whitesmoke;
-  // transform: rotate(180deg);
   padding: 1.5em;
-  margin: 0em 15em 1em 1em;
   border-radius: 2em;
-  // border: 1px solid #404040;
   border-bottom: none;
   box-shadow: -10px 3px 0px #808080;
 }
@@ -106,6 +112,6 @@
 }
 
 #send-button:hover {
-  background-color: #808080;
   color: #FFF;
+  background-color: #808080;
 }

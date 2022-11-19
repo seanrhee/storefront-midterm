@@ -14,6 +14,7 @@ $(document).ready(() => {
           <div class="sent"><b>
           ${messages.first_name} ${messages.last_name}: </b> ${messages.message}
           </div>
+          <date class="sent-date">${timeago.format(messages.created_at)}</date>
     `);
       return $message;
     }
@@ -23,6 +24,7 @@ $(document).ready(() => {
           <div class="received">
           <b>You:</b> ${messages.message}
           </div>
+          <date class="received-date">${timeago.format(messages.created_at)}</date>
     `);
       return $message;
     }
@@ -30,7 +32,7 @@ $(document).ready(() => {
 
   const renderMessages = function (messages) {
     for (const message of messages) {
-      $('#message-history').append(createChatBox(message));
+      $('#message-history').prepend(createChatBox(message));
     }
   };
 
