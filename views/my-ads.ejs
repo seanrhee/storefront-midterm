@@ -45,7 +45,7 @@
           <tr>
             <th scope="col">Image</th>
             <th scope="col">Title</th>
-            <!-- <th scope="col">Sold</th> -->
+            <th scope="col">Sold</th>
             <th scope="col">Edit</th>
             <th scope="col">Delete</th>
           </tr>
@@ -56,13 +56,13 @@
             <tr>
               <td><img class='item-thumb' src="<%= item.photo_url %>" alt=""></td>
               <td><span><%= item.title %></span></td>
-              <!-- <td>
+              <td>
                 <% if (item.sold === true) { %>
-                  <form method="POST" action="/items/<%= item.id %>/sold/<%= item.sold %>" disabled><button class="btn">Sold</button></form>
+                  <p>SOLD</p>
                 <% } else { %>
-                  <form method="POST" action="/items/<%= item.id %>/sold/<%= item.sold %>"><button class="btn">Mark As Sold</button></form>
+                  <p>ON SALE</p>
                 <% } %>
-              </td> -->
+              </td>
               <td><form method="GET" action="/items/<%= item.id %>/edit"><button class="btn">Edit</button></form></td>
               <td><form method="POST" action="/items/<%= item.id %>/delete"><button class="btn">Delete</button></form></td>
             </tr>

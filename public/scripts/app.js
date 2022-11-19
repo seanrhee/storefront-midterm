@@ -135,6 +135,17 @@ $(document).ready(() => {
   $('.reset-button').click(function (e) {
     e.preventDefault();
     $('#filter-form')[0].reset();
+    $('.item-container').empty();
+    $('.no-results').empty();
+    currentPage = 0
+    categorySelector = null;
+    filter = null;
+      // load items on page load
+    loadItems(currentPage, categorySelector, filter).then(res => {
+      if (currentPage < res.items.length - 1) {
+        $('.load-more').css('display', 'flex');
+    }
+  });
   });
 // END filter
 });

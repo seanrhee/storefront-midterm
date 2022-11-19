@@ -2,17 +2,12 @@ const db = require('../connection');
 const { itemPages } = require('./items')
 
 const filterBar = (param) => {
-  console.log('filterBar called', param);
-
   let params = new URLSearchParams(param);
-
 
   const paramObject = {}
   for(const [key, value] of params) { // each 'entry' is a [key, value] tupple
     paramObject[key] = value;
   }
-
-  console.log(paramObject)
 
   const queryParams = [];
 
@@ -59,8 +54,6 @@ const filterBar = (param) => {
   .then(data => {
     const result = itemPages(data.rows);
   
-    console.log(result)
-
     return result;
   });
 }
