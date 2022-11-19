@@ -2,7 +2,7 @@
 const createInboxElement = message => {
   const $inbox = $(`
   <div class="message-container">
-    <div class="user-name"> ${message.first_name} ${message.last_name} </div>
+    <div class="user-name"> from: <b>${message.first_name} ${message.last_name}</b> </div>
     <div class="response">
       <article class="message">${message.message}</article>
       <form class="reply" action="/compose-message/${message.creator_id}" method="GET">
