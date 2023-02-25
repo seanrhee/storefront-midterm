@@ -18,13 +18,19 @@ app.use(express.static('public'));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
+
+//SECOND
 const itemApiRoutes = require('./routes/items-api');
 
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
+
+//FIRST
 app.use('/api/items', itemApiRoutes);
+http://localhost:8080/api/items/
+
 
 // Note: mount other resources here, using the same pattern above
 
@@ -33,5 +39,11 @@ app.use('/api/items', itemApiRoutes);
 // Separate them into separate routes files (see above).
 
 app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}`);
+  console.log(`Listening on port ${PORT}.`);
 });
+
+
+//clients -> server.js
+//server.js -> routes
+//routes -> db
+
