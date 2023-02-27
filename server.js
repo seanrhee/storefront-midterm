@@ -7,6 +7,7 @@ const express = require('express');
 const morgan = require('morgan');
 const PORT = process.env.PORT || 8080;
 const app = express();
+const cors = require("cors");
 
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
@@ -28,6 +29,7 @@ const petApiRoutes = require('./routes/pets-api');
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 
 //FIRST
+app.use(cors());
 app.use('/api/pets', petApiRoutes);
 http://localhost:8080/api/items/
 
