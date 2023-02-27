@@ -20,7 +20,7 @@ app.use(express.static('public'));
 // Note: Feel free to replace the example routes below with your own
 
 //SECOND
-const itemApiRoutes = require('./routes/items-api');
+const petApiRoutes = require('./routes/pets-api');
 
 
 // Mount all resource routes
@@ -28,7 +28,7 @@ const itemApiRoutes = require('./routes/items-api');
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 
 //FIRST
-app.use('/api/items', itemApiRoutes);
+app.use('/api/pets', petApiRoutes);
 http://localhost:8080/api/items/
 
 
