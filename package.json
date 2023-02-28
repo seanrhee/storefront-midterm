@@ -12,6 +12,7 @@
   "author": "Lighthouse Labs",
   "license": "ISC",
   "dependencies": {
+    "chalk": "^4.1.2",
     "dotenv": "^2.0.0",
     "express": "^4.17.1",
     "javascript-time-ago": "^2.5.9",
