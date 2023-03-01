@@ -22,6 +22,7 @@ app.use(express.static('public'));
 
 //SECOND
 const petApiRoutes = require('./routes/pets-api');
+const matchApiRoutes = require('./routes/matches-api');
 
 
 // Mount all resource routes
@@ -32,7 +33,7 @@ const petApiRoutes = require('./routes/pets-api');
 app.use(cors());
 app.use('/api/pets', petApiRoutes);
 http://localhost:8080/api/items/
-
+app.use('/api/matches', matchApiRoutes);
 
 // Note: mount other resources here, using the same pattern above
 
