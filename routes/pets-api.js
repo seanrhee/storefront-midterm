@@ -34,13 +34,14 @@ router.get('/:id', (req, res) => {
   })
 });
 
-router.post('/', (req, res) => {
-  console.log("POST REQUEST CALLED")
-  // console.log("res.data:", res.data)
-  // console.log("res:", res);
-  console.log("req body:", req.body)
-  
-    // petQueries.addPet({ pet })
+router.post('/:id', (req, res) => {
+  console.log("POST REQUEST CALLED") 
+  console.log(res.data) 
+  console.log(req.params)
+  const id = req.params;
+  console.log("REQ BODY:", req.body, req.body.name)
+
+    // petQueries.addPet({id: { }})
     //   .then(pet => {
     //     res.redirect(`/pets/${pet.id}`); //redirect the user to show item page
     //   })
