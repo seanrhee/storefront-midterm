@@ -18,5 +18,20 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/:id', (req, res) => {
+  return db.query(`
+  SELECT *
+  FROM pets
+  WHERE user_id = $1
+  `, [100])
+    .then(({ rows: pets }) => {
+      res.json(
+        pets.reduce(
+          (previous, current) => ({ ...previous, [current.id]: current }),
+          {}
+        )
+      );
+    });
+});
 
 module.exports = router;
