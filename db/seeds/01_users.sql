@@ -1,4 +1,4 @@
-insert into users (email) values ('mia@indyegcko.com');
+insert into users (email) values ('mia@indygecko.com');
 insert into users (email) values ('ejansik0@squidoo.com');
 insert into users (email) values ('dmalam1@auda.org.au');
 insert into users (email) values ('awickham2@howstuffworks.com');

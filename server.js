@@ -16,6 +16,7 @@ const cors = require("cors");
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
+app.use(express.json());
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
@@ -23,7 +24,7 @@ app.use(express.static('public'));
 //SECOND
 const petApiRoutes = require('./routes/pets-api');
 const matchApiRoutes = require('./routes/matches-api');
-
+const userApiRoutes = require('./routes/users-api');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -32,8 +33,8 @@ const matchApiRoutes = require('./routes/matches-api');
 //FIRST
 app.use(cors());
 app.use('/api/pets', petApiRoutes);
-http://localhost:8080/api/items/
 app.use('/api/matches', matchApiRoutes);
+app.use('/api/users', userApiRoutes);
 
 // Note: mount other resources here, using the same pattern above
 
