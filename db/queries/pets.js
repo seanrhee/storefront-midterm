@@ -18,7 +18,9 @@ const getPetId = (petId) => {
 }
 
 // add pet into pets table
-const addPet = function (pet) {
+const addPet = (pet) => {
+  console.log("addPet called");
+  
   return db.query(
     `INSERT INTO pets (user_id,
       name,

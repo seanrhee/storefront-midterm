@@ -34,5 +34,22 @@ router.get('/:id', (req, res) => {
   })
 });
 
+router.post('/', (req, res) => {
+  console.log("POST REQUEST CALLED")
+  // console.log("res.data:", res.data)
+  // console.log("res:", res);
+  console.log("req body:", req.body)
+  
+    // petQueries.addPet({ pet })
+    //   .then(pet => {
+    //     res.redirect(`/pets/${pet.id}`); //redirect the user to show item page
+    //   })
+    //   .catch(e => {
+    //     console.error(e);
+    //     res.send(e)
+    //   })
+    });
+
+
 
 module.exports = router;
