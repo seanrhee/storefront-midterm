@@ -25,6 +25,7 @@ app.use(express.json());
 const petApiRoutes = require('./routes/pets-api');
 const matchApiRoutes = require('./routes/matches-api');
 const userApiRoutes = require('./routes/users-api');
+const relationshipsApiRoutes = require('./routes/relationships-api');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -35,6 +36,7 @@ app.use(cors());
 app.use('/api/pets', petApiRoutes);
 app.use('/api/matches', matchApiRoutes);
 app.use('/api/users', userApiRoutes);
+app.use('/api/relationships', relationshipsApiRoutes);
 
 // Note: mount other resources here, using the same pattern above
 
