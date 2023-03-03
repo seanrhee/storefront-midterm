@@ -1,5 +1,5 @@
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 const db = require('../db/connection');
 
 router.get('/', (req, res) => {
@@ -25,5 +25,31 @@ router.get('/', (req, res) => {
     });
 });
 
+router.put('/', (req, res) => {
+  console.log(req.body);
+  return db.query(`
+  UPDATE match SET pet_two_match = TRUE WHERE (pet_one = $2 AND pet_two = $1)
+  INSERT INTO matches (pet_one, pet_two) VALUES ($1, $2)
+  WHERE NOT EXISTS (SELECT * FROM matches WHERE
+    (pet_one = $1 AND pet_two = $2) OR (pet_one = $2 AND pet_two = $1))`,
+    [Number(req.body.pet_id), Number(req.body.other_id)])
+    .then(() => {
+      setTimeout(() => {
+        res.status(204).json({});
+      }, 1000);
+    })
+    .catch(error => console.log(error));
+});
+
+router.delete("/", (req, res) => {
+  return db.query(`
+  DELETE FROM matches WHERE (pet_one = $1 AND pet_two = $2) OR (pet_one = $2 AND pet_two = $1)`,
+    [Number(req.body.pet_id), Number(req.body.other_id)])
+    .then(() => {
+      setTimeout(() => {
+        res.status(204).json({});
+      }, 1000);
+    });
+});
 
 module.exports = router;
