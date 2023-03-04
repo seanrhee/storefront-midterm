@@ -28,10 +28,15 @@ router.get('/', (req, res) => {
 router.put('/', (req, res) => {
   console.log(req.body);
   return db.query(`
-  UPDATE matches SET pet_two_match = TRUE WHERE (pet_one = $2 AND pet_two = $1);
-  INSERT INTO matches (pet_one, pet_two) SELECT $1, $2
-  WHERE NOT EXISTS (SELECT * FROM matches WHERE
-    (pet_one = $1 AND pet_two = $2) OR (pet_one = $2 AND pet_two = $1))`,
+  with updated as (
+    UPDATE matches
+    SET pet_two_match = TRUE
+    WHERE (pet_one = $2 AND pet_two = $1)
+    returning *
+    )
+    INSERT INTO matches (pet_one, pet_two) SELECT $1, $2
+    WHERE NOT EXISTS (SELECT * FROM matches WHERE
+      (pet_one = $1 AND pet_two = $2) OR (pet_one = $2 AND pet_two = $1))`,
     [Number(req.body.pet_id), Number(req.body.other_id)])
     .then(() => {
       setTimeout(() => {
