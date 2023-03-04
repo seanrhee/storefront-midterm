@@ -28,8 +28,8 @@ router.get('/', (req, res) => {
 router.put('/', (req, res) => {
   console.log(req.body);
   return db.query(`
-  UPDATE match SET pet_two_match = TRUE WHERE (pet_one = $2 AND pet_two = $1)
-  INSERT INTO matches (pet_one, pet_two) VALUES ($1, $2)
+  UPDATE matches SET pet_two_match = TRUE WHERE (pet_one = $2 AND pet_two = $1);
+  INSERT INTO matches (pet_one, pet_two) SELECT $1, $2
   WHERE NOT EXISTS (SELECT * FROM matches WHERE
     (pet_one = $1 AND pet_two = $2) OR (pet_one = $2 AND pet_two = $1))`,
     [Number(req.body.pet_id), Number(req.body.other_id)])
