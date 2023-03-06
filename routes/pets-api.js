@@ -4,16 +4,13 @@ const db = require('../db/connection');
 
 router.get('/:id', (req, res) => {
   return db.query(`
-      SELECT *
-      FROM pets
-      JOIN users
-      ON users.id = pets.user_id
-      WHERE users.email = $1
-      `, [req.params.id])
-    .then(({ rows: pets }) => {
-      res.json(
-        pets
-      );
+  SELECT *
+  FROM pets
+  WHERE user_id IN (SELECT users.id FROM users WHERE email = $1)
+  `, [req.params.id])
+  .then(({ rows: pets }) => {
+    res.json(
+      pets)
     });
 });
 
@@ -21,7 +18,6 @@ router.get('/', (req, res) => {
   return db.query(`
   SELECT *
   FROM pets
-  ORDER BY id DESC
   `)
     .then(({ rows: pets }) => {
       res.json(
