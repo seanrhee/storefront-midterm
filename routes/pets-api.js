@@ -6,7 +6,9 @@ router.get('/:id', (req, res) => {
   return db.query(`
   SELECT *
   FROM pets
-  WHERE user_id IN (SELECT users.id FROM users WHERE email = $1)
+  JOIN users
+  ON users.id = pets.user_id
+  WHERE users.id = $1
   `, [req.params.id])
     .then(({ rows: pets }) => {
       res.json(
