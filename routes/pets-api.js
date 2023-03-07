@@ -1,12 +1,25 @@
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 const db = require('../db/connection');
+
+router.get('/:id', (req, res) => {
+  return db.query(`
+  SELECT *
+  FROM pets
+  JOIN users
+  ON users.id = pets.user_id
+  WHERE users.id = $1
+  `, [req.params.id])
+    .then(({ rows: pets }) => {
+      res.json(
+        pets);
+    });
+});
 
 router.get('/', (req, res) => {
   return db.query(`
   SELECT *
   FROM pets
-  ORDER BY id DESC
   `)
     .then(({ rows: pets }) => {
       res.json(
@@ -50,4 +63,20 @@ router.post('/', (req, res) => {
     });
 
 
+router.post('/users', (req, res) => {
+  console.log("hello", req.body);
+  return db.query(`
+  SELECT *
+  FROM pets
+  JOIN users
+  ON users.id = pets.user_id
+  WHERE users.email = $1
+  `, [req.body.id])
+    .then(({ rows: pets }) => {
+      console.log('POST', pets);
+      res.json(
+        pets
+      );
+    });
+});
 module.exports = router;

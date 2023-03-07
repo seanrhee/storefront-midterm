@@ -53,6 +53,21 @@ router.get('/:id', (req, res) => {
     });
 });
 
+// router.get('/pets/:id', (req, res) => {
+//   console.log("hello")
+//   return db.query(`
+//   SELECT *
+//   FROM pets
+//   WHERE user_id IN (SELECT users.id FROM users WHERE email = $1)
+//   `, [req.params.id])
+//     .then(({ rows: pets }) => {
+//       console.log('RESPONSE', pets)
+//       res.json(
+//         pets
+//       );
+//     });
+// });
+
 router.post('/', (req, res) => {
   console.log(req.body);
   return db.query(`
