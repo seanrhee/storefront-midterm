@@ -6,7 +6,7 @@ const db = require('../db/connection');
 
 router.get('/:id', (req, res) => {
   return db.query(`
-  SELECT *
+  SELECT pets.*
   FROM pets
   JOIN users
   ON users.id = pets.user_id
