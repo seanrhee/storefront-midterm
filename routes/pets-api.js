@@ -6,11 +6,13 @@ router.get('/:id', (req, res) => {
   return db.query(`
   SELECT *
   FROM pets
-  WHERE user_id IN (SELECT users.id FROM users WHERE email = $1)
+  JOIN users
+  ON users.id = pets.user_id
+  WHERE users.id = $1
   `, [req.params.id])
-  .then(({ rows: pets }) => {
-    res.json(
-      pets)
+    .then(({ rows: pets }) => {
+      res.json(
+        pets);
     });
 });
 
@@ -31,7 +33,7 @@ router.get('/', (req, res) => {
 
 
 router.post('/users', (req, res) => {
-  console.log("hello", req.body)
+  console.log("hello", req.body);
   return db.query(`
   SELECT *
   FROM pets
@@ -40,7 +42,7 @@ router.post('/users', (req, res) => {
   WHERE users.email = $1
   `, [req.body.id])
     .then(({ rows: pets }) => {
-      console.log('POST', pets)
+      console.log('POST', pets);
       res.json(
         pets
       );
