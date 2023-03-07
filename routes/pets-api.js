@@ -61,7 +61,7 @@ router.get('/explore/:id', (req, res) => {
   SELECT pets.* FROM pets
   LEFT JOIN relationships ON pets.user_id = relationships.other_pet
   WHERE pets.user_id != $1
-  LIMIT 50
+  LIMIT 25
   `, [req.params.id])
     .then(({ rows: pets }) => {
       res.json(
