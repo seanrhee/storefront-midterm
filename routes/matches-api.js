@@ -2,6 +2,21 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db/connection');
 
+router.get('/', (req, res) => {
+  return db.query(`
+  SELECT *
+  FROM matches
+  `)
+    .then(({ rows: matches }) => {
+      res.json(
+        matches.reduce(
+          (previous, current) => ({ ...previous, [current.id]: current }),
+          {}
+        )
+      );
+    });
+});
+
 router.get('/:id', (req, res) => {
   return db.query(`
   SELECT id, user_id, name, breed, age, sex, size, spayed_or_neutered, city, description, photo_url
@@ -38,10 +53,10 @@ router.put('/', (req, res) => {
     INSERT INTO matches (pet_one, pet_two) SELECT $1, $2
     WHERE NOT EXISTS (SELECT * FROM matches WHERE
       (pet_one = $1 AND pet_two = $2) OR (pet_one = $2 AND pet_two = $1))`,
-    [Number(req.body.pet_id), Number(req.body.other_id)])
-    .then(() => {
+  [Number(req.body.pet_one), Number(req.body.pet_two)])
+    .then(({ rows: matches }) => {
       setTimeout(() => {
-        res.status(204).json({});
+        res.status(204).json({matches});
       }, 1000);
     })
     .catch(error => console.log(error));
@@ -50,7 +65,7 @@ router.put('/', (req, res) => {
 router.delete("/", (req, res) => {
   return db.query(`
   DELETE FROM matches WHERE (pet_one = $1 AND pet_two = $2) OR (pet_one = $2 AND pet_two = $1)`,
-    [Number(req.body.pet_id), Number(req.body.other_id)])
+  [Number(req.body.pet_id), Number(req.body.other_id)])
     .then(() => {
       setTimeout(() => {
         res.status(204).json({});
