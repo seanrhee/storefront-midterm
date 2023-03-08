@@ -47,7 +47,7 @@ router.get('/pending/:id', (req, res) => {
   FROM
   (SELECT DISTINCT pet_two
     FROM matches
-    WHERE matches.pet_one_match IS TRUE AND matches.pet_one = $1) AS matched
+    WHERE matches.pet_one_match IS TRUE AND matches.pet_two_match IS FALSE AND matches.pet_one = $1) AS matched
   JOIN pets ON matched.pet_two = pets.id
   `,
     [Number(req.params.id)])
@@ -67,7 +67,7 @@ router.get('/matchee/:id', (req, res) => {
   FROM
   (SELECT DISTINCT pet_one
     FROM matches
-    WHERE matches.pet_one_match IS TRUE AND matches.pet_two = $1) AS matched
+    WHERE matches.pet_one_match IS TRUE AND matches.pet_two_match IS FALSE AND matches.pet_two = $1) AS matched
   JOIN pets ON matched.pet_one = pets.id
   `,
     [Number(req.params.id)])
