@@ -57,7 +57,6 @@ router.get('/explore/:id', (req, res) => {
   select *
   from pets as pets where pets.id
   not in (select other_pet as id from relationships where current_pet = $1)
-  limit 25
   `, [req.params.id])
     .then(({ rows: pets }) => {
       res.json(
