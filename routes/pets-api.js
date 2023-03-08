@@ -64,4 +64,38 @@ router.get('/explore/:id', (req, res) => {
       );
     });
 });
+
+router.post("/", (req, res) => {
+  // console.log(req.body);
+
+  return db
+    .query(
+      `
+  INSERT INTO pets (user_id, name, breed, age, sex, spayed_or_neutered, size, city, description, photo_url)
+  VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+  RETURNING *
+  `,
+      [
+        req.body.user_id,
+        req.body.name,
+        req.body.breed,
+        req.body.age,
+        req.body.sex,
+        req.body.spayed_or_neutered,
+        req.body.size,
+        req.body.city,
+        req.body.description,
+        req.body.photo_url,
+      ]
+    )
+    .then(({ rows: pet }) => {
+      res.json(
+        pet.reduce(
+          (previous, current) => ({ ...previous, [current.id]: current }),
+          {}
+        )
+      );
+    });
+});
+
 module.exports = router;
