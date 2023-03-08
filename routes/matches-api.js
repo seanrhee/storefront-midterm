@@ -30,7 +30,7 @@ router.get('/:id', (req, res) => {
     WHERE matches.pet_one_match IS TRUE AND matches.pet_two_match IS TRUE AND matches.pet_one = $1)) AS matched
   JOIN pets ON matched.pet_one = pets.id
   `,
-  [Number(req.params.id)])
+    [Number(req.params.id)])
     .then(({ rows: matches }) => {
       res.json(
         matches.reduce(
@@ -50,7 +50,7 @@ router.get('/pending/:id', (req, res) => {
     WHERE matches.pet_one_match IS TRUE AND matches.pet_one = $1) AS matched
   JOIN pets ON matched.pet_two = pets.id
   `,
-  [Number(req.params.id)])
+    [Number(req.params.id)])
     .then(({ rows: matches }) => {
       res.json(
         matches.reduce(
@@ -70,11 +70,29 @@ router.get('/matchee/:id', (req, res) => {
     WHERE matches.pet_one_match IS TRUE AND matches.pet_two = $1) AS matched
   JOIN pets ON matched.pet_one = pets.id
   `,
-  [Number(req.params.id)])
+    [Number(req.params.id)])
     .then(({ rows: matches }) => {
       res.json(
         matches.reduce(
           (previous, current) => ({ ...previous, [current.id]: current }),
+          {}
+        )
+      );
+    });
+});
+
+router.get('/owner/:id', (req, res) => {
+  return db.query(`
+  SELECT *
+  FROM users
+  JOIN (Select id, user_id from pets where id = $1) AS pet
+  ON pet.user_id = users.id
+  `,
+    [req.params.id])
+    .then(({ rows: user }) => {
+      res.json(
+        user.reduce(
+          (previous, current) => ({ ...previous, email: current.email }),
           {}
         )
       );
@@ -93,7 +111,7 @@ router.put('/', (req, res) => {
     INSERT INTO matches (pet_one, pet_two) SELECT $1, $2
     WHERE NOT EXISTS (SELECT * FROM matches WHERE
       (pet_one = $1 AND pet_two = $2) OR (pet_one = $2 AND pet_two = $1))`,
-  [Number(req.body.pet_one), Number(req.body.pet_two)])
+    [Number(req.body.pet_one), Number(req.body.pet_two)])
     .then(({ rows: matches }) => {
       db.query(`SELECT * FROM matches WHERE (pet_one = $1 AND pet_two = $2) OR (pet_one = $2 AND pet_two = $1)`, [Number(req.body.pet_one), Number(req.body.pet_two)])
         .then(({ rows: matches }) => {
@@ -108,13 +126,13 @@ router.put('/', (req, res) => {
 router.delete("/", (req, res) => {
   return db.query(`
   DELETE FROM matches WHERE (pet_one = $1 AND pet_two = $2) OR (pet_one = $2 AND pet_two = $1)`,
-  [Number(req.body.pet_id), Number(req.body.other_id)])
+    [Number(req.body.pet_id), Number(req.body.other_id)])
     .then(() => {
       setTimeout(() => {
         res.status(204).json({});
       }, 1000);
     })
-    .catch((err) => {console.log(err)})
+    .catch((err) => { console.log(err) })
 });
 
 module.exports = router;
