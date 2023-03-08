@@ -95,9 +95,12 @@ router.put('/', (req, res) => {
       (pet_one = $1 AND pet_two = $2) OR (pet_one = $2 AND pet_two = $1))`,
   [Number(req.body.pet_one), Number(req.body.pet_two)])
     .then(({ rows: matches }) => {
-      setTimeout(() => {
-        res.status(204).json({matches});
-      }, 1000);
+      db.query(`SELECT * FROM matches WHERE (pet_one = $1 AND pet_two = $2) OR (pet_one = $2 AND pet_two = $1)`, [Number(req.body.pet_one), Number(req.body.pet_two)])
+        .then(({ rows: matches }) => {
+          setTimeout(() => {
+            res.status(200).json(matches[0]);
+          }, 1000);
+        })
     })
     .catch(error => console.log(error));
 });
@@ -110,7 +113,8 @@ router.delete("/", (req, res) => {
       setTimeout(() => {
         res.status(204).json({});
       }, 1000);
-    });
+    })
+    .catch((err) => {console.log(err)})
 });
 
 module.exports = router;

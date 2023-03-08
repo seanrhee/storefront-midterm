@@ -28,3 +28,11 @@ insert into matches (pet_one, pet_two, pet_one_match, pet_two_match) values (6, 
 insert into matches (pet_one, pet_two, pet_one_match, pet_two_match) values (34, 8, false, false);
 insert into matches (pet_one, pet_two, pet_one_match, pet_two_match) values (9, 23, false, true);
 insert into matches (pet_one, pet_two, pet_one_match, pet_two_match) values (3, 42, true, true);
+insert into matches (pet_one, pet_two, pet_one_match, pet_two_match) values (143, 42, true, true);
+insert into matches (pet_one, pet_two, pet_one_match, pet_two_match) values (83, 143, true, false);
+insert into matches (pet_one, pet_two, pet_one_match, pet_two_match) values (1, 143, true, false);
+insert into matches (pet_one, pet_two, pet_one_match, pet_two_match) values (2, 143, true, false);
+insert into matches (pet_one, pet_two, pet_one_match, pet_two_match) values (3, 143, true, false);
+insert into matches (pet_one, pet_two, pet_one_match, pet_two_match) values (4, 143, true, false);
+insert into matches (pet_one, pet_two, pet_one_match, pet_two_match) values (5, 143, true, false);
+insert into matches (pet_one, pet_two, pet_one_match, pet_two_match) values (6, 143, true, false);
