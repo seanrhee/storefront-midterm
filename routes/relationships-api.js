@@ -17,6 +17,23 @@ router.get('/', (req, res) => {
     });
 });
 
+
+router.get('/:id', (req, res) => {
+  return db.query(`
+  SELECT *
+  FROM relationships
+  WHERE current_pet = $1
+  `, [req.params.id]).then(({ rows: relationships }) => {
+    res.json(
+      relationships.reduce(
+        (previous, current) => ({ ...previous, [current.id]: current }),
+        {}
+      )
+    );
+  });
+
+});
+
 router.post('/', (req, res) => {
   return db.query(`
   INSERT INTO relationships (current_pet, other_pet)
