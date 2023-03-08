@@ -54,16 +54,10 @@ router.post('/users', (req, res) => {
 
 router.get('/explore/:id', (req, res) => {
   return db.query(`
-  SELECT pets.* FROM pets
-  LEFT JOIN relationships ON pets.id = relationships.current_pet
-  WHERE pets.id != $1
-  OR relationships.interact = false
-  UNION
-  SELECT pets.* FROM pets
-  LEFT JOIN relationships ON pets.id = relationships.other_pet
-  WHERE pets.id != $1
-  OR relationships.interact = false
-  LIMIT 25
+  select *
+  from pets as pets where pets.id
+  not in (select other_pet as id from relationships where current_pet = $1)
+  limit 25
   `, [req.params.id])
     .then(({ rows: pets }) => {
       res.json(
